@@ -1,0 +1,71 @@
+Angular is a front-end development framework.
+It can develop Single Page Applications
+NPM = Node Package Manager
+CLI = Command Line Interface
+
+
+
+installing angular
+
+npm install -g @angular/cli@latest
+
+starting angular 
+|-  ng serve
+
+
+Intalling bootstrap locally
+|- npm install --save bootstrap@3
+
+
+DOM vs V-DOM
+DOM stands for document object model
+document = html file
+object = header tag, body tag or any tag in html file
+model = it is basically a layout of our html file
+
+=====================================================================
+Package.json contains all the detials of the project like Script, name of project, dependencies
+Package-lock.json== this file contains all the details about the libraries and there sub files.
+angular.json = it is the application configuration file.
+Node_module = This folder contains all the libraries like csstools, angulardevkit. using npm will regenrate this folder
+src folder= this folder contians all the dev file in which we will edit things.
+app folder = this folder contains all the editable files like html,css,ts
+assests folder = it is used to store extra images and files.
+browserslistrc is used to tell that which browsers are supportged.
+karma.config.js = it used to config the test cases.
+pollyfills.ts is used to add some libraries that are useful to support on browers
+
+when we define a data in app.component.ts file and call it using {} it is known as dynamic data and the to disply the data in html, we achieve it through interpolation.
+
+
+tsconfig.json = it is used to config globally
+tsconfig.app.json = it is used to config the app file. this file extends tsconfig.json.
+tsconfig.spec.json = for test files.
+
+
+style.css file will used to implement the css in the entire web page.
+
+
+bootstrap is used to connect the load the entire angular file to html.
+
+
+app is by default a root component.
+
+module is big and complex functionality where component is small. Modules consist of one or more components. They do not control any html. Your modules declare which components can be used by components belonging to other modules, which classes will be injected by the dependency injector and which component gets bootstrapped. Modules allow you to manage your components to bring modularity to your app.
+
+We built our whole application by composting it from various components.
+
+Decorators are used to enhence your classes or elements. 
+
+Angular usually uses components to create web pages and uses modules to bundle different pieces of components.
+
+
+~~~~~~~~~~~~~ to generate a component and module and class
+1) ng generate component (name)
+   ng g c (name)
+
+2) ng generate module (name)
+
+3) ng generate class (name)
+
+In app.module we do not add the extension of the file while giving the location becuase the app will automatically add it.

@@ -25,28 +25,37 @@ model = it is basically a layout of our html file
 
 =====================================================================
 Package.json contains all the detials of the project like Script, name of project, dependencies
+
 Package-lock.json== this file contains all the details about the libraries and there sub files.
+
 angular.json = it is the application configuration file.
+
 Node_module = This folder contains all the libraries like csstools, angulardevkit. using npm will regenrate this folder
+
 src folder= this folder contians all the dev file in which we will edit things.
+
 app folder = this folder contains all the editable files like html,css,ts
+
 assests folder = it is used to store extra images and files.
-browserslistrc is used to tell that which browsers are supportged.
+
+browserslistrc is used to tell that which browsers are supported.
+
 karma.config.js = it used to config the test cases.
+
 pollyfills.ts is used to add some libraries that are useful to support on browers
 
-when we define a data in app.component.ts file and call it using {} it is known as dynamic data and the to disply the data in html, we achieve it through interpolation.
+when we define a data in app.component.ts file and call it using {} it is known as dynamic data and to disply the data in html, we achieve it through interpolation.
 
 
 tsconfig.json = it is used to config globally
-tsconfig.app.json = it is used to config the app file. this file extends tsconfig.json.
+tsconfig.app.json = it is used to config the app file. This file extends tsconfig.json.
 tsconfig.spec.json = for test files.
 
 
 style.css file will used to implement the css in the entire web page.
 
 
-bootstrap is used to connect the load the entire angular file to html.
+bootstrap is used to connect and load the entire angular file to html.
 
 
 app is by default a root component.
@@ -69,3 +78,50 @@ Angular usually uses components to create web pages and uses modules to bundle d
 3) ng generate class (name)
 
 In app.module we do not add the extension of the file while giving the location becuase the app will automatically add it.
+
+
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    DAY 2    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+Each component must have a template file.
+
+While using selector,
+1) Selectors will work with attributes, selectors(elements), and class.
+2) Selectors will not work with id's.
+
+String Interpolation in Angular 8 is a one-way data-binding technique that is used to transfer the data from a TypeScript code to an HTML template (view). It uses the template expression in double curly braces to display the data from the component to the view. String interpolation adds the value of a property from the component to the HTML template view.
+
+Property binding uses [] and event binding uses ().
+
+$event reserved word which is used to give access to the data.
+
+Two way binding means updating and displaying the property at the same time.
+
+A module is a mechanism to group componenets, directives, pipes and services.
+
+
+One way binding:
+
+In one-way binding, the data flow is one-directional.
+This means that the flow of code is from typescript file to Html file.
+In order to achieve a one-way binding, we used the property binding concept in Angular.
+In property binding, we encapsulate the variable in Html with square brackets( [ ] ).
+We will understand this concept through an example in order to make it more comprehensible.
+
+Two-way binding:
+
+In a two-way binding, the data flow is bi-directional.
+This means that the flow of code is from ts file to Html file as well as from Html file to ts file.
+In order to achieve a two-way binding, we will use ngModel or banana in a box syntax.
+To make sure the app doesn’t break, we need to import ‘FormsModule’ from ‘@angular/forms.
+Any changes to the view are propagated to the component class. Also, any changes to the properties in the component class are reflected in the view.
+To bind two properties in order to two-way binding works, declare the ngModel directive and set it equal to the name of the property.
+We will understand the concept through an example in order to make it more comprehensible.
+
+Life cycle hooks are the methods that angular invokes on the directives and component as it creates, changes and destroy them. 
+
+
+
+

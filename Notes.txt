@@ -3,8 +3,6 @@ It can develop Single Page Applications
 NPM = Node Package Manager
 CLI = Command Line Interface
 
-
-
 installing angular
 
 npm install -g @angular/cli@latest
@@ -107,7 +105,7 @@ One way binding:
 In one-way binding, the data flow is one-directional.
 This means that the flow of code is from typescript file to Html file.
 In order to achieve a one-way binding, we used the property binding concept in Angular.
-In property binding, we encapsulate the variable in Html with square brackets( [ ] ).
+In property binding, we encapsulate the variable in Html with square brackets[ ].
 We will understand this concept through an example in order to make it more comprehensible.
 
 Two-way binding:
@@ -121,7 +119,33 @@ To bind two properties in order to two-way binding works, declare the ngModel di
 We will understand the concept through an example in order to make it more comprehensible.
 
 Life cycle hooks are the methods that angular invokes on the directives and component as it creates, changes and destroy them. 
+Directives are instruction in DOM. These are classes that add additional behaviour to elements. These are of three types
+1) Component
+2) Structural
+3) Attribute
 
+
+*ngIf--- the * is required because ngIf is a structural directive which means it changes the structure of our DOM. So the ngIf is a directice and the * is required to make it work correctly.
+
+Unlike structural directive, attribute directives don't add or remove elements they only change the element they are placed on.
+
+[ngStyle] = ngStyle is the directive and the square brackets indicate that we want to bind some property to this directive and this property name also been ngStyle.
+
+
+! is ======= That's the non-null assertion operator. It is a way to tell the compiler "this expression cannot be null or undefined here, so don't complain about the possibility of it being null or undefined." Sometimes the type checker is unable to make that determination itself.
+
+
+The FormBuilder provides syntactic sugar that shortens creating instances of a FormControl, FormGroup, or FormArray. It reduces the amount of boilerplate needed to build complex forms.
+
+doubt ques ngSubmit vs [ngSubmit] vs (ngSubmit)
+
+Angular have two approaches in forms:-
+1) Template-Driven = Angular infers the Form Object from the DOM
+2) Reactive = Programmer creates the form and it is programmatically and synchronized with the DOM.
+
+For reactive form we have to first import the reactive form in app.module.ts.
+in app.component.ts we have to import FormGroup(Will control our complete form like what is inside the form and it is valide or not) and FormControl(It will specifically handle the single input field)
+After this create an instance of form as formName = new FormGroup({ input1 = new FormControl('~~inside this default value of the form')  })
 
 
 

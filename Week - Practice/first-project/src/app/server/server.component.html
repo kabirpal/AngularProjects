@@ -1,0 +1,14 @@
+<h1>My name is {{ name }} and my id is {{getCompId()}}</h1>
+<!-- <p [innerText]="NewServer"></p> -->
+    <!--{{ NewServer}}-->
+<!-- <input class="form-control" type="'text" (input)="Servername($event)"> -->
+<input type="text" [(ngModel)]="NewServerName">
+<button class="btn-btn-primary"
+[disabled] ="NewServer" (click)="EventServer()" >New Server</button>
+<p>{{ServerStatus}}</p>
+<!-- <p>{{NewServerName}}</p> -->
+<p *ngIf="ServerCreated; else noServer">Server has been created with name {{NewServerName}}.</p>
+<ng-template #noServer>
+    <p>No server was created</p>
+</ng-template>
+<!-- <button class="btn-btn-primary" (click)="EventServer">New Server</button> -->

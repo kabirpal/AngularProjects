@@ -1,0 +1,51 @@
+<h1>{{title}}</h1>
+<br>
+
+
+<!-- <div class="container"> -->
+  <div class="container">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="What's on your mind" aria-label="Recipient's username" aria-describedby="button-addon2" #taskInput id="myTask" [value]='tasks'/>
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2"(click)="addToDo(taskInput.value)" (click)="taskInput.value=''">Add Task</button>
+    </div>
+
+    <!-- <input type="text" #taskInput id="myTask" [value]='tasks'/>
+<button type="button" class="btn btn-primary" (click)="addToDo(taskInput.value)" (click)="taskInput.value=''">Add Task</button> -->
+<!-- <button (click)="addToDo(taskInput.value)" (click)="taskInput.value=''"> Add Task</button> -->
+
+<!-- <div class="tablesize"> -->
+  <div class="container-fluid">
+  <div class="card">
+    <div class="card-body" *ngFor="let task of list">
+      {{task.name}}
+      <br>
+      <br>
+      <select class="form-select" aria-label="Default select example" style=width:200px>
+        <option value="Today">Today</option>
+        <option value="Tomorrow">Tomorrow</option>
+        <option value="Later">Later</option>
+      </select><button style="margin: auto;" style="margin:10px;" type="button" class="btn btn-primary" (click)="DeleteTask(task.id)">Done</button>
+    <button type="button" style="margin:10px;" class="btn btn-secondary" (click)="EditTask(task.id)">Edit</button>
+    <hr>
+    </div>
+  </div>
+</div>
+</div>
+<!-- <div class="card" style="width: 18rem;">
+  <div class="card-body" *ngFor="let task of list">
+    <h5 class="card-title">{{task.name}}</h5>
+    <button type="button" class="btn btn-primary" (click)="DeleteTask(task.id)">Done</button>
+    <button type="button" class="btn btn-secondary" (click)="EditTask(task.id)">Edit</button>
+    </div>
+</div> -->
+<!-- <table *ngFor="let task of list">
+  <tr>
+  <td>{{task.name}}
+    <button (click)="DeleteTask(task.id)">Done</button></td>
+    <td></td>
+    <button (click)="EditTask(task.id)">Edit</button>
+  </tr>
+</table> -->
+<!-- </div> -->
+<!-- </div> -->
+<!--  <button (click)="EditTask(task.id)">Edit</button>  -->

@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="firstname">First Name:</label>
+          <input formControlName=firstName [ngClass]="{'is-invalid':submitted && registerForm.controls.firstName.errors}" type="text" class="form-control">
+          <div class="text-danger" *ngIf="submitted && registerForm.controls.firstName.errors">
+            <div class="text-danger" *ngIf="submitted && registerForm.controls.firstName.errors.required">
+            First Name cannot be empty</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastname">Last Name:</label>
+          <input formControlName=lastName [ngClass]="{'is-invalid':submitted && registerForm.controls.lastName.errors}" type="text" class="form-control">
+          <div class="text-danger" *ngIf="submitted && registerForm.controls.lastName.errors">
+          <div class="text-danger" *ngIf="submitted && registerForm.controls.lastName.errors.required">Last Name cannot be empty</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input formControlName=Email [ngClass]="{'is-invalid':submitted && registerForm.controls.Email.errors}" type="text" class="form-control">
+          <div class="text-danger" *ngIf="submitted && registerForm.controls.Email.errors">
+            <div class="text-danger" *ngIf="submitted && registerForm.controls.Email.errors.required">Email is required</div>
+            <div class="text-danger" *ngIf="submitted && registerForm.controls.Email.errors.email">Please enter a valid email</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input formControlName=Password [ngClass]="{'is-invalid':submitted && registerForm.controls.Password.errors}" type="password" class="form-control">
+          <div class="text-danger" *ngIf="submitted && registerForm.controls.Password.errors">
+          <div class="text-danger" *ngIf="submitted && registerForm.controls.Password.errors.required">Please enter your PASSWORD</div>
+          <div class="text-danger" *ngIf="submitted && registerForm.controls.Password.errors.minlength">Password must contain minimum 8 characters</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary" style="margin-top:10px">
+            Register
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

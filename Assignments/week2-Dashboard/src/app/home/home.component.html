@@ -1,0 +1,56 @@
+<h2>Property Binding Works!</h2>
+<div class="container" style="border: solid 1px rgba(56, 53, 53, 0.397); border-radius:20px; padding: 10px; align-content: center;">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm" > -->
+          <form (ngSubmit)="onSubmit()" #f="ngForm" >
+          <div id="user-data" ngModelGroup = "userData" #userData="ngModelGroup">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" class="form-control" ngModel name="UserName" required> <!--Here ngModel is using no binding-->
+            </div>
+            <button class="btn btn-default" type="button" (click)="suggestUserName()">Suggest an Username</button>
+            <div class="form-group">
+              <label for="email">Mail</label>
+              <input type="email" id="email" class="form-control" ngModel name="Email" email required #email="ngModel">
+              <span class='ngModel'*ngIf="!email.valid && email.touched">Please enter a valid email</span>
+            </div>
+          </div>
+          <p *ngIf="!userData.valid && userData.touched">User data is invalid</p>
+          <div class="form-group">
+            <br>
+            <h5><b>Select Gender</b></h5>
+            <div class="radio" *ngFor="let gender of genders">
+              <label>
+                <input type="radio" ngModel name="selectedgender" [ngModel]="defaultGender" [value]="gender">{{gender}}
+              </label>
+            </div>
+            <br>
+            <label for="secret">Secret Questions</label>
+            <select id="secret" class="form-control" [ngModel]="defaultQuestion" name="Secret"><!--Here default ques is using one way binding-->
+              <option value="pet">Your first Pet?</option>
+              <option value="teacher">Your first teacher?</option>
+            </select>
+          </div>
+          <br>
+          <div class="form-group">
+            <textarea ngModel name="QuestionAnswer" rows="3" [(ngModel)]="answer" class="form-control"></textarea>
+          </div>
+          <p>Your answer: {{ answer }}</p>
+          <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+        </form>
+        <div class="row" *ngIf="submitted">
+          <div class="col-xs-12">
+            <hr>
+            <h3>Your Data</h3>
+            <p>Username: {{user.displayUsername}}</p>
+            <p>Email: {{user.displayEmail}} </p>
+            <p>Secret Question: {{user.displaySecretQuestion}}</p>
+            <p>Answer: {{user.displayAnswer}}</p>
+            <p>Gender: {{user.displayGender}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr><hr>

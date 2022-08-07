@@ -1,0 +1,17 @@
+<h1>Dashboard</h1>
+<div class="container">
+    <hr>
+<button type="button" name="home" class="btn btn-primary btn-lg" (click)="onPress('home')">Home</button>
+<button type="button" name ="Property" class = "btn btn-primary btn-lg" (click)="onPress('property')">Property Binding</button>
+<button type="button" name ="services" class="btn btn-primary btn-lg" (click)="onPress('services')">Services</button>
+<button type="button" name = "observables" class="btn btn-primary btn-lg" (click)="onPress('observables')">Observables</button>
+<button type="button" name ="errorH" class="btn btn-primary btn-lg" (click)="onPress('errorH')">Error Handling</button>
+</div>
+
+<div class="container" *ngFor="let tab of tabs" id="box">
+    <app-home *ngIf="tab.home"></app-home>
+    <app-property-binding *ngIf="tab.property"></app-property-binding>
+    <app-services *ngIf="tab.services"></app-services>
+    <app-observables *ngIf="tab.observables"></app-observables>
+    <app-error-handling *ngIf="tab.errorH"></app-error-handling>
+</div>

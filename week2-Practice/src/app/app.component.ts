@@ -45,12 +45,14 @@ suggestUserName(){
   
 }
   onSubmit(){
+    console.log(this.user);
     this.submitted = true;
     this.user.displayUsername = this.signupForm.value.userData.UserName,
     this.user.displayEmail = this.signupForm.value.userData.Email,
-    this.user.displaySecretQuestion = this.signupForm.value.userData.Secret,
-    this.user.displayAnswer = this.signupForm.value.userData.QuestionAnswer,
-    this.user.displayGender = this.signupForm.value.userData.gender
+    this.user.displayGender = this.signupForm.value.selectedgender,
+    this.user.displaySecretQuestion = this.signupForm.value.Secret,
+//    this.user.displayAnswer = this.signupForm.value.userData.answer
+    this.user.displayAnswer = this.signupForm.value.QuestionAnswer
   }
 }
 

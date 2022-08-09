@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class ErrorHService {
-  private user_url:string = "./assets/student.json";
+  private user_url:string = "./assets/student1.json";
 
   constructor(private http:HttpClient) { }
 

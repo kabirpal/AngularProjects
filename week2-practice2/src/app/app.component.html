@@ -1,13 +1,14 @@
 <h1>Login form</h1>
-<form>
+<form [formGroup]="signupForm">
   <label>name:</label>
-  <input type="text" placeholder="Enter your name">
+  <input type="text" placeholder="Enter your name" formControlName="user">
   <br><br>
   <label>Phone no. :</label>
-  <input type="text" placeholder="Enter your phone no.">
-  <button type="submit" style="margin: 20px;">Submit</button>
+  <input type="text" placeholder="Enter your phone no." formControlName="Password">
+  <button type="submit" style="margin: 20px;" (click)="onSubmit()">Submit</button>
 </form>
 
+<!-- <app-service-prac></app-service-prac> -->
 
 <!-- <div class="container">
   <div class="row">

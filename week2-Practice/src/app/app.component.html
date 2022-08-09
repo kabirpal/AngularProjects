@@ -21,7 +21,7 @@
           <h5><b>Select Gender</b></h5>
           <div class="radio" *ngFor="let gender of genders">
             <label>
-              <input type="radio" name="gender" [ngModel]="defaultGender" [value]="gender">{{gender}}
+              <input type="radio" ngModel name="selectedgender" [ngModel]="defaultGender" [value]="gender">{{gender}}
             </label>
           </div>
 
@@ -32,7 +32,7 @@
           </select>
         </div>
         <div class="form-group">
-          <textarea name="QuestionAnswer" rows="3" [(ngModel)]="answer" class="form-control"></textarea>
+          <textarea ngModel name="QuestionAnswer" rows="3" [(ngModel)]="answer" class="form-control"></textarea>
         </div>
         <p>Your answer: {{ answer }}</p>
         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>

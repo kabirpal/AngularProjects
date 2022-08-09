@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup,FormControlName,FormControl } from '@angular/forms';
+import { ServiceService } from './services/service.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,15 @@ import { FormGroup,FormControlName,FormControl } from '@angular/forms';
 })
 export class AppComponent {
   title = 'week2-practice2';
-  signupForm = FormGroup;
+  signupForm = new FormGroup({
+    user: new FormControl(""),
+    Password:new FormControl('')
+  });
+  constructor(private userdata:ServiceService){
+    console.warn('userdata',userdata.user())
+  }
+  onSubmit(){
+    console.log(this.signupForm.value)
+  }
   
 }

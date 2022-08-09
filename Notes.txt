@@ -147,5 +147,83 @@ For reactive form we have to first import the reactive form in app.module.ts.
 in app.component.ts we have to import FormGroup(Will control our complete form like what is inside the form and it is valide or not) and FormControl(It will specifically handle the single input field)
 After this create an instance of form as formName = new FormGroup({ input1 = new FormControl('~~inside this default value of the form')  })
 
+Then move to HTML file and there add the FormGroup in the form tag and with formName ==> [formGroup]="formName"
+now add formControlName="input1" in every input
+use .value to print what's inside the input box. 
+
+
+services are basically classes which may have data properties or functions and we can use/share this data with other files.
+using services--
+
+first create services folder and in that run command ==> ng g service foldername/filename
+2 files will be created and from there edit the ts file and declare a function with data inside it. =====> 
+user(){
+    return [{name:'Ramesh',email:'ramesh@g.com'},
+    {name:'Jayesh',email:'jayesh@g.com'},
+    {name:'Rudhra',email:'Rudhra@g.com'},
+    {name:'Kalki',email:'kalki@g.com'}]
+  }
+}
+
+After this import this function in app.comp.ts and footer.comp.ts
+
+Pipes are simple functions to use in template expressions to accept an input value and return a transformed value.
+
+three types of directives
+|-- Component directives - these are the main class having the details of how the component should instantiated, processed and used at runtime.
+|-- Structural directive - these are used to deal with manipulating the DOM elements. eg *ngIf *ngFor
+|-- Attribute directives - these are used to change the look and behaviour of the dom elements.
+
+
+Constructors define which parameters to provide when instantiate your objects.
+
+
+Services are classes with special purpose.
+We use service to:-
+|-- Share the data
+|-- Implement application logic
+|-- External Interaction
+
+Dependencies Injection - DI is a coding pattern in which a class receives its dependencies from external source rather then creating them itself.
+
+Using Service
+|-- Create a Service Class
+|--Register the service with angular built-in injector
+|--Declare the service as dependency in the class that needs it.
+
+				Employee Service
+				           |
+   		  ------------------------------------------------------------
+		  |					        |
+    	      Employee List				         Employee details
+
+Injectable tells the angular that this service might itself have injectable dependencies. So it is use to inject a service in another service. 
+
+
+Observables = An observable is a sequence of items(HTTP response) that arrive asynchronously over time.
+HTTP call - Single item
+single item - Http response
+
+Using HTTP and observables-
+
+APP.MODULE.TS
+
+1) import { HttpClientModule } from '@angular/commom/http';    === in app.module.ts
+2) then add HttpClientModule in imports
+
+1) import { HttpClient } from '@angular/commom/http';    === in employee.service.ts
+2) in constructor == constructor(private http: HttpClient){ }
+3) create a function in that return this.http.get<'name of interface'>(this.url);
+4) private url:string=" ";
+5) Create an interface in app folder
+6) Now import the interface with name and in employee.service.ts
+7) Import the observables from RxJS==== function ():Observables<interface name[]>
+
+1) in employee.list.ts
+inside ngOnInit(){
+	this.(constructor name).function name()
+		.subscribe(data=> this.list name = data)}
+
+
 
 

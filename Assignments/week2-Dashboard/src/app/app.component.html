@@ -1,4 +1,31 @@
-<h1>Dashboard</h1>
+<nav id="navbar-example2" class="navbar bg-light px-3 mb-3" >
+    <div class="container">
+    <a class="navbar-brand" href="#">Angular Week 2 Assignment</a>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading2">Property Binding</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading3">Services</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading4">Observables</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading5">Error Handling</a>
+        </li>
+    </ul>
+</div>
+</nav>
+<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
+    data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
+    <app-home id="scrollspyHeading1"></app-home>
+    <app-property-binding id="scrollspyHeading2"></app-property-binding>
+    <app-services id="scrollspyHeading3"></app-services>
+    <app-observables id="scrollspyHeading4"></app-observables>
+    <app-error-handling id="scrollspyHeading5"></app-error-handling>
+</div>
+<!-- <h1>Dashboard</h1>
 <div class="container">
     <hr>
 <button type="button" name="home" class="btn btn-primary btn-lg" (click)="onPress('home')">Home</button>
@@ -14,4 +41,4 @@
     <app-services *ngIf="tab.services"></app-services>
     <app-observables *ngIf="tab.observables"></app-observables>
     <app-error-handling *ngIf="tab.errorH"></app-error-handling>
-</div>
+</div> -->

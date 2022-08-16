@@ -3,4 +3,4 @@
 <input type="text" #ptext (keyup)="0"><br>
 <label> The value from child component is: {{childData}}</label>
 <br><hr>
-<app-child-component (childEvent)="childData=$event"     [ParentData]="ptext.value"></app-child-component>
+<app-child-component (childEvent)="childData=$event" [ParentData]="ptext.value"></app-child-component>

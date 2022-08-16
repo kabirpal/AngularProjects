@@ -224,6 +224,9 @@ inside ngOnInit(){
 	this.(constructor name).function name()
 		.subscribe(data=> this.list name = data)}
 
+@Input and @Output
 
+Whenever we want to get the data from parent to child component we use Input Decorator and whenever from child to parent we use Output Decorator. 
 
+Interfaces can be implemented by classes and when they are, they force classes to have the structure that is defined by the classes. It also acts as object type.
 

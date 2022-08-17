@@ -10,6 +10,7 @@ export class PropertyBindingComponent implements OnInit {
   ngOnInit(){
   }
   @ViewChild('f') signupForm!:NgForm;
+  
   title = 'week2-Practice';
   defaultQuestion = 'teacher';
   defaultGender = 'female';

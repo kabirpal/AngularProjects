@@ -1,7 +1,22 @@
-<div id="divWeatherMain">
-    <div class="weatherWidgetRow" style="font-size: 50px;margin-top: 10px;">{{WeatherData.name}}</div>
-    <div class="weatherWidgetRow" style="font-size: 32px;margin-top: 5px;">{{WeatherData.temp_celcius}}°</div>
-    <div class="weatherWidgetRow" style="font-size: 12px;">{{WeatherData.temp_min}}° / {{WeatherData.temp_max}}°</div>
-    <div class="weatherWidgetRow" style="font-size: 12px;">Feels Like: {{WeatherData.temp_feels_like}}°</div>
-    <div class="weatherWidgetRow" style="font-size: 12px;">Humidity: {{WeatherData.main.humidity}}%</div>
+<h1>Today's Weather</h1>
+<br>
+<div class="container">
+    <form class="d-flex" role="search" #form="ngForm" (submit)="OnSubmit()">
+        <input class="form-control me-2" type="search" placeholder="Enter your city" aria-label="Search" name="Usercity" [(ngModel)]="city">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
 </div>
+<br>
+<div class="row">
+    <div id="divWeatherMain" *ngIf="weatherData">
+        <div class="weatherWidgetRow" style="font-size: 50px;margin-top: 10px;">{{weatherData.location.name}}</div>
+        <div class="weatherWidgetRow" style="font-size: 32px;margin-top: 5px;"><img src={{weatherData.forecast.forecastday[0].day.condition.icon}} alt=""></div>
+        <div class="weatherWidgetRow" style="font-size: 32px;margin-top: 10px;">{{weatherData.current.condition.text}}</div>
+        <div class="weatherWidgetRow" style="font-size: 32px;margin-top: 5px;">{{weatherData.current.temp_c}}°</div>
+        <div class="weatherWidgetRow" style="font-size: 20px;">Max Temp{{weatherData.forecast.forecastday[0].day.maxtemp_c}}° / Min Temp {{weatherData.forecast.forecastday[0].day.mintemp_c}}°</div>
+        <div class="weatherWidgetRow" style="font-size: 20px;">Feels Like: {{weatherData.current.feelslike_c}}°</div>
+        <div class="weatherWidgetRow" style="font-size: 20px;">Humidity: {{weatherData.forecast.forecastday[0].hour[0].humidity}}%</div>
+        <div class="weatherWidgetRow" style="font-size: 20px;">Chance of rain: {{weatherData.forecast.forecastday[0].hour[16].chance_of_rain}}%</div>
+    </div>
+</div>
+<p></p>

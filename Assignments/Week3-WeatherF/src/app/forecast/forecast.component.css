@@ -1,0 +1,15 @@
+.card{
+    margin:auto;
+}
+
+input{
+    border-radius: 40px;
+}
+
+h1{
+    text-align: center;
+}
+
+button{
+    border-radius: 40px;
+}

@@ -230,3 +230,69 @@ Whenever we want to get the data from parent to child component we use Input Dec
 
 Interfaces can be implemented by classes and when they are, they force classes to have the structure that is defined by the classes. It also acts as object type.
 
+~~~~~~~~~~~~~On click~~~~~~~~~~~~~~~~
+
+add the click event in link or button======   (click) = "onPress('button1')"
+then to the same component TS file and add the function onPress
+
+onPress(feature:string){
+this.featureSelected.emit(feature)}
+
+then add the EventEmitter
+featureSelected = new EventEmitter<string>();
+
+now add @Output before the featureSelected so that the event can be available to the parent class also.
+
+now to the parent component html file and listen to event at the header and assign an function to the event. 
+(featureSelected) = "onNavigate($event)"
+
+now in parent ts
+
+create the onNavigate() function
+
+
+OnNavigate(feature:string){
+this.loadedFeature = feature;}
+
+declare the variable loadedFeature = 'recipe';
+
+now finally add the ngIf in the event 
+ *ngIf = "loadedFeature === 'recipe' "
+
+~~~~~~~~~~~~~~~~~~~~~~
+
+#nameInput #feature ............ these are known as local reference.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~	ROUTERS         ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+All about routers.
+
+for HTML
+<router-outlet></router-outlet>
+ routerLink=""
+routerLinkActive=""
+
+in app.module.ts
+
+create a const and set its type as Route
+then assign all the path
+const app-route:Route = [
+	{path:" ", component: nameOfComponent}]
+
+lastly in imports, add 
+RouterModule.forRoot(app-route)
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~ ROUTERS USING FUNCTION ~~~~~~~~~~~~~~~~~~~~~~~
+
+~Create a function in HTML using click
+~Declare the function in TS file.
+~Create a constructor and add a variable.
+constructor(private router:Router){}
+
+~Call the variable inside the function.
+onSubmit(){
+	this.router.navigate(['/server']);
+}
+
+

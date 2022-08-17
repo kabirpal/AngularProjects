@@ -1,3 +1,23 @@
-<h1>Weather forcasting</h1>
-<app-home></app-home>
-<app-forecast></app-forecast>
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="color: white;"  type="button" routerLink="/header" routerLinkActive="active">Weather forcasting</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" type="button" routerLink="" routerLinkActive="active" style="color: white;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/forecast" routerLinkActive="active" type='button' style="color: white;">Forecasting</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" style="color: white;">About Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<router-outlet></router-outlet>

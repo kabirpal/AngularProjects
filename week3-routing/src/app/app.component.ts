@@ -14,4 +14,8 @@ export class AppComponent {
   onClick(){
     this.router.navigate(['server']);
   }
+
+  onClickRegister(){
+    this.router.navigate(['register']);
+  }
 }

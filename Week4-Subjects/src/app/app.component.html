@@ -1,0 +1,46 @@
+<nav class="navbar navbar-dark bg-green justify-content-center" >
+  <div class="container justify-content-center">
+    <h1>Welcome to Mirror World</h1>
+  </div>
+</nav>
+<br>
+<nav class="navbar bg-light" >
+  <div class="container">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Type anything here" aria-label="Search" #MirrorText>
+        <button class="btn btn-outline-success" type="button" (click)="onClick(MirrorText)">Mirror</button>
+      </form>
+    <h5>You have entered: {{mirrorText}} </h5>
+  </div>
+</nav>
+<hr>
+<div class="container" style="width:40%;">
+  <app-mirror1></app-mirror1>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-4">
+    <app-mirror2></app-mirror2>
+  </div>
+  <div class="col-md-4">
+    <app-mirror3></app-mirror3>
+  </div>
+  <div class="col-md-4">
+    <app-mirror4></app-mirror4>
+  </div><p></p>
+  <div class="col-md-4">
+    <app-mirror5></app-mirror5>
+  </div>
+  <div class="col-md-4">
+    <app-mirror6></app-mirror6>
+  </div>
+  <div class="col-md-4">
+    <app-mirror7></app-mirror7>
+  </div>
+  <!-- <div class="col-md-4">
+    <app-mirror8></app-mirror8>
+  </div>
+  <div class="col-md-4">
+    <app-mirror9></app-mirror9>
+  </div> -->
+</div>

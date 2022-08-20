@@ -295,4 +295,15 @@ onSubmit(){
 	this.router.navigate(['/server']);
 }
 
+~~~~~~~~~~~~~~~~~~~~~~~~SUBJECTS AND BEHAVIOUR SUBJECTS~~~~~~~~~~~~~~~~~~~~
+Subjects must be written in services. like 
+mirrorText = new Subject<string>();
+mirrorText = new BehaviorSubject<string>('Mirror World');
+here mirror World will be printed everywhere.
+
+~~~~~~~~~~~~~~~~~~Subscribe~~~~~~~~~~~~~~~~~~~~~~~~~
+Subscribe() is a method in Angular that connects the observer to observable events. Whenever any change is made in these observable, a code is executed and observes the results or changes using the subscribe method. Subscribe() is a method from the rxjs library, used internally by Angular.
+
+
+
 

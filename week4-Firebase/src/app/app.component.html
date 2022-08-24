@@ -5,14 +5,14 @@
       <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)">
         <div class="form-group">
           <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" required ngModel name="titles" />
+          <input type="text" class="form-control" id="title" #inputTitle required ngModel name="title" />
         </div>
         <div class="form-group">
           <label for="content">Content</label>
-          <textarea class="form-control" id="content" required ngModel name="contents"></textarea>
+          <textarea class="form-control" id="content" required #inputContent ngModel name="content"></textarea>
         </div>
         <br>
-        <button class="btn btn-primary" type="submit" [disabled]="!postForm.valid">Send Post
+        <button class="btn btn-primary" type="submit" (click)="inputTitle.value=''" (click)="inputContent.value=''"[disabled]="!postForm.valid">Send Post
         </button>
       </form>
     </div>
@@ -36,10 +36,15 @@
           <h6>{{item.content}}</h6>
         </li>      
       </ul>
-      <div class="d-flex align-items-center" *ngIf="isFetching">
+      <div class="d-flex align-items-center" *ngIf="isFetching && !errorMsg">
         <strong>Loading...</strong>
         <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
       </div>
+        <div class="alert alert-danger" *ngIf="errorMsg">
+          <h1>Error has been Occured</h1>
+          <p>{{ errorMsg }}</p>
+        </div>
+      
     </div>
   </div>
 </div>

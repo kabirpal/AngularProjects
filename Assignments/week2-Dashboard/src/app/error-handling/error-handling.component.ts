@@ -14,9 +14,21 @@ export class ErrorHandlingComponent implements OnInit {
   constructor( private EhUserService: ErrorHService) { }
 
   ngOnInit(){
-    this.EhUserService.getUsers()
-    .subscribe(data=>this.EhUser = data,
-      error => this.errorMsg = error);
-  }
+    const observer ={
+      next : (data:any)=>{
+        this.EhUser = data;
+      },
+      error : (error:Error)=>{
+        this.errorMsg = error
+      }
+    }
 
+    this.EhUserService.getUsers()
+    .subscribe(observer);
+  //   this.EhUserService.getUsers()
+  //   .subscribe(data=>this.EhUser = data,
+  //     error => this.errorMsg = error);
+  // }                        THIS IS A DEPRICATED METHOD
+
+  }
 }

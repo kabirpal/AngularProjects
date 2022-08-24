@@ -1,15 +1,21 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthInterceptorService } from './auth-interceptor-service';
-import { LoggingInterceptorService } from './app-logging-interceptor';
+import { AuthService } from './Auth-sercvice';
+import { HomeComponent } from './home/home.component';
+import { ForecastComponent } from './forecast/forecast.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    ForecastComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -17,7 +23,7 @@ import { LoggingInterceptorService } from './app-logging-interceptor';
     FormsModule,
     HttpClientModule
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true},{provide:HTTP_INTERCEPTORS, useClass:LoggingInterceptorService,multi:true}],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Post } from './app-module';
-import { PostService } from './app.service';
+import { PostService } from './app-services';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +13,19 @@ export class AppComponent implements OnInit{
 
   isFetching:boolean = false;
   loadedPosts:Post[] =[];
-
-  constructor(private http:HttpClient, private _postService :PostService  ){}
+  errorMsg="Error has been occured"
+  constructor(private http:HttpClient, private _postService : PostService){}
   ngOnInit(){
     this.FetchData();
   }
 
   onCreatePost(postData:Post){
-    this._postService.CreateAndStorePost(postData.title,postData.content);
+    this.http.post('https://firstproject-9c073-default-rtdb.firebaseio.com/post.json',postData)
+    .subscribe(res=>{
+      console.log(res)
+      postData.title = "";
+      postData.content='';
+    })
   }
 
   
@@ -29,11 +34,17 @@ export class AppComponent implements OnInit{
   }
 
   onClearPosts(){
-
+    this._postService.DeletePost().subscribe(()=>{
+      this.loadedPosts = [];
+    })
   }
+
+
   private FetchData(){
     this.isFetching = true;
-    this.http.get<{[key:string]:Post}>('https://firstproject-9c073-default-rtdb.firebaseio.com/post.json')
+    this.http.get<{[key:string]:Post}>('https://firstproject-9c073-default-rtdb.firebaseio.com/post.json',
+    {headers: new HttpHeaders({'Custom-Headers':'hello'})
+      })
     .pipe(map(responseData=>{
       const postsArray:Post[]= [];
       for(const key in responseData){
@@ -45,11 +56,11 @@ export class AppComponent implements OnInit{
     })
     )
     .subscribe(post=>{
-      console.log(post);
+      // console.log(post);
       this.isFetching=false
       this.loadedPosts = post;
-      
-    })
+    },
+    )
   }
 }
 

@@ -1,12 +1,14 @@
-<h1>Today's Weather</h1>
 <br>
+<h1>Today's Weather</h1>
+<!-- <br>
 <div class="container col-md-8">
     <form class="d-flex" role="search" #form="ngForm" (submit)="OnSubmit()">
         <input class="form-control me-2" type="search" placeholder="Enter your city" aria-label="Search" name="Usercity" [(ngModel)]="city">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
-</div>
+</div> -->
 <br>
+<div class="container">
 <div class="row">
     <div id="divWeatherMain" *ngIf="weatherData">
         <div class="weatherWidgetRow" style="font-size: 50px;margin-top: 10px;">{{weatherData.location.name}}</div>
@@ -19,4 +21,17 @@
         <div class="weatherWidgetRow" style="font-size: 20px;">Chance of rain: {{weatherData.forecast.forecastday[0].hour[16].chance_of_rain}}%</div>
     </div>
 </div>
-<p></p>
+</div>
+<br>
+
+<div class="card text-center" style="width: 70%; margin: auto;">
+    <div class="card-header">
+      Note-
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Login to change the city.</h5>
+      <p class="card-text">Logging in  will enable you to change the city and also to see the next 5 days forecast</p>
+      <a routerLink="/login" routerLinkActive="active" type='button' class="btn btn-primary">LogIn</a>
+    </div>
+  </div>
+<br>

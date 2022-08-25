@@ -1,23 +1,31 @@
+<div class="container">
+  <br>
 <h1>Weather forecast</h1>
 <br>
 <div class="container">
   <form class="d-flex" role="search" #form="ngForm" (submit)="OnSubmit()">
-      <input class="form-control me-2" type="search" placeholder="Enter your city" aria-label="Search" name="Usercity" [(ngModel)]="city">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+    <input class="form-control me-2" type="search" placeholder="Enter your city" aria-label="Search" name="Usercity"
+      [(ngModel)]="city">
+    <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
 </div>
 <br>
+
 <div class="row" *ngIf="weatherData" style="text-align: center;">
   <ng-container *ngFor="let item of weatherData.forecast.forecastday">
-    <div class="card float-start" style="width: 18rem; align-items:center; border-radius: 40px; border-width: 2px;" >
+    <div class="card float-start" style="width: 15rem; align-items:center; border-radius: 40px; border-width: 2px;">
       <h5 class="card-title" style="margin-top:5px ;">{{item.date | date:'mediumDate'}}</h5>
-        <img src="{{item.day.condition.icon}}" style="height: 80px; width:100px; align-content:center" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{item.date | date:'E'}}</h5>
-          <h6>{{item.day.condition.text}}</h6>
-          <h6>Humidity : {{item.day.avghumidity}}</h6>
-          <h6>Max Temperature {{item.day.maxtemp_c}}</h6>
-          <h6>Min Temperature {{item.day.mintemp_c}}</h6>
-        </div>
+      <img src="{{item.day.condition.icon}}" style="height: 80px; width:100px; align-content:center" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{item.date | date:'E'}}</h5>
+        <h6>{{item.day.condition.text}}</h6>
+        <h6>Humidity : {{item.day.avghumidity}}</h6>
+        <h6>Max Temperature {{item.day.maxtemp_c}}</h6>
+        <h6>Min Temperature {{item.day.mintemp_c}}</h6>
       </div>
-    </ng-container>
+    </div>
+  </ng-container>
+</div>
+<br>
+<br><br><br>
+</div>

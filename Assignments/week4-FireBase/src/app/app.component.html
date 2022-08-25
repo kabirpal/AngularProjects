@@ -9,14 +9,20 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" type="button" routerLink="" routerLinkActive="active" style="color: white;">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isAuthenticated">
           <a class="nav-link" routerLink="/forecast" routerLinkActive="active" type='button' style="color: white;">Forecasting</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item"  *ngIf="!isAuthenticated">
           <a class="nav-link" routerLink="/login" routerLinkActive="active" type='button' style="color: white;">LogIn</a>
         </li>
       </ul>
     </div>
+    <ul class="nav navbar-nav navbar-rigth">
+      <li class="nav-item"  *ngIf="isAuthenticated">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active" type='button' style="color: white;" (click)="onLogOut()">LogOut</a>
+      </li>
+    </ul>
   </div>
 </nav>
+
 <router-outlet></router-outlet>

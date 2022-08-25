@@ -5,7 +5,7 @@
     width: 700px;
     height: 400px;
     background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgb(57, 56, 80) 75%, rgb(162, 162, 183) 100%);
+    background: linear-gradient(180deg, rgb(241, 199, 199) 0%, rgb(57, 56, 80) 75%, rgb(55, 55, 70) 100%);
     color: white;;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

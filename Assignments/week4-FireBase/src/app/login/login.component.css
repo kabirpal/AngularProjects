@@ -1,3 +1,32 @@
+/* .bgContainer{
+    background-image: linear-gradient(to right, rgb(185, 117, 117) , rgb(230, 230, 240)); 
+}   */
+
+
 h1{
     text-align: center;
+}
+
+label{
+    font-size: 24px;
+}
+
+button{
+    font-size: 18px;
+}
+
+input{
+    font-size: 20px;
+}
+
+.card{
+    color: azure;
+    border-radius: 25px;
+    border: 5px;
+    height: 300px;
+    background-image:url(ASpot_Weather.jpg);
+    background-repeat: no-repeat;
+    /* height: fit-content;
+    width: fit-content;*/
+    background-size: cover;
 }

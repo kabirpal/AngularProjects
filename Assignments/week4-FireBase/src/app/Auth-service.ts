@@ -15,6 +15,9 @@ export interface AuthResponseData{
 @Injectable({providedIn:'root'})
 
 export class AuthService{
+    createUrlTree(arg0: string[]): any {
+        throw new Error("Method not implemented.");
+    }
     constructor(private http:HttpClient){}
 
     user = new Subject<User>();
@@ -41,6 +44,10 @@ export class AuthService{
             .pipe(catchError(this.handleError),tap(resData=>{
                 this.handleAuthentication(resData.email,resData.localId,resData.idToken,+resData.expiresIn);
             }))
+    }
+
+    logout(){
+        this.user.unsubscribe();  
     }
 
     private handleAuthentication(email:string, userId:string, 

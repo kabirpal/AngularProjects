@@ -7,6 +7,7 @@ import { WeatherData } from './models/weather.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class WeatherService {
  // current: CurrentWeather = new CurrentWeather('Jodhpur','29','#','sunny','35','23')
   constructor(private http : HttpClient) { }

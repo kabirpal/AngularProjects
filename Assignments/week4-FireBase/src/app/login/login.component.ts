@@ -13,6 +13,7 @@ export class LoginComponent {
 title = 'week4-FirebaseAuth';
 isLoginMode = true;
 errorMsg:string="";
+isLoading = false;
 
 constructor(private _authService:AuthService, private router:Router){}
 
@@ -32,18 +33,23 @@ onSubmitForm(form: NgForm){
   const observer = {
     next : (resData: any) =>{
       console.log(resData);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/forecast']);
+      this.isLoading=false;
+
     },
     error: (errorMessage: { message: any}) => {
       this.errorMsg = errorMessage.message;
+      this.isLoading=false;
   }
 }
 
   if(this.isLoginMode){
-    this._authService.login(email,password).subscribe(observer)
+    this._authService.login(email,password).subscribe(observer);
+    this.isLoading=true;
   }
   else{
-    this._authService.signUp(email,password).subscribe(observer)
+    this._authService.signUp(email,password).subscribe(observer);
+    this.isLoading=true;
   }  
 
   form.reset

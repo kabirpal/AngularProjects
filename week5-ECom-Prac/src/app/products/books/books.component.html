@@ -1,0 +1,36 @@
+<!-- Heading -->
+<header class="bg-dark py-1">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Welcome to Book World</h1>
+            <p class="lead fw-normal text-white-50 mb-0">More than 300 books available</p>
+        </div>
+    </div>
+</header>
+
+<!-- carousel -->
+<app-books-carousel></app-books-carousel>
+
+<!-- Scrollspy for different categories -->
+
+
+<!-- Different components -->
+<nav class="navbar sticky-top" style="background-color: #e3f2fd;">
+    <div class="container-md" >
+        <div class="container" style="font-size: 30px;">
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('drama')">Drama</button>
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('fiction')">Fiction</button>
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('poetry')">Poetry</button>
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('romance')">Romance</button>
+        </div>
+    </div>
+</nav>
+
+<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
+    data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
+    <app-drama *ngIf="laodedFeature === 'drama'" ></app-drama>
+    <app-fiction *ngIf="laodedFeature === 'fiction'" ></app-fiction>
+    <app-poetry *ngIf="laodedFeature === 'poetry'" ></app-poetry>
+    <app-romance *ngIf="laodedFeature === 'romance'" ></app-romance>
+</div>
+

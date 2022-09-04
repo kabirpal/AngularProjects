@@ -1,0 +1,14 @@
+/* .carousel-item{
+    width: auto;
+    height: 300px;
+} */
+.carousel-inner{
+    height: 500px;
+    overflow-x: hidden;
+}
+
+/* .card{
+    width: 250px;
+    margin: auto;
+    padding: 0;
+} */

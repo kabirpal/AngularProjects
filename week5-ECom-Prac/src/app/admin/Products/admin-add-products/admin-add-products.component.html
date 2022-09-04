@@ -1,0 +1,20 @@
+<nav class="navbar sticky-top" style="background-color: #e3f2fd;">
+    <div class="container-md" >
+        <div class="container" style="font-size: 30px;">
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('books')">Books</button>
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('mobiles')">Mobiles</button>
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('men')">Men Fashion</button>
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('women')">Women Fashion</button>
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('kids')">Kids Fashion</button>
+        </div>
+    </div>
+</nav>
+
+<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
+    data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
+    <app-add-books *ngIf="laodedFeature === 'books'" ></app-add-books>
+    <app-add-mobiles *ngIf="laodedFeature === 'mobiles'" ></app-add-mobiles>
+    <app-add-men *ngIf="laodedFeature === 'men'" ></app-add-men>
+    <app-add-women *ngIf="laodedFeature === 'women'" ></app-add-women>
+    <app-add-kids *ngIf="laodedFeature === 'kids'" ></app-add-kids>
+</div>

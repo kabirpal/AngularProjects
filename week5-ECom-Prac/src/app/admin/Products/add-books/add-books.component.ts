@@ -17,7 +17,7 @@ export class AddBooksComponent implements OnInit {
 
 
   onCreatePost(postData:Post){
-    this.http.post('https://lavish-67a42-default-rtdb.firebaseio.com/books.json',postData)
+    this.http.put('https://lavish-67a42-default-rtdb.firebaseio.com/books/' + postData.ProductId + '.json',postData) 
     .subscribe(res=>{
       console.log(res)
       postData.ProductId = "";
@@ -27,6 +27,8 @@ export class AddBooksComponent implements OnInit {
       postData.description="",
       postData.VendorName='';
       postData.ImageUrl='';
+      postData.author='',
+      postData.pages=0;
     })
   }
   onFetchPosts(){

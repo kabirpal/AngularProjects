@@ -5,5 +5,7 @@ export interface Post{
     ProductPrice:string,
     description:string,
     VendorName:string,
-    ImageUrl:string
+    ImageUrl:string,
+    author:string,
+    pages:number
 }

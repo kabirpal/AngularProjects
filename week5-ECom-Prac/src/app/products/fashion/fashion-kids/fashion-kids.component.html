@@ -1,1 +1,19 @@
-<p>fashion-kids works!</p>
+<h1> Boys </h1>
+<br>
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col" *ngFor="let item of loadedPosts">
+            <div class="card">
+                <img src="{{item.imageUrl}}" class="card-img-top" alt="..." style="max-height: 350px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.ProductName}}</h5>
+                    <h5 class="card-text">Price: {{item.ProductPrice}}</h5>
+                    <p class="card-text">By: {{item.colour}}</p>
+                    <a href="/viewproduct/{{item.ProductId}}">View Products</a>
+                    <button type="button" class="btn btn-primary" style="margin:10px" (click)="addToCart(item)">Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>

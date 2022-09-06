@@ -12,28 +12,38 @@
           <textarea class="form-control" id="ProductName" required #inputContent ngModel name="ProductName"></textarea>
         </div>
         <div class="form-group">
+          <label for="title">Author</label>
+          <input type="text" class="form-control" id="ProductCategory" #inputAuthor required ngModel name="author" />
+        </div>
+        <div class="form-group">
           <label for="title">Category</label>
-          <input type="text" class="form-control" id="ProductCategory" #inputTitle required ngModel name="ProductCategory" />
+          <input type="text" class="form-control" id="ProductCategory" #inputCategory required ngModel name="ProductCategory" />
         </div>
         <div class="form-group">
           <label for="title">Price</label>
-          <input type="text" class="form-control" id="ProductPrice" #inputTitle required ngModel name="ProductPrice" />
+          <input type="text" class="form-control" id="ProductPrice" #inputPrice required ngModel name="ProductPrice" />
         </div>
         <div class="form-group">
           <label for="title">Description</label>
-          <input type="text" class="form-control" id="description" #inputTitle required ngModel name="description" />
+          <textarea type="text" class="form-control" id="description" #inputDescription required ngModel name="description"></textarea>
         </div>
         <div class="form-group">
-          <label for="Url">Image Url</label>
-          <input type="text" class="form-control" id="imagerUrl" #inputTitle required ngModel name="imageUrl" />
+          <label for="text">Image Url</label>
+          <input type="text" class="form-control" id="imagerUrl" #inputImage required ngModel name="imageUrl" />
         </div>
         <div class="form-group">
           <label for="title">Vendor Name</label>
-          <input type="text" class="form-control" id="VendorName" #inputTitle ngModel name="VendorName" />
+          <input type="text" class="form-control" id="VendorName" #inputVname ngModel name="VendorName" />
+        </div>
+        <div class="form-group">
+          <label for="title">Pages</label>
+          <input type="number" class="form-control" id="ProductCategory" #inputPages required ngModel name="pages" />
         </div>
         <br>
-        <button class="btn btn-primary" type="submit" (click)="inputTitle.value=''" (click)="inputContent.value=''"[disabled]="!postForm.valid">Send Post
+        <button class="btn btn-primary" type="submit" (click)="inputTitle.value=''" (click)="inputContent.value=''" (click)="inputAuthor.value=''" (click)="inputCategory.value=''" (click)="inputPrice.value=''" (click)="inputDescription.value=''" (click)="inputImage.value=''" (click)="inputVname.value=''" (click)="inputPages.value=''">Send Post
         </button>
+        <!-- <button class="btn btn-primary" type="submit" (click)="inputTitle.value=''" (click)="inputContent.value=''" [disabled]="!postForm.valid>Send Post
+        </button> -->
       </form>
     </div>
   </div>

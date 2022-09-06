@@ -6,6 +6,7 @@ import { BestSellersComponent } from './products/best-sellers/best-sellers.compo
 import { BooksComponent } from './products/books/books.component';
 import { FashionComponent } from './products/fashion/fashion.component';
 import { MobilesComponent } from './products/mobiles/mobiles.component';
+import { MyCartComponent } from './products/my-cart/my-cart.component';
 import { ViewProductsComponent } from './products/view-products/view-products.component';
 import { AuthGuard } from './services/auth.guard';
 import { AboutUsComponent } from './user-shop/about-us/about-us.component';
@@ -18,12 +19,13 @@ const routes: Routes = [
   {path:'bestseller',component:BestSellersComponent},
   {path:'books',component:BooksComponent},
   {path:'fashion',component:FashionComponent},
-  {path:'cart',component:CartComponent,canActivate:[AuthGuard]},
+  {path:'cart',component:MyCartComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
   {path:'about',component:AboutUsComponent},
   {path:'mobile',component:MobilesComponent},
   {path:'viewproduct/:id',component:ViewProductsComponent},
-  {path:'admin',component:AdminHomeComponent}
+  {path:'admin',component:AdminHomeComponent},  
+  { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
 ];
 
 @NgModule({
@@ -32,3 +34,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+export const routingComponents=[
+
+]

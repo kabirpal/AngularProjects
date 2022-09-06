@@ -1,0 +1,17 @@
+export interface Products{
+    ProductId:string,
+    brandName:string,
+    ProductName:string,
+    ProductCategory:string,
+    ProductPrice:number,
+    description:string,
+    VendorName:string,
+    imageUrl:string,
+    id?:string,
+    author:string,
+    pages:number,
+    colour:string,
+    Size:string,
+    MRP:number,
+    Rating:number,
+}

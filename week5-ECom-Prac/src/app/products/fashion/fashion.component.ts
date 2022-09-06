@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-fashion',
   templateUrl: './fashion.component.html',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FashionComponent implements OnInit {
 
+  laodedFeature = 'drama';
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSelect(feature:string){
+    this.laodedFeature = feature;
+}
 }

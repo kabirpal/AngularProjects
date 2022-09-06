@@ -1,1 +1,20 @@
 <app-fashion-home></app-fashion-home>
+<!-- Different components -->
+<nav class="navbar sticky-top" style="background-color: #e3f2fd;">
+    <div class="container-md" >
+        <div class="container" style="font-size: 30px;">
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" routerLink="/menfashion" routerLinkActive="active">Men</button>
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" routerLink="/womenfashion" routerLinkActive="active">Women</button>
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" routerLink="/kidsfashion" routerLinkActive="active">Kids</button>
+        </div>
+    </div>
+</nav>
+<router-outlet></router-outlet>
+<!-- 
+<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
+    data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
+     <app-fashion-men *ngIf="laodedFeature === 'men'" ></app-fashion-men> 
+    <app-fashion-women *ngIf="laodedFeature === 'women'" ></app-fashion-women>
+    <app-fashion-kids *ngIf="laodedFeature === 'kids'" ></app-fashion-kids>
+</div> -->
+

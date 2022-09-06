@@ -12,12 +12,14 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsModule } from './products/products.module';
 import { AdminModule } from './admin/admin.module';
+import { ProductsPipe } from './products/productFilter.pipe';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProductsPipe
   ],
   imports: [
     BrowserModule,

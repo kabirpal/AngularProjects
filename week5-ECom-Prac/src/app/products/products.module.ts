@@ -21,7 +21,10 @@ import { FashionWomenComponent } from './fashion/fashion-women/fashion-women.com
 import { FashionKidsComponent } from './fashion/fashion-kids/fashion-kids.component';
 import { ViewProductsComponent } from './view-products/view-products.component';
 import { MobilecarouselComponent } from './mobiles/mobilecarousel/mobilecarousel.component';
-
+import { SelfHelpComponent } from './books/self-help/self-help.component';
+import { RouterModule } from '@angular/router';
+import { ProductRoutingModule } from './product-routing.module';
+import { MyCartComponent } from './my-cart/my-cart.component';
 
 
 
@@ -47,10 +50,15 @@ import { MobilecarouselComponent } from './mobiles/mobilecarousel/mobilecarousel
     FashionWomenComponent,
     FashionKidsComponent,
     ViewProductsComponent,
-    MobilecarouselComponent
+    MobilecarouselComponent,
+    SelfHelpComponent,
+    MyCartComponent,
+
   ],
   imports: [
     CommonModule,
+    RouterModule,
+    ProductRoutingModule
   ]
 })
 export class ProductsModule { }

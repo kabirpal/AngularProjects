@@ -1,4 +1,4 @@
-/* .card {
+.card {
     height: 60vh;
     margin: 25px;
     padding: 25px;
@@ -25,7 +25,7 @@
 .card-table {
     display: flex;
     min-width: none;
-    position: relative;
+    /* position: relative; */
     word-wrap: break-word;
     background-color: white;
     border: 1px solid Oblack;
@@ -39,4 +39,4 @@
     font-weight: 400;
     padding: 10px 70px;
     border-radius: 3px !important;
-} */
+}

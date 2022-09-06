@@ -20,7 +20,7 @@
         <div class="container" style="font-size: 30px;">
             <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('drama')">Drama</button>
             <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('fiction')">Fiction</button>
-            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('poetry')">Poetry</button>
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('Selfhelp')">Self-help</button>
             <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('romance')">Romance</button>
         </div>
     </div>
@@ -31,6 +31,7 @@
     <app-drama *ngIf="laodedFeature === 'drama'" ></app-drama>
     <app-fiction *ngIf="laodedFeature === 'fiction'" ></app-fiction>
     <app-poetry *ngIf="laodedFeature === 'poetry'" ></app-poetry>
+    <app-self-help *ngIf="laodedFeature==='Selfhelp'"></app-self-help>
     <app-romance *ngIf="laodedFeature === 'romance'" ></app-romance>
 </div>
 

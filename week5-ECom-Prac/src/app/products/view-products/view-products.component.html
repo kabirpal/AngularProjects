@@ -6,13 +6,13 @@
                     <div class="small mb-1">Product ID: {{productID}}</div>
                     <h1 class="display-5 fw-bolder">{{productData.ProductName}}</h1>
                     <div class="fs-5 mb-5">
-                        <span class="text-decoration-line-through">MRP 500.00</span>
-                        <span>  {{productData.ProductPrice}}</span>
+                        <span class="text-decoration-line-through">MRP: {{productData.MRP | currency:'INR'}}</span>
+                        <span>&emsp;{{productData.ProductPrice  | currency:'INR'}}</span>
                     </div>
                     <p class="lead">{{productData.description}}</p>
                     <div class="d-flex">
                         <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" spellcheck="false" data-ms-editor="true">
-                        <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                        <button class="btn btn-outline-dark flex-shrink-0" type="button" (click)="addToCart(productData)">
                             <i class="bi-cart-fill me-1"></i>
                             Add to cart
                         </button>

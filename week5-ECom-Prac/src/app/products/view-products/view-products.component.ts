@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { MyCartService } from 'src/app/services/my-cart.service';
 import { Products } from '../booksGet-module';
 import { ProductService } from '../product.service';
 
@@ -13,7 +14,15 @@ import { ProductService } from '../product.service';
 export class ViewProductsComponent implements OnInit {
   productID:number = 0;
   productData!:Products;
-  constructor(private activatedRoute:ActivatedRoute, private http:HttpClient, private _productService:ProductService) { }
+  item:any;
+  constructor(private activatedRoute:ActivatedRoute, private http:HttpClient, private _productService:ProductService,private _myCartService:MyCartService) { }
+
+
+  
+  addToCart(items:any){
+    this._myCartService.addToCart(items);
+  }
+
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(data=>{
@@ -38,6 +47,12 @@ export class ViewProductsComponent implements OnInit {
       }
       if(this.productID<100){
       this._productService.viewProductMen(this.productID.toString()).subscribe(viewData =>{
+        this.productData = viewData;
+      })
+    }
+
+    else if(this.productID>400 && this.productID<500){
+      this._productService.viewProductMobiles(this.productID.toString()).subscribe(viewData=>{
         this.productData = viewData;
       })
     }

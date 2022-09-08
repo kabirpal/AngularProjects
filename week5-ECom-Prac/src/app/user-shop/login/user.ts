@@ -1,9 +1,9 @@
 export class User {
     constructor(public email: string, public id: string,
-        private _token: string, private _tokenExpDate: Date) { }
+        private _token: string, public expireDate: Date, public isAdmin:boolean=false) { }
 
     get token() {
-        if (!this._tokenExpDate || new Date > this._tokenExpDate) {
+        if (!this.expireDate || new Date > this.expireDate) {
             return null;
         }
         return this._token

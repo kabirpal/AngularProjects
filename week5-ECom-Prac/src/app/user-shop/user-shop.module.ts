@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CardsComponent } from './cards/cards.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 
@@ -23,7 +24,8 @@ import { CardsComponent } from './cards/cards.component';
     HeaderComponent,
     FooterComponent,
     CarouselComponent,
-    CardsComponent
+    CardsComponent,
+    CheckoutComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,5 @@ import { CardsComponent } from './cards/cards.component';
     FooterComponent,
     HeaderComponent
   ]
-
 })
 export class UserShopModule { }

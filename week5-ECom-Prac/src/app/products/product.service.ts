@@ -29,4 +29,9 @@ export class ProductService {
     const baseUrl = 'https://lavish-67a42-default-rtdb.firebaseio.com/menFashion/'+proId+'.json';
     return this.http.get<Products>(baseUrl); 
   }
+
+  viewProductMobiles(proId:string):Observable<Products>{
+    const baseUrl = 'https://lavish-67a42-default-rtdb.firebaseio.com/Mobiles/'+proId+'.json';
+    return this.http.get<Products>(baseUrl);
+  }
 }

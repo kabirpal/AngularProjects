@@ -13,6 +13,7 @@ export class FictionComponent implements OnInit {
   isFetching:boolean = false;
   loadedPosts:Products[] =[];
   productList:any;
+  FictionList:Products[]=[];
   constructor(private http:HttpClient,
     private _myCartService:MyCartService) { }
 
@@ -50,6 +51,8 @@ export class FictionComponent implements OnInit {
       this.isFetching=false
       this.loadedPosts = post;
       this.productList = post;
+      console.log(this.FictionList)
+      this.FictionList = this.loadedPosts.filter(post=>post.ProductCategory==='Fiction')
       this.productList.forEach((a:any) => {
         Object.assign(a,{quantity:1, total:a.price})
       });

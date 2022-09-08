@@ -23,7 +23,7 @@ export class AddBooksComponent implements OnInit {
       postData.ProductId = "";
       postData.ProductName='';
       postData.ProductCategory = "";
-      postData.ProductPrice='';
+      postData.ProductPrice=0;
       postData.description="",
       postData.VendorName='';
       postData.ImageUrl='';

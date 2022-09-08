@@ -12,9 +12,11 @@ import { AuthResponseData, AuthService } from './Auth-service';
 export class LoginComponent {
   title = 'week4-FirebaseAuth';
   isLoginMode = true;
+  isLoading = false;
   errorMsg: string = "";
-  admin: boolean = false;
-  passkey:string="";
+  isAdmin: boolean = false;
+  passkey: string = "";
+  isAuthenticated = false;
 
   constructor(private _authService: AuthService, private router: Router) { }
 
@@ -23,6 +25,8 @@ export class LoginComponent {
   }
 
   onSubmitForm(form: NgForm) {
+    this.isLoading = true;
+    this.isAuthenticated = true;
     if (!form.valid) {
       return
     }
@@ -32,32 +36,46 @@ export class LoginComponent {
     let authObs: Observable<AuthResponseData>//not required.
 
     if (email === 'lavish-admin@lavish.com') {
-      this.admin = true;
+      this.isAdmin = true;
+      this.forAdmin();
+      
+    }
+    const observer = {
+      next: (resData: any) => {
+        console.log(resData);
+        this.router.navigate(['/home']);
+      },
+      error: (errorMessage: { message: any }) => {
+        this.errorMsg = errorMessage.message;
+      }
+    }
+
+    const observerAdmin = {
+      next: (resData: any) => {
+        console.log(resData);
+        this.router.navigate(['/admin']);
+      },
+      error: (errorMessage: { message: any }) => {
+        this.errorMsg = errorMessage.message;
+      }
+    }
+
+    if (this.isLoginMode && this.isAdmin==true) {
+      this.isLoading = false;
+      this._authService.login(email, password, this.isAdmin).subscribe(observerAdmin)
+    }
+    else if (this.isLoginMode) {
+      this.isLoading = false;
+      this._authService.login(email, password, this.isAdmin).subscribe(observer)
     }
     else {
-
-      const observer = {
-        next: (resData: any) => {
-          console.log(resData);
-          this.router.navigate(['/home']);
-        },
-        error: (errorMessage: { message: any }) => {
-          this.errorMsg = errorMessage.message;
-        }
-      }
-
-      if (this.isLoginMode) {
-        this._authService.login(email, password).subscribe(observer)
-      }
-      else {
-        this._authService.signUp(email, password).subscribe(observer)
-      }
+      this._authService.signUp(email, password, this.isAdmin).subscribe(observer)
     }
 
     form.reset
   }
 
-  forAdmin(passKey:string){
+  forAdmin() {
     alert('Admin logged in')
     this.router.navigate(['/admin']);
   }

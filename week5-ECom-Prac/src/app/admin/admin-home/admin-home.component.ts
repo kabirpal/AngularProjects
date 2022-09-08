@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminHomeComponent implements OnInit {
   addproducts=false;
+  updateProducts = false;
+  loadedFeature='AddProducts'
 
   constructor() { }
 
@@ -15,6 +17,15 @@ export class AdminHomeComponent implements OnInit {
 
   onAddProducts(){
     this.addproducts=true;
+  }
+
+  onUpdateProducts(){
+    this.updateProducts=true;
+  }
+
+  onSelect(feature:string){
+    this.loadedFeature = feature;
+    // this.featureSelected.emit(feature);
   }
 
 

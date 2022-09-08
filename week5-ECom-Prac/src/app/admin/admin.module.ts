@@ -8,6 +8,8 @@ import { AddWomenComponent } from './Products/add-women/add-women.component';
 import { AddKidsComponent } from './Products/add-kids/add-kids.component';
 import { AddBooksComponent } from './Products/add-books/add-books.component';
 import { FormsModule } from '@angular/forms';
+import { UpdateProductsComponent } from './update-products/update-products.component';
+import { DeleteProductsComponent } from './delete-products/delete-products.component';
 
 
 
@@ -19,11 +21,13 @@ import { FormsModule } from '@angular/forms';
     AddMenComponent,
     AddWomenComponent,
     AddKidsComponent,
-    AddBooksComponent
+    AddBooksComponent,
+    UpdateProductsComponent,
+    DeleteProductsComponent
   ],
   imports: [
     CommonModule,
     FormsModule
-  ]
+  ],
 })
 export class AdminModule { }

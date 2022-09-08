@@ -3,3 +3,18 @@ body{
     padding: 0;
 
 }
+
+.container-kl{
+    margin-right: 60%;
+}
+
+ 
+.search{
+  border-radius:20px;
+  width: 200px;
+  }
+
+.searchitem {
+    right: 30px;
+    font-size: 13px;
+}

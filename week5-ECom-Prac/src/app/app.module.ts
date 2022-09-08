@@ -6,13 +6,11 @@ import { UserShopModule } from './user-shop/user-shop.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { environment } from 'src/environments/environment';
-// import { AngularFireModule } from '@angular/fire';
-// import { AngularFirestoreModule } from '@angular/fire';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsModule } from './products/products.module';
 import { AdminModule } from './admin/admin.module';
 import { ProductsPipe } from './products/productFilter.pipe';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -32,7 +30,7 @@ import { ProductsPipe } from './products/productFilter.pipe';
     HttpClientModule,
     AdminModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

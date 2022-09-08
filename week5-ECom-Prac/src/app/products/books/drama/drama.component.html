@@ -1,125 +1,19 @@
-<h1> Drama </h1>
+<h1> All Products </h1>
 <br>
 <div class="container-fluid">
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div class="col">
-        <div class="card">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <ul class="list-inline">
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-            </ul>
-            <div class="container">
-              <button type="button" class="btn btn-primary" style="margin:3px" routerLink="/viewproduct" routerLinkActive="active">View Product</button>
-              <button type="button" class="btn btn-primary" style="margin:3px">Add to cart</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <ul class="list-inline">
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-            </ul>
-            <button type="button" class="btn btn-primary">Add to cart</button>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <ul class="list-inline">
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-            </ul>
-            <div class="container">
-              <button type="button" class="btn btn-primary">View Product</button>
-              <button type="button" class="btn btn-primary">Add to cart</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <ul class="list-inline">
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-              <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-            </ul>
-            <button type="button" class="btn btn-primary">Add to cart</button>
-          </div>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col" *ngFor="let item of loadedPosts" >
+      <div class="card">
+        <img src="{{item.imageUrl}}" class="card-img-top" alt="..." style="height:300px">
+        <div class="card-body">
+          <h5 class="card-title">{{item.ProductName}}</h5>
+          <h5 class="card-text">Price: {{item.ProductPrice}}</h5>
+          <p class="card-text">By: {{item.author}}</p>
+          <a href="/viewproduct/{{item.ProductId}}">View Products</a>
+          <button type="button" class="btn btn-primary" style="margin:10px" (click)="addToCart(item)">Add to cart</button>
         </div>
       </div>
     </div>
-    <br>  
-
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col">
-          <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <button type="button" class="btn btn-primary">Add to cart</button>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <button type="button" class="btn btn-primary">Add to cart</button>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <button type="button" class="btn btn-primary">Add to cart</button>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <button type="button" class="btn btn-primary fa fa-add">Add to cart</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br> 
   </div>
+  <br>
+</div>

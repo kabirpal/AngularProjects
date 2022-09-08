@@ -1,23 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
+import { Products } from 'src/app/products/booksGet-module';
 import { MyCartService } from 'src/app/services/my-cart.service';
-import { Products } from '../../booksGet-module';
 
 @Component({
-  selector: 'app-romance',
-  templateUrl: './romance.component.html',
-  styleUrls: ['./romance.component.css']
+  selector: 'app-update-products',
+  templateUrl: './update-products.component.html',
+  styleUrls: ['./update-products.component.css']
 })
-export class RomanceComponent implements OnInit {
-
+export class UpdateProductsComponent implements OnInit {
 
   isFetching:boolean = false;
   loadedPosts:Products[] =[];
   productList:any;
-  RomanceList:Products[]=[];
-  constructor(private http:HttpClient,
-    private _myCartService:MyCartService) { }
+  constructor(private http:HttpClient,private _myCartService:MyCartService) { }
 
   ngOnInit(): void {
     this.FetchData();
@@ -26,16 +23,13 @@ export class RomanceComponent implements OnInit {
   onFetchPosts(){
     this.FetchData();
   }
-
-
-  addToCart(item:any){
+  editProduct(item:any){
     this._myCartService.addToCart(item);
   }
-  
 
   private FetchData(){
     this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/books.json',
+    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/womenFashion.json',
     {headers: new HttpHeaders({'Custom-Headers':'hello'})
       })
     .pipe(map(responseData=>{
@@ -53,13 +47,12 @@ export class RomanceComponent implements OnInit {
       this.isFetching=false
       this.loadedPosts = post;
       this.productList = post;
-      console.log(this.RomanceList)
-      this.RomanceList = this.loadedPosts.filter(post=>post.ProductCategory==='Romance')
       this.productList.forEach((a:any) => {
         Object.assign(a,{quantity:1, total:a.price})
       });
     },
     )
   }
+
 
 }

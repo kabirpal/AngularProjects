@@ -14,7 +14,9 @@ export class SelfHelpComponent implements OnInit {
   isFetching:boolean = false;
   loadedPosts:Products[] =[];
   productList:any;
-  constructor(private http:HttpClient, private _myCartService:MyCartService){ }
+  SelfHelpList:Products[]=[];
+  constructor(private http:HttpClient,
+    private _myCartService:MyCartService) { }
 
   ngOnInit(): void {
     this.FetchData();
@@ -24,10 +26,11 @@ export class SelfHelpComponent implements OnInit {
     this.FetchData();
   }
 
+
   addToCart(item:any){
     this._myCartService.addToCart(item);
   }
-
+  
 
   private FetchData(){
     this.isFetching = true;
@@ -49,6 +52,8 @@ export class SelfHelpComponent implements OnInit {
       this.isFetching=false
       this.loadedPosts = post;
       this.productList = post;
+      console.log(this.SelfHelpList)
+      this.SelfHelpList = this.loadedPosts.filter(post=>post.ProductCategory==='Self-Help')
       this.productList.forEach((a:any) => {
         Object.assign(a,{quantity:1, total:a.price})
       });

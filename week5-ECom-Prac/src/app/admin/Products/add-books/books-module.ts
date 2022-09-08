@@ -2,7 +2,7 @@ export interface Post{
     ProductId:string,
     ProductName:string,
     ProductCategory:string,
-    ProductPrice:string,
+    ProductPrice:number,
     description:string,
     VendorName:string,
     ImageUrl:string,

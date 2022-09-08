@@ -1,4 +1,4 @@
-<p></p>
+<!-- <p></p>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
@@ -42,8 +42,8 @@
         <br>
         <button class="btn btn-primary" type="submit" (click)="inputTitle.value=''" (click)="inputContent.value=''" (click)="inputAuthor.value=''" (click)="inputCategory.value=''" (click)="inputPrice.value=''" (click)="inputDescription.value=''" (click)="inputImage.value=''" (click)="inputVname.value=''" (click)="inputPages.value=''">Send Post
         </button>
-        <!-- <button class="btn btn-primary" type="submit" (click)="inputTitle.value=''" (click)="inputContent.value=''" [disabled]="!postForm.valid>Send Post
-        </button> -->
+         <button class="btn btn-primary" type="submit" (click)="inputTitle.value=''" (click)="inputContent.value=''" [disabled]="!postForm.valid>Send Post
+        </button>
       </form>
     </div>
   </div>
@@ -56,4 +56,61 @@
       </button>
     </div>
   </div>
-  
+   -->
+
+   <h2 class="bg-light mb-2 text-center">Add New Book</h2>
+   <form  #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)"  style="border: 5px solid #88becc; padding: 10px; border-radius:25px ;" >
+       <div class="form-row">
+         <div class="col-md-6 mb-3">
+           <label for="title">Product Id: </label>
+           <input type="text" class="form-control" placeholder="Enter Product Id" #inputTitle required ngModel name="ProductId" minlength="6">
+         </div>
+         <div class="col-md-6 mb-3">
+          <label for="content">Product Name:</label>
+          <input type="text" class="form-control" placeholder="Enter Product Name" id="ProductName" required #inputContent ngModel name="ProductName" >
+        </div>
+       </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+          <label for="content">Author:</label>
+          <input type="text" class="form-control" id="AuthorName" required placeholder="Enter Author Name" #inputAuthor ngModel name="brandName">
+        </div>
+         <div class="col-md-6 mb-3">
+           <label for="content">Category:</label>
+           <input type="text" class="form-control" required placeholder="Enter Brand Name" id="ProductCategory" #inputCategory required ngModel name="ProductCategory" >
+         </div>
+       </div>
+       
+       <div class="form-row">
+         <div class="col-md-6 mb-3">
+           <label for="content">Price:</label>
+           <input type="number" class="form-control" placeholder="Enter Product Price" id="ProductPrice" #inputPrice required ngModel name="ProductPrice">
+         </div>
+         <div class="col-md-6 mb-3">
+           <label for="title">Pages:</label>
+           <input type="number" class="form-control" id="Pages" placeholder="Enter Pages number" #inputPages required ngModel name="Pages"/>
+         </div>
+       </div>
+       <div class="form-row">
+         <div class="col-md-12 mb-6">
+           <label for="title">Description:</label>
+           <textarea type="text" class="form-control" id="description" placeholder="Enter Product Description" #inputDescription required ngModel name="description"></textarea>
+         </div>
+       </div>
+   
+     <div class="form-row">
+     <div class="col-md-12 mb-6">
+       <label for="text">Image Url:</label>
+       <input type="text" class="form-control" id="imagerUrl" placeholder="Enter Image Url" #inputImage required ngModel name="imageUrl">
+     </div>
+   </div>
+     <div class="form-row">
+       <div class="col-md-6 mb-3">
+       <label for="title">Vendor Name:</label>
+       <input type="text" class="form-control" id="VendorName" placeholder="Enter Vendor Name" #inputVendorName required ngModel name="VendorName" />
+     </div>
+     </div>
+   
+     <button class="btn btn-primary" type="submit" (click)="inputTitle.value=''" (click)="inputAuthor .value=''" (click)="inputContent.value=''" (click)="inputCategory.value=''" (click)="inputPrice.value=''" (click)="inputDescription.value=''" (click)="inputImage.value=''" (click)="inputVendorName.value=''" (click)="inputPages.value=''" >Send Post
+     </button>
+     </form>

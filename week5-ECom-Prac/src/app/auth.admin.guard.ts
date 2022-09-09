@@ -18,7 +18,7 @@ export class AuthAdminGuard implements CanActivate {
       take(1),
       map( user=> {
         if(user.isAdmin == false){
-            return this.router.createUrlTree(['/home']);
+            return this.router.createUrlTree(['/login']);
           }
         else{
           return true;

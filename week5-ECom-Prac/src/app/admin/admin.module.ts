@@ -10,6 +10,9 @@ import { AddBooksComponent } from './Products/add-books/add-books.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateProductsComponent } from './update-products/update-products.component';
 import { DeleteProductsComponent } from './delete-products/delete-products.component';
+import { UpdateWindowComponent } from './update-products/update-window/update-window.component';
+import { AdminRoutingModule } from './admin-routing.module';
+import { ViewUsersComponent } from './view-users/view-users.component';
 
 
 
@@ -23,11 +26,14 @@ import { DeleteProductsComponent } from './delete-products/delete-products.compo
     AddKidsComponent,
     AddBooksComponent,
     UpdateProductsComponent,
-    DeleteProductsComponent
+    DeleteProductsComponent,
+    UpdateWindowComponent,
+    ViewUsersComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    AdminRoutingModule
   ],
 })
 export class AdminModule { }

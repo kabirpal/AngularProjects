@@ -8,7 +8,7 @@
         <div class="card-body">
           <h5 class="card-title">{{item.ProductName}}</h5>
           <h5 class="card-text">Price: {{item.ProductPrice}}</h5>
-          <p class="card-text">By: {{item.author}}</p>
+          <p class="card-text">By: {{item.brandName}}</p>
           <a href="/viewproduct/{{item.ProductId}}">View Products</a>
           <button type="button" class="btn btn-primary" style="margin:10px" (click)="addToCart(item)">Add to cart</button>
         </div>

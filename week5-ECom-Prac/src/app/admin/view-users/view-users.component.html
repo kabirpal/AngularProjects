@@ -1,0 +1,45 @@
+<div class="container">
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+            <ng-container *ngIf="userDetails.length !=0">
+                <div class="container">
+                    <div class="row">
+                        <div class="card-table ">
+                            <div class="card-product">
+                                <table class="table table-wrapper">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Sr. No</th>
+                                            <th>Customer Name</th>
+                                            <th>E-Mail</th>
+                                            <th>Mobile</th>
+                                            <th>Role</th>
+                                            <th>State</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center" *ngFor="let item of userDetails,let i = index">
+                                            <td>{{i+1}}</td>
+
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.email}}</td>
+                                            <td>{{item.mobile}}</td>
+                                            <td>{{item.role}}</td>
+                                            <td> {{item.isDisable ? "Available" : "Disable"}}</td>
+                                            <td><button class="btn btn-danger m-2"><i class="fa fa-trash"></i> </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </main>
+</div>

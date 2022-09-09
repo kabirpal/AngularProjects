@@ -16,7 +16,7 @@ import { HomeComponent } from './user-shop/home/home.component';
 import { LoginComponent } from './user-shop/login/login.component';
 
 const routes: Routes = [
-  {path:'home',component:HomeComponent},
+  {path:'',component:HomeComponent},
   {path:'bestseller',component:BestSellersComponent},
   {path:'books',component:BooksComponent},
   {path:'fashion',component:FashionComponent},
@@ -25,7 +25,7 @@ const routes: Routes = [
   {path:'about',component:AboutUsComponent},
   {path:'mobile',component:MobilesComponent},
   {path:'viewproduct/:id',component:ViewProductsComponent},
-  {path:'admin',component:AdminHomeComponent, canActivate: [AuthAdminGuard]},  
+  {path:'admin',loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AuthAdminGuard]},  
   { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
   {path:'checkout',component:CheckoutComponent,canActivate:[AuthGuard]}
 ];

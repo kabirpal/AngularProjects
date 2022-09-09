@@ -1,0 +1,7 @@
+export interface storeUser{
+    name:string,
+    email:string,
+    mobile:string,
+    role:string,
+    isDisable:boolean
+}

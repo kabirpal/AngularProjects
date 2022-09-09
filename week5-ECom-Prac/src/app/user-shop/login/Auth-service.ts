@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { catchError, throwError, tap, BehaviorSubject } from "rxjs";
+import { catchError, throwError, tap, BehaviorSubject, Observable } from "rxjs";
+import { storeUser } from "./storeUser";
 import { User } from "./user";
 
 export interface AuthResponseData{
@@ -104,5 +105,22 @@ export class AuthService{
             }
             return throwError(()=>new Error(errorMessage))
     }
-}
 
+    storeUserData(name:string,email:string,mobile:string,localId:string):Observable<storeUser>{
+        const newUser:storeUser = {
+          name: name,
+          email:email,
+          mobile: mobile,
+          role: 'user',
+          isDisable: false
+        }
+        const url:string = 'https://lavish-67a42-default-rtdb.firebaseio.com/users/'+localId+'.json'
+      
+         return this.http.patch<storeUser>(url,newUser);
+      }
+      fetchUserData(localId:string):Observable<storeUser>{
+        const url = 'https://lavish-67a42-default-rtdb.firebaseio.com/users/'+localId+'.json';
+        return this.http.get<storeUser>(url);
+    
+    }
+}

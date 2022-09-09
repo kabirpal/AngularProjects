@@ -4,6 +4,7 @@
             <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('addProducts')">Add Products</button>
             <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('updateProducts')">Update Products</button>
             <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('deleteProducts')">Delete Products</button>
+            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" (click)="onSelect('viewProducts')">View Users</button>
         </div>
     </div>
 </nav>
@@ -13,4 +14,5 @@
     <app-admin-add-products *ngIf="loadedFeature === 'addProducts'"></app-admin-add-products>
     <app-update-products *ngIf="loadedFeature === 'updateProducts'"></app-update-products>
     <app-delete-products *ngIf="loadedFeature === 'deleteProducts'"></app-delete-products>
+    <app-view-users *ngIf="loadedFeature === 'viewProducts'"></app-view-users>
 </div>

@@ -1,8 +1,9 @@
-<h1> Jeans </h1>
+<h1> All SmartPhones </h1>
 <br>
+<router-outlet></router-outlet>
 <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col" *ngFor="let item of loadedPosts">
+        <div class="col" *ngFor="let item of loadedPostsMobiles">
             <div class="card" >
                 <img src="{{item.imageUrl}}" class="card-img-top" alt="..." style="max-height: 350px;">
                 <div class="card-body">
@@ -10,7 +11,92 @@
                     <h5 class="card-text">Price: {{item.ProductPrice}}</h5>
                     <p class="card-text">By: {{item.colour}}</p>
                     <a href="/viewproduct/{{item.ProductId}}">View Products</a>
-                    <button type="button" class="btn btn-primary" style="margin:10px" (click)="editProduct(item)">Edit Product</button>
+                    <button type="button" class="btn btn-primary" style="margin:10px" (click)="editProduct(item)" routerLink="/updatewindow/{{item.ProductId}}" routerLinkActive="">Edit Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+
+<hr>
+
+<h1> All Books </h1>
+<br>
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col" *ngFor="let item of loadedPostsBooks">
+            <div class="card" >
+                <img src="{{item.imageUrl}}" class="card-img-top" alt="..." style="max-height: 350px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.ProductName}}</h5>
+                    <h5 class="card-text">Price: {{item.ProductPrice}}</h5>
+                    <p class="card-text">By: {{item.colour}}</p>
+                    <a href="/viewproduct/{{item.ProductId}}">View Products</a>
+                    <button type="button" class="btn btn-primary" style="margin:10px" (click)="editProduct(item)" routerLink="/updatewindow" routerLinkActive="">Edit Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+<hr>
+
+<h1> All Men </h1>
+<br>
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col" *ngFor="let item of loadedPostsMen">
+            <div class="card" >
+                <img src="{{item.imageUrl}}" class="card-img-top" alt="..." style="max-height: 350px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.ProductName}}</h5>
+                    <h5 class="card-text">Price: {{item.ProductPrice}}</h5>
+                    <p class="card-text">By: {{item.colour}}</p>
+                    <a href="/viewproduct/{{item.ProductId}}">View Products</a>
+                    <button type="button" class="btn btn-primary" style="margin:10px" (click)="editProduct(item)" routerLink="/updatewindow" routerLinkActive="">Edit Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+<hr>
+
+<h1> All Women </h1>
+<br>
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col" *ngFor="let item of loadedPostsWomen">
+            <div class="card" >
+                <img src="{{item.imageUrl}}" class="card-img-top" alt="..." style="max-height: 350px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.ProductName}}</h5>
+                    <h5 class="card-text">Price: {{item.ProductPrice}}</h5>
+                    <p class="card-text">By: {{item.colour}}</p>
+                    <a href="/viewproduct/{{item.ProductId}}">View Products</a>
+                    <button type="button" class="btn btn-primary" style="margin:10px" (click)="editProduct(item)" routerLink="/updatewindow" routerLinkActive="">Edit Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+<hr>
+
+<h1> All Kids </h1>
+<br>
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col" *ngFor="let item of loadedPostsKids">
+            <div class="card" >
+                <img src="{{item.imageUrl}}" class="card-img-top" alt="..." style="max-height: 350px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.ProductName}}</h5>
+                    <h5 class="card-text">Price: {{item.ProductPrice}}</h5>
+                    <p class="card-text">By: {{item.colour}}</p>
+                    <a href="/viewproduct/{{item.ProductId}}">View Products</a>
+                    <button type="button" class="btn btn-primary" style="margin:10px" (click)="editProduct(item)" routerLink="/updatewindow" routerLinkActive="">Edit Product</button>
                 </div>
             </div>
         </div>

@@ -43,7 +43,7 @@ export class LoginComponent {
     const observer = {
       next: (resData: any) => {
         console.log(resData);
-        this.router.navigate(['/home']);
+        this.router.navigate(['']);
       },
       error: (errorMessage: { message: any }) => {
         this.errorMsg = errorMessage.message;
@@ -53,7 +53,7 @@ export class LoginComponent {
     const observerAdmin = {
       next: (resData: any) => {
         console.log(resData);
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/adminPortal']);
       },
       error: (errorMessage: { message: any }) => {
         this.errorMsg = errorMessage.message;
@@ -77,6 +77,6 @@ export class LoginComponent {
 
   forAdmin() {
     alert('Admin logged in')
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/adminPortal']);
   }
 }

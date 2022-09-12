@@ -14,6 +14,7 @@ export class DramaComponent implements OnInit {
   isFetching:boolean = false;
   loadedPosts:Products[] =[];
   productList:any;
+  BooksList: Products[]=[];
   constructor(private http:HttpClient,
     private _myCartService:MyCartService) { }
 
@@ -33,7 +34,7 @@ export class DramaComponent implements OnInit {
 
   private FetchData(){
     this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/books.json',
+    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Products.json',
     {headers: new HttpHeaders({'Custom-Headers':'hello'})
       })
     .pipe(map(responseData=>{
@@ -51,6 +52,9 @@ export class DramaComponent implements OnInit {
       this.isFetching=false
       this.loadedPosts = post;
       this.productList = post;
+      this.BooksList = this.loadedPosts.filter(post => post.ProductCategory=== 'Books')
+      // this.jeansList = this.loadedProducts.filter(post => post.SubCategory === 'Jeans')
+      // this.shirtList = this.loadedProducts.filter(post => post.SubCategory==='Shirt')
       this.productList.forEach((a:any) => {
         Object.assign(a,{quantity:1, total:a.price})
       });

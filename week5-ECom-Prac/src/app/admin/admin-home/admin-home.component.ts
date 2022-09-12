@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AdminHomeComponent implements OnInit {
   addproducts=false;
   updateProducts = false;
-  loadedFeature='AddProducts'
+  loadedFeature='addNewProduct'
 
   constructor() { }
 

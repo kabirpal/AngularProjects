@@ -14,6 +14,7 @@ export class FashionMenComponent implements OnInit {
   loadedPosts:Products[] =[];
   jeansList:Products[]=[];
   shirtList:Products[]=[];
+  loadedProducts:Products[]=[];
   productList:any;
   constructor(private http:HttpClient,private _myCartService:MyCartService) { }
 
@@ -32,7 +33,7 @@ export class FashionMenComponent implements OnInit {
 
   private FetchData(){
     this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/menFashion.json',
+    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Products.json',
     {headers: new HttpHeaders({'Custom-Headers':'hello'})
       })
     .pipe(map(responseData=>{
@@ -49,8 +50,9 @@ export class FashionMenComponent implements OnInit {
       console.log(post);
       this.isFetching=false
       this.loadedPosts = post;
-      this.jeansList = this.loadedPosts.filter(post => post.ProductCategory === 'Jeans')
-      this.shirtList = this.loadedPosts.filter(post => post.ProductCategory==='Shirt')
+      this.loadedProducts = this.loadedPosts.filter(post => post.ProductCategory=== 'Men')
+      this.jeansList = this.loadedProducts.filter(post => post.SubCategory === 'Jeans')
+      this.shirtList = this.loadedProducts.filter(post => post.SubCategory==='Shirt')
       this.productList = post;
       this.productList.forEach((a:any) => {
         Object.assign(a,{quantity:1, total:a.price})

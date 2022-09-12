@@ -15,6 +15,7 @@ export class SelfHelpComponent implements OnInit {
   loadedPosts:Products[] =[];
   productList:any;
   SelfHelpList:Products[]=[];
+  BooksList: Products[]=[];
   constructor(private http:HttpClient,
     private _myCartService:MyCartService) { }
 
@@ -34,7 +35,7 @@ export class SelfHelpComponent implements OnInit {
 
   private FetchData(){
     this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/books.json',
+    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Products.json',
     {headers: new HttpHeaders({'Custom-Headers':'hello'})
       })
     .pipe(map(responseData=>{
@@ -52,8 +53,11 @@ export class SelfHelpComponent implements OnInit {
       this.isFetching=false
       this.loadedPosts = post;
       this.productList = post;
+      
+      this.BooksList = this.loadedPosts.filter(post=>post.ProductCategory==='Books')
+      //console.log(this.BooksList);
+      this.SelfHelpList = this.BooksList.filter(post=>post.SubCategory==='Self-Help')
       console.log(this.SelfHelpList)
-      this.SelfHelpList = this.loadedPosts.filter(post=>post.ProductCategory==='Self-Help')
       this.productList.forEach((a:any) => {
         Object.assign(a,{quantity:1, total:a.price})
       });

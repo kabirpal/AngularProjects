@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Products } from 'src/app/products/booksGet-module';
 import { ProductService } from 'src/app/products/product.service';
+import { AdminService } from 'src/app/services/admin.service';
+import { ProductFields } from '../../menfashion-module';
 
 @Component({
   selector: 'app-update-window',
@@ -13,7 +14,7 @@ export class UpdateWindowComponent implements OnInit {
   productDetails:Products;
   productId = 0;
   constructor(private _productServices:ProductService, private activatedRoute:ActivatedRoute
-    ,private http:HttpClient) { }
+    ,private _adminService:AdminService) { }
   
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(data=>{
@@ -22,8 +23,8 @@ export class UpdateWindowComponent implements OnInit {
 
       this._productServices.viewProductdata(this.productId).subscribe((productData:Products)=>{
         this.productDetails = productData
-        // console.log(this.productDetails)
-        // console.log(productData)
+        console.log(this.productDetails)
+        console.log(productData)
     });
     });
   }
@@ -41,9 +42,14 @@ export class UpdateWindowComponent implements OnInit {
       author:form.value.author,
       pages:form.value.pages,
       colour:form.value.colour,
-      Size:form.value.Size,
+      size:form.value.size,
       MRP:form.value.MRP,
       Rating:form.value.Rating,
+      Status:form.value.status,
+      Availability:form.value.available,
+      imageurl1: form.value.imageUrl1,
+      imageurl2: form.value.imageUrl2,
+      subCategory: form.value.SubCategory
     };
     console.log(form);
     this._productServices.updateProduct(this.productId,updateProduct).subscribe(data=>{
@@ -52,25 +58,7 @@ export class UpdateWindowComponent implements OnInit {
   }
 
 
-  onCreatePost(postData:Products){
-    this.http.put('https://lavish-67a42-default-rtdb.firebaseio.com/Mobiles/' + postData.ProductId + '.json',postData) 
-    .subscribe(res=>{
-      console.log(res)
-      postData.ProductId = "";
-      postData.brandName='';
-      postData.ProductName='';
-      postData.ProductCategory = "";
-      postData.ProductPrice=0;
-      postData.description="",
-      postData.VendorName='';
-      postData.imageUrl='';
-      postData.colour='',
-      postData.Size='',
-      postData.MRP=0,
-      postData.Rating=0;
-    })
+  onCreatePost(postData:ProductFields){
+    this._adminService.CreatePost(postData);
   }
-
-
-
 }

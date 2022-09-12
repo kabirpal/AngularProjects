@@ -1,0 +1,21 @@
+/* table th {
+    width: auto !important;
+} */
+
+/* th{
+    padding: 0px 0px 0px 50px;
+}
+td{
+    padding: 0px 0px 0px 50px;
+} */
+
+table{
+    width: 900px;
+}
+th{
+    width: 500px;
+}
+
+h3{
+    text-align: center;
+}

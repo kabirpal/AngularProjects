@@ -16,6 +16,7 @@ export class MobilesComponent implements OnInit {
   MidRangeList:Products[]=[];
   BudgetList:Products[]=[];
   productList:any;
+  SmartphoneList: Products[]=[];
   constructor(private http:HttpClient,private _myCartService:MyCartService) { }
 
   ngOnInit(): void {
@@ -33,7 +34,7 @@ export class MobilesComponent implements OnInit {
 
   private FetchData(){
     this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Mobiles.json',
+    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Products.json',
     {headers: new HttpHeaders({'Custom-Headers':'hello'})
       })
     .pipe(map(responseData=>{
@@ -50,6 +51,7 @@ export class MobilesComponent implements OnInit {
       console.log(post);
       this.isFetching=false
       this.loadedPosts = post;
+      this.SmartphoneList = this.loadedPosts.filter(post => post.ProductCategory === 'SmartPhone')
       this.PremiumList = this.loadedPosts.filter(post => post.ProductCategory === 'Premium')
       this.MidRangeList = this.loadedPosts.filter(post => post.ProductCategory==='MidRange')
       this.BudgetList = this.loadedPosts.filter(post => post.ProductCategory==='Budget')

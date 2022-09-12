@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   totalItemNumber:number=0;
   isloggedIn = false;
   title = 'week5-ECom-Prac';
+  isAdmin = false;
   private userSub: Subscription;
   user = new BehaviorSubject<User | null>(null);
 

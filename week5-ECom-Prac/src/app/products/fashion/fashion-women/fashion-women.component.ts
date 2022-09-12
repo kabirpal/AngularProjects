@@ -14,6 +14,9 @@ export class FashionWomenComponent implements OnInit {
   isFetching:boolean = false;
   loadedPosts:Products[] =[];
   productList:any;
+  loadedProducts: Products[]=[];
+  jeansList: Products[]=[];
+  topList: Products[]=[];
   constructor(private http:HttpClient,private _myCartService:MyCartService) { }
 
   ngOnInit(): void {
@@ -29,7 +32,7 @@ export class FashionWomenComponent implements OnInit {
 
   private FetchData(){
     this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/womenFashion.json',
+    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Products.json',
     {headers: new HttpHeaders({'Custom-Headers':'hello'})
       })
     .pipe(map(responseData=>{
@@ -47,6 +50,9 @@ export class FashionWomenComponent implements OnInit {
       this.isFetching=false
       this.loadedPosts = post;
       this.productList = post;
+      this.loadedProducts = this.loadedPosts.filter(post => post.ProductCategory=== 'Women');
+      this.jeansList = this.loadedProducts.filter(post => post.SubCategory === 'Jeans');
+      this.topList = this.loadedProducts.filter(post => post.SubCategory==='Top');
       this.productList.forEach((a:any) => {
         Object.assign(a,{quantity:1, total:a.price})
       });

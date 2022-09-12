@@ -1,17 +1,4 @@
-<div class="container-fluid">
 <h2 class="bg-light mb-2 text-center">Add New Product</h2>
-<div class="col-md-3 mb-3">
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-            The current link item
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-        <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-        <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-        <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
-    </div>
-</div>
-<div class="col-md-9 mb-3">
     <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)"
         style="border: 5px solid #88becc; padding: 10px; border-radius:25px ;">
         <div class="form-row">
@@ -45,7 +32,6 @@
                     required ngModel name="ProductPrice">
             </div>
             <div class="col-md-6 mb-3">
-                <label>Rating</label>
                 <label for="title">Ratings:</label>
                 <input type="number" class="form-control" id="Ratings" placeholder="Enter Product Ratings" #inputRatings
                     required ngModel name="Ratings" />
@@ -116,8 +102,7 @@
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="title">Pages: </label>
-                <input type="text" class="form-control" id="Pages" placeholder="Enter Product Pages" #inputSubCategory
-                    ngModel name="Pages" />
+                <input type="text" class="form-control" id="Pages" placeholder="Enter Product Pages" #inputSubCategory ngModel name="Pages" />
             </div>
             <div class="col-md-6 mb-3">
                 <label for="title">Status: </label>
@@ -128,10 +113,8 @@
 
 
         <button class="btn btn-primary" type="submit" (click)="inputTitle.value=''" (click)="inputBrand.value=''"
-            (click)="inputContent.value=''" (click)="inputCategory.value=''" (click)="inputPrice.value=''"
-            (click)="inputDescription.value=''" (click)="inputImage.value=''" (click)="inputColour.value=''"
-            (click)="inputSize.value=''" (click)="inputMrp.value=''" (click)="inputRatings.value=''">Send Post
-        </button>
+        (click)="inputContent.value=''" (click)="inputCategory.value=''" (click)="inputPrice.value=''"
+        (click)="inputDescription.value=''" (click)="inputImage.value=''" (click)="inputColour.value=''"
+        (click)="inputSize.value=''" (click)="inputMrp.value=''" (click)="inputRatings.value=''"
+        (click)="inputstatus.value=''" (click)="inputavailability.value=''" (click)="inputSubCategory.value=''">Send Post</button>
     </form>
-</div>
-</div>

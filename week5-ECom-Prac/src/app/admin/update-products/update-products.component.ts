@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Products } from 'src/app/products/booksGet-module';
+import { AdminService } from 'src/app/services/admin.service';
 import { MyCartService } from 'src/app/services/my-cart.service';
 
 @Component({
@@ -12,36 +13,27 @@ import { MyCartService } from 'src/app/services/my-cart.service';
 export class UpdateProductsComponent implements OnInit {
 
   isFetching:boolean = false;
-  loadedPostsMobiles:Products[] =[];
-  loadedPostsBooks:Products[] =[];
-  loadedPostsMen:Products[] =[];
-  loadedPostsWomen:Products[] =[];
-  loadedPostsKids:Products[] =[];
+  loadedProducts:Products[] =[];
   productList:any;
-  constructor(private http:HttpClient,private _myCartService:MyCartService) { }
+  constructor(private http:HttpClient,private _myCartService:MyCartService,
+    private _adminService:AdminService) { }
 
   ngOnInit(): void {
-    this.FetchDataBooks();
-    this.FetchDataMen();
-    this.FetchDataWomen();
-    this.FetchDataKids();
-    this.FetchDataSmartPhone()
+    this.FetchData();
   }
 
   onFetchPosts(){
-    this.FetchDataBooks();
-    this.FetchDataMen();
-    this.FetchDataWomen();
-    this.FetchDataKids();
-    this.FetchDataSmartPhone()
-  }
-  editProduct(item:any){
-    this._myCartService.addToCart(item);
+    this.FetchData()
   }
 
-  private FetchDataSmartPhone(){
+  
+  onDeleteProducts(productId:any){
+    this._adminService.deleteProduct(productId)
+  }
+
+  private FetchData(){
     this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Mobiles.json',
+    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Products.json',
     {headers: new HttpHeaders({'Custom-Headers':'hello'})
       })
     .pipe(map(responseData=>{
@@ -57,7 +49,7 @@ export class UpdateProductsComponent implements OnInit {
     .subscribe(post=>{
       console.log(post);
       this.isFetching=false
-      this.loadedPostsMobiles = post;
+      this.loadedProducts = post;
       this.productList = post;
       this.productList.forEach((a:any) => {
         Object.assign(a,{quantity:1, total:a.price})
@@ -65,114 +57,4 @@ export class UpdateProductsComponent implements OnInit {
     },
     )
   }
-
-  private FetchDataBooks(){
-    this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/books.json',
-    {headers: new HttpHeaders({'Custom-Headers':'hello'})
-      })
-    .pipe(map(responseData=>{
-      const postsArray:Products[]= [];
-      for(const key in responseData){
-        if(responseData.hasOwnProperty(key)){
-          postsArray.push({...responseData[key], id:key});
-        }
-      }
-      return postsArray
-    })
-    )
-    .subscribe(post=>{
-      console.log(post);
-      this.isFetching=false
-      this.loadedPostsBooks = post;
-      this.productList = post;
-      this.productList.forEach((a:any) => {
-        Object.assign(a,{quantity:1, total:a.price})
-      });
-    },
-    )
-  }
-
-  private FetchDataMen(){
-    this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/menFashion.json',
-    {headers: new HttpHeaders({'Custom-Headers':'hello'})
-      })
-    .pipe(map(responseData=>{
-      const postsArray:Products[]= [];
-      for(const key in responseData){
-        if(responseData.hasOwnProperty(key)){
-          postsArray.push({...responseData[key], id:key});
-        }
-      }
-      return postsArray
-    })
-    )
-    .subscribe(post=>{
-      console.log(post);
-      this.isFetching=false
-      this.loadedPostsMen = post;
-      this.productList = post;
-      this.productList.forEach((a:any) => {
-        Object.assign(a,{quantity:1, total:a.price})
-      });
-    },
-    )
-  }
-
-  private FetchDataWomen(){
-    this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/womenFashion.json',
-    {headers: new HttpHeaders({'Custom-Headers':'hello'})
-      })
-    .pipe(map(responseData=>{
-      const postsArray:Products[]= [];
-      for(const key in responseData){
-        if(responseData.hasOwnProperty(key)){
-          postsArray.push({...responseData[key], id:key});
-        }
-      }
-      return postsArray
-    })
-    )
-    .subscribe(post=>{
-      console.log(post);
-      this.isFetching=false
-      this.loadedPostsWomen = post;
-      this.productList = post;
-      this.productList.forEach((a:any) => {
-        Object.assign(a,{quantity:1, total:a.price})
-      });
-    },
-    )
-  }
-
-  private FetchDataKids(){
-    this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/kidsFashion.json',
-    {headers: new HttpHeaders({'Custom-Headers':'hello'})
-      })
-    .pipe(map(responseData=>{
-      const postsArray:Products[]= [];
-      for(const key in responseData){
-        if(responseData.hasOwnProperty(key)){
-          postsArray.push({...responseData[key], id:key});
-        }
-      }
-      return postsArray
-    })
-    )
-    .subscribe(post=>{
-      console.log(post);
-      this.isFetching=false
-      this.loadedPostsKids = post;
-      this.productList = post;
-      this.productList.forEach((a:any) => {
-        Object.assign(a,{quantity:1, total:a.price})
-      });
-    },
-    )
-  }
-
-
 }

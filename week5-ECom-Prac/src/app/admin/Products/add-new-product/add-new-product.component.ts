@@ -3,19 +3,18 @@ import { Component, OnInit } from '@angular/core';
 import { ProductFields } from '../../menfashion-module';
 
 @Component({
-  selector: 'app-add-women',
-  templateUrl: './add-women.component.html',
-  styleUrls: ['./add-women.component.css']
+  selector: 'app-add-new-product',
+  templateUrl: './add-new-product.component.html',
+  styleUrls: ['./add-new-product.component.css']
 })
-export class AddWomenComponent implements OnInit {
-  loadedPosts:number = 0;
-  constructor(private http:HttpClient) { }
+export class AddNewProductComponent implements OnInit {
 
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
   }
 
-
+ 
   onCreatePost(postData:ProductFields){
     this.http.put('https://lavish-67a42-default-rtdb.firebaseio.com/Products/' + postData.ProductId + '.json',postData) 
     .subscribe(res=>{
@@ -32,7 +31,6 @@ export class AddWomenComponent implements OnInit {
       postData.Size='',
       postData.MRP=0,
       postData.Rating=0,
-      
       postData.SubCategory='';
       postData.available=0;
       postData.imageUrl1='';
@@ -42,13 +40,5 @@ export class AddWomenComponent implements OnInit {
     })
     
   }
-  onFetchPosts(){
-
-  }
-
-  onClearPosts(){
-
-  }
-
 
 }

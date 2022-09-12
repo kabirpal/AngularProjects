@@ -85,6 +85,7 @@ export class AuthService{
                 ...myUser,
                 expiresIn:expirationDate.getTime()
             }));
+            //this.storeUserData()
         }
 
     private handleError(errorRes:HttpErrorResponse){
@@ -106,18 +107,18 @@ export class AuthService{
             return throwError(()=>new Error(errorMessage))
     }
 
-    storeUserData(name:string,email:string,mobile:string,localId:string):Observable<storeUser>{
+    storeUserData(name:string,email:string,localId:string){
         const newUser:storeUser = {
           name: name,
           email:email,
-          mobile: mobile,
           role: 'user',
-          isDisable: false
+          isActive: false
         }
         const url:string = 'https://lavish-67a42-default-rtdb.firebaseio.com/users/'+localId+'.json'
       
-         return this.http.patch<storeUser>(url,newUser);
+         this.http.patch<storeUser>(url,newUser).subscribe(res => console.log(res));
       }
+
       fetchUserData(localId:string):Observable<storeUser>{
         const url = 'https://lavish-67a42-default-rtdb.firebaseio.com/users/'+localId+'.json';
         return this.http.get<storeUser>(url);

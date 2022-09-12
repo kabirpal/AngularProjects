@@ -16,6 +16,7 @@ export class RomanceComponent implements OnInit {
   loadedPosts:Products[] =[];
   productList:any;
   RomanceList:Products[]=[];
+  BooksList: Products[];
   constructor(private http:HttpClient,
     private _myCartService:MyCartService) { }
 
@@ -35,7 +36,7 @@ export class RomanceComponent implements OnInit {
 
   private FetchData(){
     this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/books.json',
+    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Products.json',
     {headers: new HttpHeaders({'Custom-Headers':'hello'})
       })
     .pipe(map(responseData=>{
@@ -54,7 +55,8 @@ export class RomanceComponent implements OnInit {
       this.loadedPosts = post;
       this.productList = post;
       console.log(this.RomanceList)
-      this.RomanceList = this.loadedPosts.filter(post=>post.ProductCategory==='Romance')
+      this.BooksList = this.loadedPosts.filter(post=>post.ProductCategory==='Books')
+      this.RomanceList = this.BooksList.filter(post=>post.ProductCategory==='Romance')
       this.productList.forEach((a:any) => {
         Object.assign(a,{quantity:1, total:a.price})
       });

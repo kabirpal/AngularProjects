@@ -6,7 +6,8 @@ import { User } from '../user-shop/login/user';
   providedIn: 'root'
 })
 export class AuthService {
-
-  user = new BehaviorSubject<User|null>(null);
+  //user = new BehaviorSubject<User|null>(null);
   constructor() { }
+
+
 }

@@ -25,25 +25,7 @@ export class ProductService {
     return this.http.get<Products>(baseUrl); 
   }
 
-  // viewProductKids(proId:string):Observable<Products>{
-  //   const baseUrl = 'https://lavish-67a42-default-rtdb.firebaseio.com/'+proId+'.json';
-  //   return this.http.get<Products>(baseUrl); 
-  // }
 
-  // viewProductWomen(proId:string):Observable<Products>{
-  //   const baseUrl = 'https://lavish-67a42-default-rtdb.firebaseio.com/'+proId+'.json';
-  //   return this.http.get<Products>(baseUrl); 
-  // }
-
-  // viewProductMen(proId:string):Observable<Products>{
-  //   const baseUrl = 'https://lavish-67a42-default-rtdb.firebaseio.com/'+proId+'.json';
-  //   return this.http.get<Products>(baseUrl); 
-  // }
-
-  // viewProductMobiles(proId:string):Observable<Products>{
-  //   const baseUrl = 'https://lavish-67a42-default-rtdb.firebaseio.com/'+proId+'.json';
-  //   return this.http.get<Products>(baseUrl);
-  // }
 }
 
 

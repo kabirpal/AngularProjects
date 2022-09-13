@@ -1,4 +1,13 @@
 <br>
+<div class="conatiner" *ngIf="isFetching" style="text-align: center; margin-top:100">
+    <app-spinner></app-spinner>
+</div>
+<div class="conatiner" *ngIf="!loadedProducts" style="text-align: center; margin-top:100">
+    <h1>Yor are disabled my the admin</h1>
+    <p>Please contact customer support for more info or write us at lavishSupport@lavish.com</p>
+</div>
+
+<div class="container" *ngIf="loadedProducts && !isFetching" >
 <h1 style="text-align:center">My cart</h1>
 <ng-container *ngIf="products.length !=0">
     <div class="container" >
@@ -56,3 +65,4 @@
     </div>
     </div>
 </ng-container>
+</div>

@@ -9,13 +9,21 @@ import { MyCartService } from 'src/app/services/my-cart.service';
 export class MyCartComponent implements OnInit {
   products:any=[];
   allProducts:number=0;
+  loadedProducts:boolean;
+  isFetching:boolean=false;
+
+  
   constructor(private _myCartService:MyCartService) { }
 
   ngOnInit(): void {
+    this.isFetching=true;
+    this.loadedProducts = this._myCartService.getUserState();
+    console.log(this.loadedProducts);
     this._myCartService.getProductData().subscribe(res=>{
       this.products = res;
       this.allProducts = +this._myCartService.getTotalAmount();
     })
+    this.isFetching=false;
   }
   removeProduct(item:any){
     this._myCartService.removeCartData(item);

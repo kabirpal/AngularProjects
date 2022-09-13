@@ -56,6 +56,16 @@ export class LoginComponent {
       next: (resData: any) => {
         console.log(resData);
         this.router.navigate(['']);
+            },
+      error: (errorMessage: { message: any }) => {
+        this.errorMsg = errorMessage.message;
+      }
+    }
+
+    const observerSignUp = {
+      next: (resData: any) => {
+        console.log(resData);
+        this.router.navigate(['']);
         this.storeUserData(name,email,mobile,resData.localId).subscribe(()=> console.log('Data Added'))
         
       },
@@ -83,7 +93,7 @@ export class LoginComponent {
       this._authService.login(email, password, this.isAdmin).subscribe(observer)
     }
     else {
-      this._authService.signUp(email, password, this.isAdmin).subscribe(observer)
+      this._authService.signUp(email, password, this.isAdmin).subscribe(observerSignUp)
       //this.storeUserData(name,email)
     }
 
@@ -102,7 +112,7 @@ export class LoginComponent {
       email:email,
       mobile:mobile,
       role: 'user',
-      isActive: true,
+      isActive:true,
       id:localId
     }
     let url = 'https://lavish-67a42-default-rtdb.firebaseio.com/customers/'+localId+'.json'

@@ -33,11 +33,14 @@ export class DramaComponent implements OnInit {
 
   addToCart(item:any){
     this._myCartService.addToCart(item);
+    this._myCartService.getUserState();
   }
 
   addToWishList(item:any){
     this._myWishListService.addToWishList(item);
   }
+
+
   
 
   private FetchData(){

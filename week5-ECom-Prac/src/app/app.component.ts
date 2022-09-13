@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
     this.isloggedIn=false;
 }
 
+
 EventTypes = EventTypes;
 
 

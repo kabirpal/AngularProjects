@@ -106,23 +106,4 @@ export class AuthService{
             }
             return throwError(()=>new Error(errorMessage))
     }
-
-    // storeUserData(name:string,email:string,mobile:string,localId:string){
-    //     const newUser:storeUser = {
-    //       name: name,
-    //       email:email,
-    //       mobile:mobile,
-    //       role: 'user',
-    //       isActive: false
-    //     }
-    //     const url:string = 'https://lavish-67a42-default-rtdb.firebaseio.com/users/'+localId+'.json'
-      
-    //      this.http.patch<storeUser>(url,newUser).subscribe(res => console.log(res));
-    //   }
-
-    //   fetchUserData(localId:string):Observable<storeUser>{
-    //     const url = 'https://lavish-67a42-default-rtdb.firebaseio.com/users/'+localId+'.json';
-    //     return this.http.get<storeUser>(url);
-    
-    // }
 }

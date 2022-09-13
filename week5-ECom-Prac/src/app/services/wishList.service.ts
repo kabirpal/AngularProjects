@@ -38,8 +38,8 @@ export class WishListService {
     this.productList.next(this.cartDataList)
   }
 
-  removeAllcart(){
-    this.cartDataList = [];
-    this.productList.next(this.cartDataList)
-  }
+  // removeAllcart(){
+  //   this.cartDataList = [];
+  //   this.productList.next(this.cartDataList)
+  // }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MyCartService } from 'src/app/services/my-cart.service';
 import { WishListService } from 'src/app/services/wishList.service';
 
 @Component({
@@ -10,7 +11,8 @@ export class WishlistComponent implements OnInit {
   products:any=[];
   isFetching:boolean=false;
   allProducts:number=0;
-  constructor(private _myWishListService:WishListService) { }
+  constructor(private _myWishListService:WishListService,
+    private _myCartService:MyCartService) { }
 
   ngOnInit(): void {
     this.isFetching = true;
@@ -19,14 +21,12 @@ export class WishlistComponent implements OnInit {
       this.isFetching = false;
     })
   }
-  removeProduct(item:any){
+
+  // removeAllProduct(){
+  //   this._myWishListService.removeAllcart();
+  // }
+  addToCart(item:any){
     this._myWishListService.removeWishListData(item);
+    this._myCartService.addToCart(item);
   }
-
-  removeAllProduct(){
-    this._myWishListService.removeAllcart();
-  }
-
-  addToCart(item){}
-
 }

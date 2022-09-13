@@ -102,7 +102,8 @@ export class LoginComponent {
       email:email,
       mobile:mobile,
       role: 'user',
-      isActive: true
+      isActive: true,
+      id:localId
     }
     let url = 'https://lavish-67a42-default-rtdb.firebaseio.com/customers/'+localId+'.json'
     console.log(newUser);

@@ -21,10 +21,10 @@ export class ViewUsersComponent implements OnInit {
   //   })
   // }
 
-  isFetching:boolean = false;
+  isFetching:boolean;
   loadedProducts:storeUser[] =[];
   productList:any;
-  radioValue:boolean=true;
+  radioValue:boolean;
 
   ngOnInit(): void {
     this.FetchData();
@@ -38,6 +38,25 @@ export class ViewUsersComponent implements OnInit {
     this.radioValue = !radioValue;
     console.log(radioValue)
   }
+
+  disableUser(item:boolean,id:string){
+    this.radioValue = !item;
+    //console.log(this.radioValue);
+      this.http.patch<storeUser>('https://lavish-67a42-default-rtdb.firebaseio.com/user/'+id+'.json',{isActive: this.radioValue}).subscribe(post=>(
+        this.FetchData()
+      ))
+      
+      console.log(this.radioValue);
+    }
+    // else if(item === false){
+    //   console.log(item)
+    //   this.radioValue = false;
+    //   this.http.patch<storeUser>('https://lavish-67a42-default-rtdb.firebaseio.com/user/'+id+'.json',{isActive: this.radioValue}).subscribe(post=>(
+    //     console.log(post)
+    //   ))
+    //   console.log(this.radioValue);
+    // }
+
 
   
   onDeleteUser(UserId:any){

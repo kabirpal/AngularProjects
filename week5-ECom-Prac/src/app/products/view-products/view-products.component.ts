@@ -31,34 +31,6 @@ export class ViewProductsComponent implements OnInit {
       this._productService.viewProduct(this.productID.toString()).subscribe(viewData =>{
         this.productData = viewData;
       })
-
-    //   if(this.productID>0){
-    //     this._productService.viewProduct(this.productID.toString()).subscribe(viewData =>{
-    //       this.productData = viewData;
-    //     })
-    //   }
-      
-    //   if(this.productID>100 && this.productID<200){
-    //     this._productService.viewProductKids(this.productID.toString()).subscribe(viewData =>{
-    //       this.productData = viewData;
-    //     })
-    //   }
-    //   else if(this.productID>200){
-    //     this._productService.viewProductWomen(this.productID.toString()).subscribe(viewData =>{
-    //       this.productData = viewData;
-    //     })
-    //   }
-    //   if(this.productID<100){
-    //   this._productService.viewProductMen(this.productID.toString()).subscribe(viewData =>{
-    //     this.productData = viewData;
-    //   })
-    // }
-
-    // else if(this.productID>400 && this.productID<500){
-    //   this._productService.viewProductMobiles(this.productID.toString()).subscribe(viewData=>{
-    //     this.productData = viewData;
-    //   })
-    // }
      })
   }
 }

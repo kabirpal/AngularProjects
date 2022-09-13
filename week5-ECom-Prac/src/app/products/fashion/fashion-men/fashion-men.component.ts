@@ -24,6 +24,7 @@ export class FashionMenComponent implements OnInit {
 
   onFetchPosts(){
     this.FetchData();
+    this.isFetching=false;
   }
 
   addToCart(item:any){

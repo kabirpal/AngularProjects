@@ -39,6 +39,7 @@ export class LoginComponent {
     }
     const email = form.value.email;
     const name = form.value.name;
+    const mobile = form.value.mobile;
     const password = form.value.password;
 
 
@@ -55,6 +56,7 @@ export class LoginComponent {
       next: (resData: any) => {
         console.log(resData);
         this.router.navigate(['']);
+        this.storeUserData(name,email,mobile,resData.localId).subscribe(()=> console.log('Data Added'))
         
       },
       error: (errorMessage: { message: any }) => {
@@ -93,42 +95,22 @@ export class LoginComponent {
     this.router.navigate(['/adminPortal']);
   }
 
-  // storeUserData(name:string,email:string,localId:string):Observable<storeUser>{
-  //   const newUser:storeUser={
-  //     name:name,
-  //     email:email,
-  //     role:'user',
-  //     isActive:false
-  //   }
-  //   console.log(newUser);
-  //   const url = 'https://lavish-67a42-default-rtdb.firebaseio.com/users/'+localId+'.json';
-  //   return this.http.patch<storeUser>(url,newUser)
-  // }
-  
 
-  storeUserData(name:string,email:string,localId:string):Observable<storeUser>{
+  storeUserData(name:string,email:string,mobile:string,localId:string):Observable<storeUser>{
     const newUser:storeUser = {
       name: name,
       email:email,
+      mobile:mobile,
       role: 'user',
-      isActive: false
+      isActive: true
     }
     let url = 'https://lavish-67a42-default-rtdb.firebaseio.com/customers/'+localId+'.json'
-    console.log(localId);
     console.log(newUser);
-    return this.http.put<storeUser>('https://lavish-67a42-default-rtdb.firebaseio.com/Products/'+localId+'.json',newUser);
+    //console.log(localId);
+    //console.log(newUser);
+    return this.http.put<storeUser>('https://lavish-67a42-default-rtdb.firebaseio.com/user/'+localId+'.json',newUser)
     
   }
-
-  
-  // storeUserData(){
-  //   this.http.put('https://lavish-67a42-default-rtdb.firebaseio.com/users.json',postData).subscribe(res=>{
-  //     console.log(res)
-  //     postData.name = "";
-  //     postData.email='';
-  //     postData.isActive;
-  //     postData.role = "";}
-  //   )}
 
   
   getUserData(localId:string):Observable<storeUser>{

@@ -13,9 +13,10 @@ export class AdminService {
   constructor(private http:HttpClient) { }
 
   getUserDetails():Observable<storeUser[]>{
-    const url:string = 'https://lavish-67a42-default-rtdb.firebaseio.com/users.json';
+    const url:string = 'https://lavish-67a42-default-rtdb.firebaseio.com/user.json';
     return this.http.get<storeUser[]>(url);
   }
+
 
   deleteProduct(productId:any){ 
     const url = 'https://lavish-67a42-default-rtdb.firebaseio.com/Products/'+productId+".json";

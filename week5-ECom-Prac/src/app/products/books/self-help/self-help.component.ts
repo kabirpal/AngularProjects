@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MyCartService } from 'src/app/services/my-cart.service';
+import { WishListService } from 'src/app/services/wishList.service';
 import { Products } from '../../booksGet-module';
 
 @Component({
@@ -17,7 +18,8 @@ export class SelfHelpComponent implements OnInit {
   SelfHelpList:Products[]=[];
   BooksList: Products[]=[];
   constructor(private http:HttpClient,
-    private _myCartService:MyCartService) { }
+    private _myCartService:MyCartService,
+    private _myWishListService:WishListService) { }
 
   ngOnInit(): void {
     this.FetchData();
@@ -30,6 +32,10 @@ export class SelfHelpComponent implements OnInit {
 
   addToCart(item:any){
     this._myCartService.addToCart(item);
+  }
+
+  addToWishList(item:any){
+    this._myWishListService.addToWishList(item);
   }
   
 

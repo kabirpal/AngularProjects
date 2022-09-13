@@ -10,6 +10,7 @@ import { FashionComponent } from './products/fashion/fashion.component';
 import { MobilesComponent } from './products/mobiles/mobiles.component';
 import { MyCartComponent } from './products/my-cart/my-cart.component';
 import { ViewProductsComponent } from './products/view-products/view-products.component';
+import { WishlistComponent } from './products/wishlist/wishlist.component';
 import { AboutUsComponent } from './user-shop/about-us/about-us.component';
 import { CheckoutComponent } from './user-shop/checkout/checkout.component';
 import { HomeComponent } from './user-shop/home/home.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path:'viewproduct/:id',component:ViewProductsComponent},
   {path:'admin',loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AuthAdminGuard]},  
   { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
-  {path:'checkout',component:CheckoutComponent,canActivate:[AuthGuard]}
+  {path:'checkout',component:CheckoutComponent,canActivate:[AuthGuard]},
+  {path:'wishList',component:WishlistComponent,canActivate:[AuthGuard]},
 ];
 
 @NgModule({

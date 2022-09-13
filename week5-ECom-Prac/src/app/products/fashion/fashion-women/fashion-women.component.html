@@ -1,5 +1,8 @@
 <h1> Jeans </h1>
-<div class="container-fluid">
+<div class="conatiner" *ngIf="isFetching" style="text-align: center; margin-top:100">
+    <app-spinner></app-spinner>
+  </div>
+<div class="container-fluid" *ngIf="!isFetching">
     <hr style="width: 70%; margin-left:15%">
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <div class="col" *ngFor="let item of jeansList">
@@ -19,7 +22,10 @@
 </div>
 
 <h1> Top </h1>
-<div class="container-fluid">
+<div class="conatiner" *ngIf="isFetching" style="text-align: center; margin-top:100">
+    <app-spinner></app-spinner>
+  </div>
+<div class="container-fluid" *ngIf="!isFetching">
     <hr style="width: 70%; margin-left:15%">
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <div class="col" *ngFor="let item of topList">

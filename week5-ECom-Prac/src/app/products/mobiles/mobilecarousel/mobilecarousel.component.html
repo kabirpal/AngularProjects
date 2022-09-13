@@ -2,6 +2,10 @@
     <br>
     <h1>Best selling products</h1>
     <br>
+    <div class="conatiner" *ngIf="isFetching" style="text-align: center; margin-top:100">
+        <app-spinner></app-spinner>
+      </div>
+    <div class="container-fluid" *ngIf="!isFetching">
     <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col" *ngFor="let item of PremiumSmartphone">
             <div class="shadow p-3 mb-5 bg-white rounded">
@@ -18,5 +22,6 @@
                 </div>
             </div>  
         </div>
+    </div>
     </div>
 </div>

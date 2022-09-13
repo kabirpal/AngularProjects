@@ -14,6 +14,7 @@ export class MobilecarouselComponent implements OnInit {
   isFetching:boolean = false;
   loadedPosts:Products[] =[];
   productList:any;
+  Smartphone:Products[] = [];
   PremiumSmartphone:Products[] = [];
   constructor(private http:HttpClient,private _myCartService:MyCartService) { }
 
@@ -30,7 +31,7 @@ export class MobilecarouselComponent implements OnInit {
 
   private FetchData(){
     this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Mobiles.json')
+    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Products.json')
     .pipe(map(responseData=>{
       const postsArray:Products[]= [];
       for(const key in responseData){
@@ -45,7 +46,9 @@ export class MobilecarouselComponent implements OnInit {
       this.isFetching=false
       this.loadedPosts = post;
       this.productList = post;
-      this.PremiumSmartphone=this.loadedPosts.filter(post=> post.ProductCategory==='Premium');
+      this.Smartphone=this.loadedPosts.filter(post=> post.ProductCategory==='SmartPhone');
+      this.PremiumSmartphone=this.Smartphone.filter(post=> post.SubCategory==='Premium');
+      console.log(this.Smartphone)
       console.log(this.PremiumSmartphone);
       this.productList.forEach((a:any) => {
         Object.assign(a,{quantity:1, total:a.price})

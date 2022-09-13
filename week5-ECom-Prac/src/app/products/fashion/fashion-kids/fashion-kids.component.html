@@ -1,6 +1,9 @@
 <h1> Boys </h1>
 <br>
-<div class="container-fluid">
+<div class="conatiner" *ngIf="isFetching" style="text-align: center; margin-top:100">
+    <app-spinner></app-spinner>
+  </div>
+<div class="container-fluid" *ngIf="!isFetching">
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <div class="col" *ngFor="let item of loadedPosts">
             <div class="card">

@@ -11,13 +11,18 @@ import { ProductsModule } from './products/products.module';
 import { AdminModule } from './admin/admin.module';
 import { ProductsPipe } from './products/productFilter.pipe';
 import { AuthGuard } from './auth.guard';
+import { ToasterComponent } from './TosterComponent/toaster/toaster.component';
+import { ToastComponent } from './TosterComponent/toast/toast.component';
+import { SpinnerComponent } from './products/spinner/spinner.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsPipe
+    ProductsPipe,
+    ToasterComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

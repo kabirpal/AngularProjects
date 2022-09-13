@@ -90,8 +90,7 @@
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="title">Sub-Category:</label>
-                <input type="text" class="form-control" id="SubCategory" placeholder="Enter Product Sub Category"
-                    #inputSubCategory ngModel name="colour" />
+                <input type="text" class="form-control" id="SubCategory" placeholder="Enter Product Sub Category" #inputSubCategory ngModel name="SubCategory" />
             </div>
             <div class="col-md-6 mb-3">
                 <label for="title">Quantity available:</label>
@@ -116,5 +115,5 @@
         (click)="inputContent.value=''" (click)="inputCategory.value=''" (click)="inputPrice.value=''"
         (click)="inputDescription.value=''" (click)="inputImage.value=''" (click)="inputColour.value=''"
         (click)="inputSize.value=''" (click)="inputMrp.value=''" (click)="inputRatings.value=''"
-        (click)="inputstatus.value=''" (click)="inputavailability.value=''" (click)="inputSubCategory.value=''">Send Post</button>
+        (click)="inputstatus.value=''" (click)="inputavailability.value=''" (click)="inputSubCategory.value=''" >Send Post</button>
     </form>

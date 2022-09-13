@@ -25,6 +25,8 @@ import { SelfHelpComponent } from './books/self-help/self-help.component';
 import { RouterModule } from '@angular/router';
 import { ProductRoutingModule } from './product-routing.module';
 import { MyCartComponent } from './my-cart/my-cart.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 
 
@@ -53,12 +55,17 @@ import { MyCartComponent } from './my-cart/my-cart.component';
     MobilecarouselComponent,
     SelfHelpComponent,
     MyCartComponent,
+    SpinnerComponent,
+    WishlistComponent,
 
   ],
   imports: [
     CommonModule,
     RouterModule,
     ProductRoutingModule
+  ],
+  exports:[
+    SpinnerComponent
   ]
 })
 export class ProductsModule { }

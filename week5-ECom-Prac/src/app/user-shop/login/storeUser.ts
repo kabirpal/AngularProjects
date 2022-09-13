@@ -1,7 +1,7 @@
 export interface storeUser{
     name:string,
     email:string,
-    // mobile:string,
+    mobile:string,
     role:string,
     isActive:boolean
 }

@@ -2,3 +2,13 @@ h2{
     text-align: center;
 }
 
+.card-text {
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+h1{
+    text-align: center;
+    color: rgb(26, 25, 25);
+}

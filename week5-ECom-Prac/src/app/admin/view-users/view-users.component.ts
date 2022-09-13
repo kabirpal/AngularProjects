@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { AdminService } from 'src/app/services/admin.service';
+import { MyCartService } from 'src/app/services/my-cart.service';
 import { storeUser } from 'src/app/user-shop/login/storeUser';
 
 @Component({
@@ -9,12 +12,56 @@ import { storeUser } from 'src/app/user-shop/login/storeUser';
 })
 export class ViewUsersComponent implements OnInit {
   userDetails!:storeUser[];
-  constructor(private adminService:AdminService) { }
+  constructor(private _adminService:AdminService,private http:HttpClient,private _myCartService:MyCartService) { }
+
+  // ngOnInit(): void {
+  //   this.adminService.getUserDetails().subscribe(res => {
+  //     this.userDetails = res;
+  //     console.log(res)
+  //   })
+  // }
+
+  isFetching:boolean = false;
+  loadedProducts:storeUser[] =[];
+  productList:any;
+  radioValue:boolean=true;
 
   ngOnInit(): void {
-    this.adminService.getUserDetails().subscribe(res => {
-      this.userDetails = Object.values(res);
-      console.log(res)
+    this.FetchData();
+  }
+
+  onFetchPosts(){
+    this.FetchData()
+  }
+
+  userStatus(radioValue:boolean){
+    this.radioValue = !radioValue;
+    console.log(radioValue)
+  }
+
+  
+  onDeleteUser(UserId:any){
+    this._adminService.deleteProduct(UserId);
+  }
+
+  private FetchData(){
+    this.isFetching = true;
+    this.http.get<{[key:string]:storeUser}>('https://lavish-67a42-default-rtdb.firebaseio.com/user.json')
+    .pipe(map(responseData=>{
+      const postsArray:storeUser[]= [];
+      for(const key in responseData){
+        if(responseData.hasOwnProperty(key)){
+          postsArray.push({...responseData[key]});
+        }
+      }
+      return postsArray
     })
+    )
+    .subscribe(post=>{
+      console.log(post);
+      this.isFetching=false
+      this.loadedProducts = post;
+    },
+    )
   }
 }

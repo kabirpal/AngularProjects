@@ -1,11 +1,11 @@
 
 <h2>Best selling Smartphone</h2>
 <!-- Card 1 -->
-<div class="container">
+<div class="container" *ngFor="let item of BestSellerCarouselImg">
     <div class="card text-bg-secondary mb-3">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="{{item.imageUrl}}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          <h5 class="card-title">Best Selling SmartPhones are here.</h5>
           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
@@ -17,78 +17,25 @@
 <div class="container">
     <div class="shadow p-3 mb-5 col-md-12 bg-white rounded">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6" *ngFor="let item of SmartphoneList">
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
+                    <img src="{{item.imageUrl}}" style='height: 250px; width: 230px; margin: 5px;'class="img-fluid rounded-start" alt="...">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                      <button type="button" class="btn btn-primary">Add to cart</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-        </div>
-
-        <div class="col-sm-6">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                      <button type="button" class="btn btn-primary">Add to cart</button>
+                      <h5 class="card-title">{{item.ProductName}}</h5>
+                      <p class="card-text">Price: <strong>{{item.ProductPrice}}</strong></p>
+                      <p class="card-text"><small class="text-muted">{{item.description}}</small></p>
+                      <button type="button" class="btn btn-primary" style='margin-right:16px'>Add to cart</button>  
+                      <a type="link" href="/viewproduct/{{item.ProductId}}">View Products</a>
                     </div>
                   </div>
                 </div>
               </div>
         </div>
 
-        <div class="col-sm-6">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                      <button type="button" class="btn btn-primary">Add to cart</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </div>
-
-        <div class="col-sm-6">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                      <button type="button" class="btn btn-primary">Add to cart</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>    
+        
 </div>    
     </div>

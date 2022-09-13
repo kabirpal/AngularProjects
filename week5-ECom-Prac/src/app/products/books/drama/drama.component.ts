@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { MyCartService } from 'src/app/services/my-cart.service';
 import { Products } from '../../booksGet-module';
+import {Toast} from 'bootstrap'
+import { WishListService } from 'src/app/services/wishList.service';
 
 @Component({
   selector: 'app-drama',
@@ -16,7 +18,8 @@ export class DramaComponent implements OnInit {
   productList:any;
   BooksList: Products[]=[];
   constructor(private http:HttpClient,
-    private _myCartService:MyCartService) { }
+    private _myCartService:MyCartService,
+    private _myWishListService:WishListService) { }
 
   ngOnInit(): void {
     this.FetchData();
@@ -24,11 +27,16 @@ export class DramaComponent implements OnInit {
 
   onFetchPosts(){
     this.FetchData();
+    this.isFetching = false;
   }
 
 
   addToCart(item:any){
     this._myCartService.addToCart(item);
+  }
+
+  addToWishList(item:any){
+    this._myWishListService.addToWishList(item);
   }
   
 

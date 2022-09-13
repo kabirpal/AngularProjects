@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { MyCartService } from 'src/app/services/my-cart.service'
+import { ToastService } from './services/toast-service.service';
+import { EventTypes } from './TosterComponent/event-types';
 import { AuthService } from './user-shop/login/Auth-service';
 import { User } from './user-shop/login/user';
 
@@ -20,7 +22,8 @@ export class AppComponent implements OnInit {
 
 
 
-  constructor(private _myCartService:MyCartService, private _AuthGuard:AuthService){}
+  constructor(private _myCartService:MyCartService, private _AuthGuard:AuthService,
+    private toastService: ToastService){}
   
   ngOnInit():void{
     this._AuthGuard.autoLogIn();
@@ -36,5 +39,25 @@ export class AppComponent implements OnInit {
     this._AuthGuard.logout();
     this.isloggedIn=false;
 }
+
+EventTypes = EventTypes;
+
+
+  showToast(type: EventTypes) {
+    switch (type) {
+      case EventTypes.Success:
+        this.toastService.showSuccessToast('Success toast title', 'This is a success toast message.');
+        break;
+      case EventTypes.Warning:
+        this.toastService.showWarningToast('Warning toast title', 'This is a warning toast message.');
+        break;
+      case EventTypes.Error:
+        this.toastService.showErrorToast('Error toast title', 'This is an error toast message.');
+        break;
+      default:
+        this.toastService.showInfoToast('Info toast title', 'This is an info toast message.');
+        break;
+    }
+  }
   
 }

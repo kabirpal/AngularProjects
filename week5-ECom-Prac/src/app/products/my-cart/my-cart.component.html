@@ -31,9 +31,9 @@
                     <tr>
                         <td colspan="4"></td>
                         <td><button (click)="removeAllProduct()" class="btn btn-danger">Empty Cart</button></td>
-                        <td><button class="btn btn-warning" routerLink="/home" routerLinkActive="active">Shop More</button></td>
+                        <td><button class="btn btn-warning" routerLink="/" routerLinkActive="active">Shop More</button></td>
                         <td><button class="btn btn-success" routerLink="/checkout" routerLinkActive="active">Check out</button></td>
-                        <td>Total: INR{{allProducts}}</td>
+                        <td>Total: <strong>INR{{allProducts}}</strong></td>
                     </tr>
                 </tbody>
             </div>

@@ -6,7 +6,7 @@
       <div class="col-md-6 mb-3">
         <label for="title">Product Id: </label>
         <input type="text" class="form-control" placeholder="Enter Product Id" #inputTitle required ngModel
-          name="ProductId" minlength="6" [(ngModel)]="productDetails.ProductId">
+          name="ProductId" minlength="6" [disabled]=true [(ngModel)]="productDetails.ProductId">
       </div>
       <div class="col-md-6 mb-3">
         <label for="content">Brand name:</label>

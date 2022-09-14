@@ -1,3 +1,4 @@
+
 <div class="container-fluid" *ngIf="!isAdmin">
     <div class="row">
         <div class="border-design">
@@ -46,10 +47,10 @@
                                 <a class="nav-link" routerLink="/about" routerLinkActive="active">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <button class="btn btn-light"><i style="font-size:25px;" class="fas fa-heart" routerLink="/wishList" routerLinkActive="active"></i></button>
+                                <button class="btn btn-light" routerLink="/wishList" routerLinkActive="active"><i style="font-size:25px;" class="fas fa-heart" ></i></button>
                             </li>
                             <li class="nav-item">
-                                <button class="btn btn-light"><i style="font-size:25px;" class="fas fa-cart-plus" routerLink="/cart" routerLinkActive="active"></i><div class="badge bg-danger">{{totalItemNumber}}</div></button>
+                                <button class="btn btn-light" routerLink="/cart" routerLinkActive="active"><i style="font-size:25px;" class="fas fa-cart-plus"></i><div class="badge bg-danger">{{totalItemNumber}}</div></button>
                                 
                             </li>
                             <li class="nav-item"  *ngIf="isloggedIn" >
@@ -62,6 +63,7 @@
         </div>
     </div>
 </div>
+<app-toaster></app-toaster>
 <router-outlet></router-outlet> 
 <div class="footer">
     <app-footer></app-footer>

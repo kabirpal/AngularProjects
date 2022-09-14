@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { catchError, throwError, tap, BehaviorSubject, Observable } from "rxjs";
-import { storeUser } from "./storeUser";
-import { User } from "./user";
+import { storeUser } from "../user-shop/login/storeUser";
+import { User } from "../user-shop/login/user";
 
 export interface AuthResponseData{
     idToken:string,
@@ -21,6 +21,7 @@ export class AuthService{
     constructor(private http:HttpClient, private router:Router){}
 
     user = new BehaviorSubject<User | null>(null);
+    private tonkenExpirationTimer : any;
 
     autoLogIn(){
         const userData: {
@@ -38,14 +39,27 @@ export class AuthService{
         
         if(loadUser.token){
             this.user.next(loadUser);
+            // const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+            // this.autoLogout(expirationDuration);
+
         }
     }
 
     logout(){
         this.user.next(null);
         this.router.navigate(['/login']);
-        localStorage.removeItem('userData')
+        localStorage.removeItem('userData');
+        // if(this.tonkenExpirationTimer){
+        //     clearTimeout(this.tonkenExpirationTimer)
+        // }
+        // this.tonkenExpirationTimer = null;
     }
+
+    // autoLogout(timeRemaing:number){
+    //     this.tonkenExpirationTimer = setTimeout(()=>{
+    //         this.logout();
+    //     },timeRemaing);
+    //}
 
     signUp(email:string,password:string,isAdmin:boolean){
         return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAhvo251FZP-a-evJh7K6ID7vB2R0OYlQM',
@@ -77,10 +91,11 @@ export class AuthService{
     }
     
 
-    private handleAuthentication(email:string, userId:string, token : string, expiresIn:string,isAdmin:boolean){
+    private handleAuthentication(email:string, userId:string, token : string, expiresIn:any,isAdmin:boolean){
             const expirationDate = new Date(new Date().getTime()+ +expiresIn * 1000)
             const myUser = new User(email,userId,token,expirationDate,isAdmin);
             this.user.next(myUser);
+            //this.autoLogout(expiresIn*1000);
             localStorage.setItem('userData',JSON.stringify({
                 ...myUser,
                 expiresIn:expirationDate.getTime()

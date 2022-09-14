@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthResponseData, AuthService } from './Auth-service';
+import { AuthResponseData, AuthService } from '../../services/Auth-service';
 import { storeUser } from './storeUser';
 import { User } from './user';
 

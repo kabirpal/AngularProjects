@@ -16,6 +16,7 @@ export class DramaComponent implements OnInit {
   isFetching:boolean = false;
   loadedPosts:Products[] =[];
   productList:any;
+  firebaseProduct:Products[];
   BooksList: Products[]=[];
   constructor(private http:HttpClient,
     private _myCartService:MyCartService,
@@ -31,9 +32,11 @@ export class DramaComponent implements OnInit {
   }
 
 
-  addToCart(item:any){
+  addToCart(item:Products){
     this._myCartService.addToCart(item);
     this._myCartService.getUserState();
+    this.firebaseProduct = JSON.parse(JSON.stringify(item));
+    this._myCartService.addToFirebase(this.firebaseProduct);
   }
 
   addToWishList(item:any){
@@ -64,8 +67,6 @@ export class DramaComponent implements OnInit {
       this.loadedPosts = post;
       this.productList = post;
       this.BooksList = this.loadedPosts.filter(post => post.ProductCategory=== 'Books')
-      // this.jeansList = this.loadedProducts.filter(post => post.SubCategory === 'Jeans')
-      // this.shirtList = this.loadedProducts.filter(post => post.SubCategory==='Shirt')
       this.productList.forEach((a:any) => {
         Object.assign(a,{quantity:1, total:a.price})
       });

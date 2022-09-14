@@ -1,12 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Products } from './booksGet-module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+  isFetching:boolean=false;
+  loadedPosts:Products[] =[];
+  jeansList:Products[]=[];
+  shirtList:Products[]=[];
+  
+  productList:any;
 
   constructor( private http:HttpClient) { }
 
@@ -24,6 +30,25 @@ export class ProductService {
     const baseUrl = 'https://lavish-67a42-default-rtdb.firebaseio.com/Products/'+proId+'.json';
     return this.http.get<Products>(baseUrl); 
   }
+
+  viewRelatedProducts(productCategory:string){
+    this.isFetching = true;
+   return this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/Products.json')
+    .pipe(map(responseData=>{
+      const postsArray:Products[]= [];
+      for(const key in responseData){
+        if(responseData.hasOwnProperty(key)){
+          postsArray.push({...responseData[key], id:key});
+        }
+      }
+      this.isFetching=false
+      return postsArray.filter(post => post.ProductCategory === productCategory).slice(1,5);
+    })
+    );
+  }
+
+
+
 
 
 }

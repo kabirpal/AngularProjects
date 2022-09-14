@@ -9,7 +9,7 @@ import { MyCartService } from 'src/app/services/my-cart.service';
 export class MyCartComponent implements OnInit {
   products:any=[];
   allProducts:number=0;
-  loadedProducts:boolean;
+  loadedProducts:boolean=true;
   isFetching:boolean=false;
 
   

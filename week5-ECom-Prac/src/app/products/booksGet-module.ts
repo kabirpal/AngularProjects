@@ -18,5 +18,6 @@ export interface Products{
     MRP:number,
     Rating:number,
     available:number,
-    status:string
+    status:string,
+    quantity:number,
 }

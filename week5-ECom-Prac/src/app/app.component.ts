@@ -3,7 +3,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { MyCartService } from 'src/app/services/my-cart.service'
 import { ToastService } from './services/toast-service.service';
 import { EventTypes } from './TosterComponent/event-types';
-import { AuthService } from './user-shop/login/Auth-service';
+import { AuthService } from './services/Auth-service';
 import { User } from './user-shop/login/user';
 
 

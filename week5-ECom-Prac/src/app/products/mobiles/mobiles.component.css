@@ -3,6 +3,7 @@ h1{
 }
 
 .background{
+    padding-top: 50px;
     background-image: linear-gradient(rgb(75, 70, 70), rgb(255, 251, 251));
 }
 

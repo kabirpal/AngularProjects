@@ -11,7 +11,6 @@ import { BestMenFashionComponent } from './best-sellers/best-men-fashion/best-me
 import { BestWomenFashionComponent } from './best-sellers/best-women-fashion/best-women-fashion.component';
 import { BestkidsFashionComponent } from './best-sellers/bestkids-fashion/bestkids-fashion.component';
 import { BooksCarouselComponent } from './books/books-carousel/books-carousel.component';
-import { PoetryComponent } from './books/poetry/poetry.component';
 import { DramaComponent } from './books/drama/drama.component';
 import { FictionComponent } from './books/fiction/fiction.component';
 import { RomanceComponent } from './books/romance/romance.component';
@@ -43,7 +42,6 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     BestWomenFashionComponent,
     BestkidsFashionComponent,
     BooksCarouselComponent,
-    PoetryComponent,
     DramaComponent,
     FictionComponent,
     RomanceComponent,

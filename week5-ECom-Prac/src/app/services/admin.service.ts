@@ -21,7 +21,7 @@ export class AdminService {
   deleteProduct(productId:any){ 
     const url = 'https://lavish-67a42-default-rtdb.firebaseio.com/Products/'+productId+".json";
     console.log(productId);
-    this.http.delete(url).subscribe(res => console.log("product delerted",res));
+    this.http.delete(url).subscribe(res => console.log("product deleted",res));
   }
 
   CreatePost(postData:ProductFields){

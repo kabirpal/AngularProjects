@@ -30,9 +30,9 @@ export class AppComponent implements OnInit {
     this.userSub = this._AuthGuard.user.subscribe(user=>{
       this.isloggedIn = !!user;
     });
-    this._myCartService.getProductData().subscribe(post=>{
-      this.totalItemNumber = post.length;
-    })
+    // this._myCartService.getProductData().subscribe(post=>{
+    //   this.totalItemNumber = post.length;
+    // })
   }
 
   Onlogout(){

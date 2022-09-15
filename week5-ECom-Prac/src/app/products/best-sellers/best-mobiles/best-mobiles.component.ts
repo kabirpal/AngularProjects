@@ -20,6 +20,7 @@ export class BestMobilesComponent implements OnInit {
 
   ngOnInit(): void {
     this.FetchData();
+    this.FetchDataCarousel();
   }
 
   onFetchPosts(){
@@ -46,7 +47,7 @@ export class BestMobilesComponent implements OnInit {
     })
     )
     .subscribe(post=>{
-      console.log(post);
+      //console.log(post);
       this.isFetching=false
       this.loadedPosts = post;
       this.SmartphoneList = this.loadedPosts.filter(post => post.ProductCategory === 'SmartPhone')
@@ -70,13 +71,12 @@ export class BestMobilesComponent implements OnInit {
     })
     )
     .subscribe(post=>{
-      console.log(post);
+     // console.log(post);
       this.isFetching=false
       this.loadedPosts = post;
-      console.log(this.loadedPosts)
       this.CarouselImage = this.loadedPosts.filter(post => post.ProductCategory === 'Carousel-Image')
-      console.log(this.CarouselImage);
-      this.BestSellerCarouselImg=this.CarouselImage.filter(post => post.SubCategory === 'BestSellerCarousel')
+      //console.log(this.CarouselImage);
+      this.BestSellerCarouselImg=this.CarouselImage.filter(post => post.SubCategory === 'BestSellerCarousel').splice(0,1)
       console.log(this.BestSellerCarouselImg);
     },
     )

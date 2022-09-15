@@ -1,3 +1,37 @@
 .card{
     height: auto;
 }
+.cardbody-2 {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    max-width: 350px;
+    text-align: center;
+    margin-top: 60px;
+}
+.card_img_2 {
+    width: 220px;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 100%;
+    margin: -60px auto 0;
+}
+.card_img_2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card_info_2 {
+    padding-bottom: 20px;
+    height: 100px;
+}
+a {
+  text-decoration: none;
+  color: red;
+}
+a:hover{
+  color: black;
+}
+
+h1{
+    text-align: center;
+}

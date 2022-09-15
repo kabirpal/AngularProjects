@@ -17,13 +17,21 @@ export class MyCartService {
   localObject: [];
   localId: string;
   checkProduct: string;
+  loadedPosts: any;
+  loadedCart:Products[];
 
   constructor(private http: HttpClient, private _toastService: ToastService) {}
 
-  getProductData() {
-    return this.productList.asObservable();
+  deleteProduct(productId:string){
+    this.localObject = JSON.parse(localStorage.getItem('userData'));
+    this.localId = this.localObject['id'];
+    console.log(this.localId);
+    console.log(productId);
+    const url = 'https://lavish-67a42-default-rtdb.firebaseio.com/user/'+this.localId+'addToCart/'+productId+".json";
+    console.log(productId);
+    this.http.delete(url).subscribe(res => console.log("product deleted",res));
   }
-
+  
   setProduct(product: any) {
     this.cartDataList.push(...product);
     this.productList.next(product);
@@ -92,7 +100,7 @@ export class MyCartService {
       .get(
         'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
           this.localId +
-          '/wishList/.json'
+          '/addToCart/.json'
       )
       .subscribe((res: Products[]) => {
         if (res) {
@@ -106,7 +114,7 @@ export class MyCartService {
                 .patch<Products>(
                   'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
                     this.localId +
-                    '/wishList/' +
+                    '/addToCart/' +
                     postData.ProductId +
                     '.json',
                   { ...postData, quantity: ele.quantity + 1 }
@@ -117,7 +125,7 @@ export class MyCartService {
               this.http.patch(
                   'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
                     this.localId +
-                    '/wishList/' +
+                    '/addToCart/' +
                     postData.ProductId +
                     '.json',
                   postData
@@ -130,7 +138,7 @@ export class MyCartService {
             .put<Products>(
               'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
                 this.localId +
-                '/wishList/' +
+                '/addToCart/' +
                 postData.ProductId +
                 '.json',
               { ...postData, quantity: 1 }

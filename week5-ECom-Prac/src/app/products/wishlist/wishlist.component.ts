@@ -1,32 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { MyCartService } from 'src/app/services/my-cart.service';
 import { WishListService } from 'src/app/services/wishList.service';
+import { Products } from '../booksGet-module';
 
 @Component({
   selector: 'app-wishlist',
   templateUrl: './wishlist.component.html',
-  styleUrls: ['./wishlist.component.css']
+  styleUrls: ['./wishlist.component.css'],
 })
 export class WishlistComponent implements OnInit {
-  products:any=[];
-  isFetching:boolean=false;
-  allProducts:number=0;
-  constructor(private _myWishListService:WishListService,
-    private _myCartService:MyCartService) { }
+  products: any = [];
+  isFetching: boolean = false;
+  allProducts: number = 0;
+  firebaseProduct: Products[];
+  constructor(
+    private _myWishListService: WishListService,
+    private _myCartService: MyCartService
+  ) {}
 
   ngOnInit(): void {
     this.isFetching = true;
-    this._myWishListService.getProductData().subscribe(res=>{
+    this._myWishListService.getProductData().subscribe((res) => {
       this.products = res;
       this.isFetching = false;
-    })
+    });
   }
 
   // removeAllProduct(){
   //   this._myWishListService.removeAllcart();
   // }
-  addToCart(item:any){
+  addToCart(item: any) {
     this._myWishListService.removeWishListData(item);
     this._myCartService.addToCart(item);
+    this._myCartService.getUserState();
+    this.firebaseProduct = JSON.parse(JSON.stringify(item));
+    this._myCartService.addToFirebase(this.firebaseProduct);
   }
 }

@@ -1,52 +1,81 @@
-  <section class="py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{productData.imageUrl}}" alt="..."></div>
-                <div class="col-md-6">
-                    <div class="small mb-1">Product ID: {{productID}}</div>
-                    <h1 class="display-5 fw-bolder">{{productData.ProductName}}</h1>
-                    <div class="fs-5 mb-5">
-                        <span class="text-decoration-line-through">MRP: {{productData.MRP | currency:'INR'}}</span>
-                        <span>&emsp;{{productData.ProductPrice  | currency:'INR'}}</span>
-                    </div>
-                    <p class="lead">{{productData.description}}</p>
-                    <div class="d-flex">
-                        <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" spellcheck="false" data-ms-editor="true">
-                        <button class="btn btn-outline-dark flex-shrink-0" type="button" (click)="addToCart(productData)">
-                            <i class="bi-cart-fill me-1"></i>
-                            Add to cart
-                        </button>
-                    </div>
-                </div>
-            </div>
+<div class="container" *ngIf="isFetching">
+  <app-spinner></app-spinner>
+</div>
+<section class="py-5">
+  <div class="container px-4 px-lg-5 my-5" *ngIf="!isFetching">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+      <div class="col-md-6">
+        <img
+          class="card-img-top mb-5 mb-md-0"
+          src="{{ productData.imageUrl }}"
+          alt="..."
+        />
+      </div>
+      <div class="col-md-6">
+        <div class="small mb-1">Product ID: {{ productID }}</div>
+        <h1 class="display-5 fw-bolder">{{ productData.ProductName }}</h1>
+        <div class="fs-5 mb-5">
+          <!-- <span class="text-decoration-line-through">MRP: {{productData.MRP | currency:'INR'}}</span> -->
+          <span>
+            <strong
+              >Price: &emsp;{{ productData.ProductPrice | currency: "INR" }}
+            </strong></span
+          >
         </div>
-    </section>
-    <!-- Related items section-->
-
-    <section class="py-5 bg-light">
-        <div class="container px-4 px-lg-5 mt-5">
-            <h2 class="fw-bolder mb-4">Related products</h2>
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <div class="col mb-5" *ngFor="let item of loadedProducts">
-                    <div class="card h-100" >
-                        <!-- Product image-->
-                        <img class="card-img-top" src={{item.imageUrl}} style="height: 250px;" alt="...">
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">{{item.ProductName}}</h5>
-                                <!-- Product price-->
-                                {{item.ProductPrice}}
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/viewproduct/{{item.ProductId}}">View Product</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <p class="lead">{{ productData.description }}</p>
+        <div class="d-flex">
+          <!-- <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" spellcheck="false" data-ms-editor="true"> -->
+          <button
+            class="btn btn-outline-dark flex-shrink-0"
+            type="button"
+            (click)="addToCart(productData)"
+          >
+            <i class="bi-cart-fill me-1"></i>
+            Add to cart
+          </button>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Related items section-->
 
+<section class="py-5 bg-light" *ngIf="!isFetching">
+  <div class="container px-4 px-lg-5 mt-5">
+    <h2 class="fw-bolder mb-4">Related products</h2>
+    <div
+      class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+    >
+      <div class="col mb-5" *ngFor="let item of loadedProducts">
+        <div class="card h-100">
+          <!-- Product image-->
+          <img
+            class="card-img-top"
+            src="{{ item.imageUrl }}"
+            style="height: 250px"
+            alt="..."
+          />
+          <!-- Product details-->
+          <div class="card-body p-4">
+            <div class="text-center">
+              <!-- Product name-->
+              <h5 class="fw-bolder">{{ item.ProductName }}</h5>
+              <!-- Product price-->
+              Price: {{ item.ProductPrice | currency: "INR" }}
+            </div>
+          </div>
+          <!-- Product actions-->
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="text-center">
+              <a
+                class="btn btn-outline-dark mt-auto"
+                href="/viewproduct/{{ item.ProductId }}"
+                >View Product</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

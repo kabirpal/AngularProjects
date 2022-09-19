@@ -7,51 +7,59 @@ import { Products } from '../../booksGet-module';
 @Component({
   selector: 'app-fashion-kids',
   templateUrl: './fashion-kids.component.html',
-  styleUrls: ['./fashion-kids.component.css']
+  styleUrls: ['./fashion-kids.component.css'],
 })
 export class FashionKidsComponent implements OnInit {
-  isFetching:boolean = false;
-  loadedPosts:Products[] =[];
-  productList:any;
-  constructor(private http:HttpClient,private _myCartService:MyCartService) { }
+  isFetching: boolean = false;
+  loadedPosts: Products[] = [];
+  firebaseProduct: Products[];
+  productList: any;
+  constructor(
+    private http: HttpClient,
+    private _myCartService: MyCartService
+  ) {}
 
   ngOnInit(): void {
     this.FetchData();
   }
 
-  onFetchPosts(){
+  onFetchPosts() {
     this.FetchData();
   }
 
-  addToCart(item:any){
+  addToCart(item: any) {
     this._myCartService.addToCart(item);
+    this._myCartService.getUserState();
+    this.firebaseProduct = JSON.parse(JSON.stringify(item));
+    this._myCartService.addToFirebase(this.firebaseProduct);
   }
 
-  private FetchData(){
+  private FetchData() {
     this.isFetching = true;
-    this.http.get<{[key:string]:Products}>('https://lavish-67a42-default-rtdb.firebaseio.com/kidsFashion.json',
-    {headers: new HttpHeaders({'Custom-Headers':'hello'})
-      })
-    .pipe(map(responseData=>{
-      const postsArray:Products[]= [];
-      for(const key in responseData){
-        if(responseData.hasOwnProperty(key)){
-          postsArray.push({...responseData[key], id:key});
-        }
-      }
-      return postsArray
-    })
-    )
-    .subscribe(post=>{
-      console.log(post);
-      this.isFetching=false
-      this.loadedPosts = post;
-      this.productList = post;
-      this.productList.forEach((a:any) => {
-        Object.assign(a,{quantity:1, total:a.price})
+    this.http
+      .get<{ [key: string]: Products }>(
+        'https://lavish-67a42-default-rtdb.firebaseio.com/kidsFashion.json',
+        { headers: new HttpHeaders({ 'Custom-Headers': 'hello' }) }
+      )
+      .pipe(
+        map((responseData) => {
+          const postsArray: Products[] = [];
+          for (const key in responseData) {
+            if (responseData.hasOwnProperty(key)) {
+              postsArray.push({ ...responseData[key], id: key });
+            }
+          }
+          return postsArray;
+        })
+      )
+      .subscribe((post) => {
+        console.log(post);
+        this.isFetching = false;
+        this.loadedPosts = post;
+        this.productList = post;
+        this.productList.forEach((a: any) => {
+          Object.assign(a, { quantity: 1, total: a.price });
+        });
       });
-    },
-    )
   }
-
 }

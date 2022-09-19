@@ -1,38 +1,76 @@
 <app-fashion-home></app-fashion-home>
 <!-- Different components -->
-<h1> All Products </h1>
-<br>
+<h1>All Products</h1>
+<br />
 <div class="container-fluid">
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col" *ngFor="let item of loadedPosts" >
-            <div class="card" height="350px">
-                <img src="{{item.imageUrl}}" class="card-img-top" alt="..." style="height:300px;">
-                <div class="card-body">
-                    <h5 class="card-title">{{item.ProductName}}</h5>
-                    <h5 class="card-text">Price: {{item.ProductPrice | currency:'INR'}}</h5>
-                    <p class="card-text">Colour: {{item.colour}}</p>
-                    <a href="/viewproduct/{{item.ProductId}}">View Products</a>
-                    <button type="button" class="btn btn-primary" style="margin:10px" (click)="addToCart(item)">Add to cart</button>
-                </div>
-            </div>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col" *ngFor="let item of loadedPosts">
+      <div class="card" height="350px">
+        <img
+          src="{{ item.imageUrl }}"
+          class="card-img-top"
+          alt="..."
+          style="height: 300px"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ item.ProductName }}</h5>
+          <h5 class="card-text">
+            Price: {{ item.ProductPrice | currency: "INR" }}
+          </h5>
+          <p class="card-text">Colour: {{ item.colour }}</p>
+          <a href="/viewproduct/{{ item.ProductId }}">View Products</a>
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="margin: 10px"
+            (click)="addToCart(item)"
+          >
+            Add to cart
+          </button>
         </div>
-</div>
-
-<nav class="navbar sticky-top" style="background-color: #e3f2fd;">
-    <div class="container-md" >
-        <div class="container" style="font-size: 30px;">
-            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" routerLink="/menfashion" routerLinkActive="active">Men</button>
-            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" routerLink="/womenfashion" routerLinkActive="active">Women</button>
-            <button type="button" class="btn btn-outline-primary" style="font-size: 25px;" routerLink="/kidsfashion" routerLinkActive="active">Kids</button>
-        </div>
+      </div>
     </div>
-</nav>
-<router-outlet></router-outlet>
-<!-- 
+  </div>
+
+  <nav class="navbar sticky-top" style="background-color: #e3f2fd">
+    <div class="container-md">
+      <div class="buttons" style="font-size: 30px">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          style="font-size: 25px; margin-right: 30px"
+          routerLink="/menfashion"
+          routerLinkActive="active"
+        >
+          Men
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          style="font-size: 25px"
+          routerLink="/womenfashion"
+          routerLinkActive="active"
+        >
+          Women
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          style="font-size: 25px"
+          routerLink="/kidsfashion"
+          routerLinkActive="active"
+        >
+          Kids
+        </button>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+  <!-- 
 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
     data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
      <app-fashion-men *ngIf="laodedFeature === 'men'" ></app-fashion-men> 
     <app-fashion-women *ngIf="laodedFeature === 'women'" ></app-fashion-women>
     <app-fashion-kids *ngIf="laodedFeature === 'kids'" ></app-fashion-kids>
 </div> -->
-
+</div>

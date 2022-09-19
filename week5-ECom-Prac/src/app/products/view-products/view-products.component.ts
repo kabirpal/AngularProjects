@@ -9,39 +9,51 @@ import { ProductService } from '../product.service';
 @Component({
   selector: 'app-view-products',
   templateUrl: './view-products.component.html',
-  styleUrls: ['./view-products.component.css']
+  styleUrls: ['./view-products.component.css'],
 })
 export class ViewProductsComponent implements OnInit {
-  productID:number = 0;
-  productData!:Products;
-  item:any;
-  productCategory:string;
-  loadedProducts:Products[]=[];
-  constructor(private activatedRoute:ActivatedRoute, private http:HttpClient, private _productService:ProductService,private _myCartService:MyCartService) { }
+  productID: number = 0;
+  isFetching: boolean = false;
+  productData!: Products;
+  productCategory: string;
+  loadedProducts: Products[] = [];
+  firebaseProduct: Products[];
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private http: HttpClient,
+    private _productService: ProductService,
+    private _myCartService: MyCartService
+  ) {}
 
-
-  
-  addToCart(items:any){
+  addToCart(items: any) {
+    this.isFetching = true;
     this._myCartService.addToCart(items);
+    this._myCartService.getUserState();
+    this.firebaseProduct = JSON.parse(JSON.stringify(items));
+    this._myCartService.addToFirebase(this.firebaseProduct);
+    this.isFetching = false;
   }
 
-
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(data=>{
+    this.isFetching = true;
+    this.activatedRoute.params.subscribe((data) => {
       this.productID = data['id'];
       //console.log(this.productID)
-      this._productService.viewProduct(this.productID.toString()).subscribe(viewData =>{
-        this.productData = viewData;
-        this.productCategory=viewData.ProductCategory;
-        console.log(this.productCategory);
-        this._productService.viewRelatedProducts(this.productCategory).subscribe(res=>{
-          console.log(res)
-          this.loadedProducts = res;
-          console.log(this.loadedProducts);
+      this._productService
+        .viewProduct(this.productID.toString())
+        .subscribe((viewData) => {
+          this.productData = viewData;
+          this.productCategory = viewData.ProductCategory;
+          console.log(this.productCategory);
+          this._productService
+            .viewRelatedProducts(this.productCategory)
+            .subscribe((res) => {
+              console.log(res);
+              this.loadedProducts = res;
+              console.log(this.loadedProducts);
+            });
         });
-      })
-    })
-
-    
+    });
+    this.isFetching = false;
   }
 }

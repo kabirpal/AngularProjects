@@ -3,4 +3,10 @@ h1{
 }
 button{
     border: 0;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.test {
+    justify-content: space-evenly;
 }

@@ -10,21 +10,21 @@ import { User } from './user';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   title = 'week4-FirebaseAuth';
   isLoginMode = true;
   isLoading = false;
-  errorMsg: string = "";
+  errorMsg: string = '';
   isAdmin: boolean = false;
   isAuthenticated = false;
 
-  constructor(private _authService: AuthService, 
+  constructor(
+    private _authService: AuthService,
     private router: Router,
-    private http: HttpClient) { }
-
-    
+    private http: HttpClient
+  ) {}
 
   switchNow() {
     this.isLoginMode = !this.isLoginMode;
@@ -33,46 +33,43 @@ export class LoginComponent {
   onSubmitForm(form: NgForm) {
     this.isLoading = true;
     this.isAuthenticated = true;
-    
+
     if (!form.valid) {
-      return
+      return;
     }
     const email = form.value.email;
     const name = form.value.name;
     const mobile = form.value.mobile;
     const password = form.value.password;
 
-
-    
-
-    let authObs: Observable<AuthResponseData>//not required.
+    let authObs: Observable<AuthResponseData>; //not required.
 
     if (email === 'lavish-admin@lavish.com') {
       this.isAdmin = true;
       this.forAdmin();
-      
     }
     const observer = {
       next: (resData: any) => {
         console.log(resData);
         this.router.navigate(['']);
-            },
+      },
       error: (errorMessage: { message: any }) => {
         this.errorMsg = errorMessage.message;
-      }
-    }
+      },
+    };
 
     const observerSignUp = {
       next: (resData: any) => {
         console.log(resData);
         this.router.navigate(['']);
-        this.storeUserData(name,email,mobile,resData.localId).subscribe(()=> console.log('Data Added'))
-        
+        this.storeUserData(name, email, mobile, resData.localId).subscribe(() =>
+          console.log('Data Added')
+        );
       },
       error: (errorMessage: { message: any }) => {
         this.errorMsg = errorMessage.message;
-      }
-    }
+      },
+    };
 
     const observerAdmin = {
       next: (resData: any) => {
@@ -81,51 +78,68 @@ export class LoginComponent {
       },
       error: (errorMessage: { message: any }) => {
         this.errorMsg = errorMessage.message;
-      }
-    }
+      },
+    };
 
-    if (this.isLoginMode && this.isAdmin==true) {
+    if (this.isLoginMode && this.isAdmin == true) {
       this.isLoading = false;
-      this._authService.login(email, password, this.isAdmin).subscribe(observerAdmin)
-    }
-    else if (this.isLoginMode) {
+      this._authService
+        .login(email, password, this.isAdmin)
+        .subscribe(observerAdmin);
+    } else if (this.isLoginMode) {
       this.isLoading = false;
-      this._authService.login(email, password, this.isAdmin).subscribe(observer)
-    }
-    else {
-      this._authService.signUp(email, password, this.isAdmin).subscribe(observerSignUp)
+      this._authService
+        .login(email, password, this.isAdmin)
+        .subscribe(observer);
+    } else {
+      this._authService
+        .signUp(email, password, this.isAdmin)
+        .subscribe(observerSignUp);
       //this.storeUserData(name,email)
     }
 
-    form.reset
+    form.reset;
   }
 
   forAdmin() {
-    alert('Admin logged in')
+    alert('Admin logged in');
     this.router.navigate(['/adminPortal']);
   }
 
-
-  storeUserData(name:string,email:string,mobile:string,localId:string):Observable<storeUser>{
-    const newUser:storeUser = {
+  storeUserData(
+    name: string,
+    email: string,
+    mobile: string,
+    localId: string
+  ): Observable<storeUser> {
+    const newUser: storeUser = {
       name: name,
-      email:email,
-      mobile:mobile,
+      email: email,
+      mobile: mobile,
       role: 'user',
-      isActive:true,
-      id:localId
-    }
-    let url = 'https://lavish-67a42-default-rtdb.firebaseio.com/customers/'+localId+'.json'
-    console.log(newUser);
+      isActive: true,
+      id: localId,
+    };
+    let url =
+      'https://lavish-67a42-default-rtdb.firebaseio.com/customers/' +
+      localId +
+      '.json';
+    //console.log(newUser);
     //console.log(localId);
     //console.log(newUser);
-    return this.http.put<storeUser>('https://lavish-67a42-default-rtdb.firebaseio.com/user/'+localId+'.json',newUser)
-    
+    return this.http.put<storeUser>(
+      'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
+        localId +
+        '.json',
+      newUser
+    );
   }
 
-  
-  getUserData(localId:string):Observable<storeUser>{
-    const url = 'https://lavish-67a42-default-rtdb.firebaseio.com/users/'+localId+'.json';
+  getUserData(localId: string): Observable<storeUser> {
+    const url =
+      'https://lavish-67a42-default-rtdb.firebaseio.com/users/' +
+      localId +
+      '.json';
     return this.http.get<storeUser>(url);
   }
 }

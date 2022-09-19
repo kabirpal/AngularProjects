@@ -8,67 +8,104 @@ import { Products } from '../booksGet-module';
 @Component({
   selector: 'app-my-cart',
   templateUrl: './my-cart.component.html',
-  styleUrls: ['./my-cart.component.css']
+  styleUrls: ['./my-cart.component.css'],
 })
 export class MyCartComponent implements OnInit {
-  // products:any=[];
-  allProducts:number=0;
-  loadedProducts:boolean=true;
-  isFetching:boolean=true;
-  cartDataList: Products[] = [];
-  productList = new BehaviorSubject<any>([]);
-  userStatus: boolean;
+  amount: number = 0;
+  isFetching: boolean = false;
+  cartEmpty: boolean = false;
   localObject: [];
   localId: string;
-  checkProduct: string;
-  loadedPosts: Products[];
-  loadedCart:Products[];
+  loadedPosts: Products[] = [];
+  loadedProducts: boolean;
 
-  
-  constructor(private _myCartService:MyCartService, private http:HttpClient) { }
+  constructor(
+    private _myCartService: MyCartService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
-    this.loadedProducts = this._myCartService.getUserState();
-    //console.log(this.loadedProducts);
     this.getProductData();
-    this.allProducts = +this._myCartService.getTotalAmount();
-    this.isFetching=false;
   }
-  removeProduct(id:any){
-    //console.log(id.ProductId);
+  removeProduct(id: any) {
+    if (!this.loadedPosts.length) {
+      // this.loadedPosts = [];
+      this.isFetching = false;
+      return;
+    }
     this.deleteProduct(id.ProductId);
+    this.loadedPosts = [];
+    this.getProductData();
   }
 
-  removeAllProduct(){
+  removeAllProduct() {
     this._myCartService.removeAllcart();
   }
   getProductData() {
+    this.loadedProducts = this._myCartService.getUserState();
+    this.isFetching = true;
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];
-    this.FetchCartData(this.localId)
+    this.FetchCartData(this.localId);
   }
 
-  private FetchCartData(localId:string){
-    this.http.get<Products[]>('https://lavish-67a42-default-rtdb.firebaseio.com/user/'+localId+'/addToCart.json')
-    .subscribe(post=>{
-      console.log(post);
-      this.loadedPosts = Object.values(post);
-      console.log(this.loadedPosts)
-    },
-    )
+  private FetchCartData(localId: string) {
+    setTimeout(() => {
+      this.http
+        .get<Products[]>(
+          'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
+            localId +
+            '/addToCart.json'
+        )
+        .subscribe({
+          next: (post) => {
+            if (post) {
+              console.log(post);
+              this.loadedPosts = Object.values(post);
+              console.log(this.loadedPosts);
+              this.amount = this.getTotalAmount();
+              this.cartEmpty = false;
+              this.isFetching = false;
+            } else {
+              this.isFetching = false;
+              this.cartEmpty = true;
+              this.loadedPosts = [];
+            }
+          },
+          error: (e) => {
+            this.isFetching = false;
+            this.cartEmpty = true;
+            this.loadedPosts = [];
+          },
+        });
+    }, 600);
   }
 
-  deleteProduct(productId){
+  deleteProduct(productId) {
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];
     console.log(this.localId);
     console.log(productId);
     //productId = this.loadedPosts = Object.values();
-    const url = 'https://lavish-67a42-default-rtdb.firebaseio.com/user/'+this.localId+'/addToCart/'+productId+".json";
+    const url =
+      'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
+      this.localId +
+      '/addToCart/' +
+      productId +
+      '.json';
     console.log(productId);
-    this.http.delete(url).subscribe(res => console.log("product deleted",res));
+    this.http.delete(url).subscribe((res) => {
+      this.getProductData();
+      console.log('product deleted', res);
+    });
   }
 
-  
-
+  getTotalAmount(): number {
+    let grandTotal: number = 0;
+    this.loadedPosts.map((a: Products) => {
+      //console.log(a);
+      grandTotal += +a.ProductPrice * a.quantity;
+    });
+    return grandTotal;
+  }
 }

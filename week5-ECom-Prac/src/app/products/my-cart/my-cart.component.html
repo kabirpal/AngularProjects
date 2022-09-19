@@ -1,75 +1,118 @@
-<br>
-<div class="conatiner" *ngIf="isFetching" style="text-align: center; margin-top:100">
-    <app-spinner></app-spinner>
-</div>
-<div class="conatiner" *ngIf="!loadedPosts" style="text-align: center; margin-top:100">
-    <h1>You are disabled by the admin</h1>
-    <p>Please contact customer support for more info or write us at lavishSupport@lavish.com</p>
+<br />
+<div
+  class="conatiner"
+  *ngIf="isFetching"
+  style="text-align: center; margin-top: 100"
+>
+  <app-spinner></app-spinner>
 </div>
 
-<div class="container" *ngIf="loadedPosts && !isFetching" >
-<h1 style="text-align:center">My cart</h1>
-<!-- <ng-container> -->
-    <div class="container" >
+<div
+  class="conatiner"
+  *ngIf="!loadedProducts && !isFetching"
+  style="text-align: center; margin-top: 100"
+>
+  <h1>You are disabled by the admin</h1>
+  <p>
+    Please contact customer support for more info or write us at
+    lavishSupport@lavish.com
+  </p>
+</div>
+
+<div
+  class="container"
+  *ngIf="loadedPosts.length && !isFetching && loadedProducts"
+>
+  <h1 style="text-align: center">My cart</h1>
+  <!-- <ng-container> -->
+  <div class="container">
     <div class="card-table">
-        <div class="card-product">
-            <div class="table table-responsive">
-                <thead>
-                    <tr>
-                        <th>Sr.no</th>
-                        <th style="width: 150px;">Product Name</th>
-                        <th >Product Image</th>
-                        <th style="width:500px">Description</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <!--<th>Total</th> -->
-                        <th>Action</th>
-                        </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of loadedPosts,let i =index" >
-                        <td>{{i+1}}</td>
-                        <td>{{item.ProductName}}</td>
-                        <td><img src="{{item.imageUrl}}" style="width:120px"></td>
-                        <td>{{item.description}}</td>
-                        <td>{{item.ProductPrice}}</td>
-                        <td>{{item.quantity}}</td>
-                        <!-- <{{item.Total}}</td> -->
-                        <td><button class="btn btn-danger" (click)="removeProduct(item.ProductId)"><i class="fas fa-trash"></i></button>
-                    </tr>
-
-        
-                    <!-- <tr>
-                        <td colspan="4"></td>
-                        <td><button (click)="removeAllProduct()" class="btn btn-danger" style="width:150px;">Empty Cart</button></td>
-                        <td><button class="btn btn-primary" routerLink="/" routerLinkActive="active" style="width:150px;">Shop More</button></td>
-                        <td><button class="btn btn-success" routerLink="/checkout" routerLinkActive="active" style="width:150px;">Check out</button></td>
-                        <td>Total: <strong>INR{{allProducts}}</td>
-                    </tr> -->
-                </tbody>
-
-            </div>
-            <button (click)="removeAllProduct()" class="btn btn-danger" style="width:150px;">Empty Cart</button>
-            <button class="btn btn-primary" routerLink="/" routerLinkActive="active" style="width:150px;">Shop More</button> 
-            <button class="btn btn-success" routerLink="/checkout" routerLinkActive="active" style="width:150px;">Check out</button>   
-            Total: <strong>INR{{allProducts}}</strong>
+      <div class="card-product">
+        <div class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Sr.no</th>
+              <th style="width: 150px">Product Name</th>
+              <th>Product Image</th>
+              <th style="width: 500px">Description</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <!--<th>Total</th> -->
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="ytext-center"
+              *ngFor="let item of loadedPosts; let i = index"
+            >
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.ProductName }}</td>
+              <td><img src="{{ item.imageUrl }}" style="width: 120px" /></td>
+              <td>{{ item.description }}</td>
+              <td>{{ item.ProductPrice }}</td>
+              <td>{{ item.quantity }}</td>
+              <!-- <{{item.Total}}</td> -->
+              <td>
+                <button class="btn btn-danger" (click)="removeProduct(item)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
         </div>
+        <button
+          (click)="removeAllProduct()"
+          class="btn btn-danger"
+          style="width: 150px; margin: 20px"
+        >
+          Empty Cart
+        </button>
+        <button
+          class="btn btn-primary"
+          routerLink="/"
+          routerLinkActive="active"
+          style="width: 150px; margin: 20px"
+        >
+          Shop More
+        </button>
+        <button
+          class="btn btn-success"
+          routerLink="/checkout"
+          routerLinkActive="active"
+          style="width: 150px; margin: 20px"
+        >
+          Check out
+        </button>
+        <p style="text-align: right">
+          Total: <strong>{{ amount | currency: "INR" }}</strong>
+        </p>
+      </div>
     </div>
+  </div>
+  <!-- </ng-container> -->
 </div>
-<!-- </ng-container> -->
 
-<ng-container  *ngIf="loadedPosts.length == 0">
-    <br>
-    <div class="container">
-        <div class="card">
-            <h1 class="card-title" style="text-align:center">My cart</h1>
-        <div class="center">
-            <img src="https://img.freepik.com/free-photo/black-friday-elements-assortment_23-2149074075.jpg?w=2000" alt="">
-            <h5>Your card is empty</h5>
-            <h6>Add items to your cart</h6>
-            <button class="btn btn-primary" routerLink="/home" routerLinkActive="active">Shop now</button>
-        </div>
+<ng-container *ngIf="cartEmpty && !loadedPosts.length">
+  <br />
+  <div class="container">
+    <div class="card">
+      <h1 class="card-title" style="text-align: center">My cart</h1>
+      <div class="center">
+        <img
+          src="https://img.freepik.com/free-photo/black-friday-elements-assortment_23-2149074075.jpg?w=2000"
+          alt=""
+        />
+        <h5>Your card is empty</h5>
+        <h6>Add items to your cart</h6>
+        <button
+          class="btn btn-primary"
+          routerLink="/home"
+          routerLinkActive="active"
+        >
+          Shop now
+        </button>
+      </div>
     </div>
-    </div>
+  </div>
 </ng-container>
-</div>

@@ -9,9 +9,6 @@ import { ViewUsersComponent } from './view-users/view-users.component';
 import { AddNewProductComponent } from './Products/add-new-product/add-new-product.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 
-
-
-
 @NgModule({
   declarations: [
     AdminHomeComponent,
@@ -19,12 +16,8 @@ import { UserOrdersComponent } from './user-orders/user-orders.component';
     UpdateWindowComponent,
     ViewUsersComponent,
     AddNewProductComponent,
-    UserOrdersComponent
+    UserOrdersComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    AdminRoutingModule,
-  ],
+  imports: [CommonModule, FormsModule, AdminRoutingModule],
 })
-export class AdminModule { }
+export class AdminModule {}

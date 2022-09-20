@@ -13,11 +13,9 @@ import { storeUser } from 'src/app/user-shop/login/storeUser';
 })
 export class UserOrdersComponent implements OnInit {
   userDetails!: storeUser[];
-  constructor(
-    private _adminService: AdminService,
-    private http: HttpClient,
-    private _myCartService: MyCartService
-  ) {}
+  userOrderList: any;
+  showOrderData: boolean = false;
+  constructor(private http: HttpClient) {}
 
   // ngOnInit(): void {
   //   this.adminService.getUserDetails().subscribe(res => {
@@ -25,11 +23,10 @@ export class UserOrdersComponent implements OnInit {
   //     console.log(res)
   //   })
   // }
-
+  orderList: Products[] = [];
   isFetching: boolean;
   loadedProducts: Products[] = [];
-  productList: any;
-  radioValue: boolean;
+  loadedUsers: any;
 
   ngOnInit(): void {
     this.FetchData();
@@ -37,6 +34,21 @@ export class UserOrdersComponent implements OnInit {
 
   onFetchPosts() {
     this.FetchData();
+  }
+
+  fetchUserOrders(id) {
+    this.showOrderData = true;
+    console.log(id);
+    this.http
+      .get(
+        'https://lavish-67a42-default-rtdb.firebaseio.com/orders/' +
+          id +
+          '/userOrders.json'
+      )
+      .subscribe((post) => {
+        this.userOrderList = Object.values(post);
+        console.log(post);
+      });
   }
 
   // userStatus(radioValue: boolean) {
@@ -64,11 +76,14 @@ export class UserOrdersComponent implements OnInit {
         'https://lavish-67a42-default-rtdb.firebaseio.com/orders.json'
       )
       .subscribe((post) => {
-        let firebaseData = Object.values(post);
-        firebaseData.forEach((ele) => {
-          this.loadedProducts = Object.values(ele);
-          console.log(this.loadedProducts);
-        });
+        this.loadedUsers = Object.values(post);
+        console.log(this.loadedUsers);
+        //let firebaseData = Object.values(post);
+
+        // firebaseData.forEach((ele) => {
+        //   this.loadedProducts = ele;
+        //   console.log(this.loadedProducts);
+        // });
       });
   }
 }

@@ -7,7 +7,7 @@
   <app-spinner></app-spinner>
 </div>
 
-<div
+<!-- <div
   class="conatiner"
   *ngIf="!loadedProducts && !isFetching"
   style="text-align: center; margin-top: 100"
@@ -17,12 +17,9 @@
     Please contact customer support for more info or write us at
     lavishSupport@lavish.com
   </p>
-</div>
+</div> -->
 
-<div
-  class="container"
-  *ngIf="loadedPosts.length && !isFetching && loadedProducts"
->
+<div class="container" *ngIf="loadedPosts.length && !isFetching">
   <h1 style="text-align: center">My cart</h1>
   <!-- <ng-container> -->
   <div class="container">
@@ -77,6 +74,7 @@
           Shop More
         </button>
         <button
+          *ngIf="loadedProducts"
           class="btn btn-success"
           routerLink="/checkout"
           routerLinkActive="active"
@@ -84,7 +82,21 @@
         >
           Check out
         </button>
-        <p style="text-align: right">
+        <div
+          class="conatiner"
+          *ngIf="!loadedProducts && !isFetching"
+          style="text-align: center; margin-top: 100"
+        >
+          <br />
+          <hr />
+          <h1>Your Id has been blocked by the Lvaish</h1>
+          <p>
+            Please contact customer support for more info or write us at
+            lavishSupport@lavish.com
+          </p>
+          <hr />
+        </div>
+        <p style="text-align: right" *ngIf="loadedProducts">
           Total: <strong>{{ amount | currency: "INR" }}</strong>
         </p>
       </div>

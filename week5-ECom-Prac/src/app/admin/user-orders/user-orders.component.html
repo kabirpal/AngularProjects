@@ -3,7 +3,7 @@
   <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
   >
-    <ng-container *ngIf="loadedProducts.length != 0">
+    <ng-container *ngIf="!showOrderData && loadedUsers != 0">
       <div class="container">
         <div class="row">
           <div class="card-table">
@@ -12,38 +12,76 @@
                 <thead>
                   <tr class="text-center">
                     <th>Sr. No</th>
-                    <th>Customer Name</th>
-                    <th>E-Mail</th>
-                    <th>Mobile</th>
-                    <th>Role</th>
-                    <th>State</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Products</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr
                     class="text-center"
-                    *ngFor="let item of loadedProducts; let i = index"
+                    *ngFor="let item of loadedUsers; let i = index"
+                  >
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>
+                      {{ item.fullName }}
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-light"
+                        (click)="fetchUserOrders(item.uid)"
+                      >
+                        <i class="fa fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <!-- </main> -->
+</div>
+
+<div class="container">
+  <!-- <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"> -->
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <ng-container *ngIf="showOrderData">
+      <div class="container">
+        <div class="row">
+          <div class="card-table">
+            <div class="card-product">
+              <table class="table table-wrapper">
+                <thead>
+                  <tr class="text-center">
+                    <th>Sr. No</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    class="text-center"
+                    *ngFor="let item of userOrderList; let i = index"
                   >
                     <td>{{ i + 1 }}</td>
                     <td>{{ item.ProductName }}</td>
-                    <td>{{ item.ProductPrice }}</td>
+                    <td>
+                      {{ item.ProductPrice }}
+                    </td>
                     <td>
                       <img
                         src="{{ item.imageUrl }}"
                         style="height: 100px; width: 80px"
                       />
                     </td>
-                    <td>{{ item.description }}</td>
-                    <!-- <td>
-                      <button
-                        [class]="
-                          item.isActive ? 'btn btn-success' : 'btn btn-danger'
-                        "
-                        (click)="disableUser(item.isActive, item.id)"
-                      >
-                        <i class="fa fa-cancel"></i>
-                      </button>
-                    </td> -->
                   </tr>
                 </tbody>
               </table>

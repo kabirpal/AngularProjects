@@ -27,14 +27,16 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit(checkoutFrom) {
     this.alertWithSuccess();
-    this.storeOrder(checkoutFrom.value.email);
+    const formData = checkoutFrom.value;
+    this.storeOrder(formData);
+    console.log(formData);
   }
 
-  storeOrder(email) {
-    const userEmail = localStorage.getItem(email);
-    this.FetchCartData(userEmail);
+  storeOrder(formData) {
+    this.FetchCartData(formData);
   }
-  private FetchCartData(email) {
+
+  private FetchCartData(formData) {
     const localObject = JSON.parse(localStorage.getItem('userData'));
     const localId = localObject['id'];
     //const curDate = new Date();
@@ -49,16 +51,20 @@ export class CheckoutComponent implements OnInit {
         .subscribe({
           next: (post) => {
             this.userCartData = post;
+            console.log(formData);
             this.http
-              .patch<Products>(
+              .patch(
                 'https://lavish-67a42-default-rtdb.firebaseio.com/orders/' +
                   localId +
-                  // '/' +
-                  // cValue +
                   '.json',
-                post
+                {
+                  ...formData,
+                  uid: localId,
+                  userOrders: post,
+                }
               )
               .subscribe();
+            this.http;
           },
           error: (e) => {
             this.loadedPosts = [];

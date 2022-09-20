@@ -113,7 +113,7 @@ export class MyCartService {
   addToFirebase(postData) {
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];
-    const productId = 0;
+    // const productId = 0;
     setTimeout(() => {
       this.http
         .get(
@@ -136,7 +136,7 @@ export class MyCartService {
                       '/addToCart/' +
                       postData.ProductId +
                       '.json',
-                    { ...postData, quantity: ele.quantity + 1 }
+                    { ...postData, quantity: (ele.quantity += 1) }
                   )
                   .subscribe();
               } else {

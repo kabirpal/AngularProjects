@@ -1,28 +1,61 @@
 <div class="container-fluid">
-    <br>
-    <div class="row">
-        <br><br>
-        <h1 class="bg-light mb-2 text-center" style="border-radius:15px ;">Admin Portal</h1>
-        <br><br>
-        <div class="col-md-3 mb-3">
-            <div class="list-group">
-                <a class="list-group-item list-group-item-action active" aria-current="true"> Choose any one option </a>
-                <a (click)="onSelect('addNewProduct')" class="list-group-item list-group-item-action">Add New
-                    Products</a>
-                <a (click)="onSelect('updateProducts')" class="list-group-item list-group-item-action">Update Products</a>
-                <a (click)="onSelect('viewUsers')" class="list-group-item list-group-item-action">View Users</a>
-                <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
-            </div>
-        </div>
-        <div class="col-md-9 mb-3">
-            <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
-                data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
-                <app-add-new-product *ngIf="loadedFeature === 'addNewProduct'"></app-add-new-product>
-                <app-update-products *ngIf="loadedFeature === 'updateProducts'"></app-update-products>
-                <app-view-users *ngIf="loadedFeature === 'viewUsers'"></app-view-users>
-            </div>
-        </div>
+  <br />
+  <div class="row">
+    <br /><br />
+    <h1 class="bg-light mb-2 text-center" style="border-radius: 15px">
+      Admin Portal
+    </h1>
+    <br /><br />
+    <div class="col-md-3 mb-3">
+      <div class="list-group">
+        <a
+          class="list-group-item list-group-item-action active"
+          aria-current="true"
+        >
+          Choose any one option
+        </a>
+        <a
+          (click)="onSelect('addNewProduct')"
+          class="list-group-item list-group-item-action"
+          >Add New Products</a
+        >
+        <a
+          (click)="onSelect('updateProducts')"
+          class="list-group-item list-group-item-action"
+          >Update Products</a
+        >
+        <a
+          (click)="onSelect('viewUsers')"
+          class="list-group-item list-group-item-action"
+          >View Users</a
+        >
+        <a
+          class="list-group-item list-group-item-action"
+          (click)="onSelect('orders')"
+          >Orders</a
+        >
+      </div>
     </div>
+    <div class="col-md-9 mb-3">
+      <div
+        data-bs-spy="scroll"
+        data-bs-target="#navbar-example2"
+        data-bs-root-margin="0px 0px -40%"
+        data-bs-smooth-scroll="true"
+        class="scrollspy-example bg-light p-3 rounded-2"
+        tabindex="0"
+      >
+        <app-add-new-product
+          *ngIf="loadedFeature === 'addNewProduct'"
+        ></app-add-new-product>
+        <app-update-products
+          *ngIf="loadedFeature === 'updateProducts'"
+        ></app-update-products>
+        <app-view-users *ngIf="loadedFeature === 'viewUsers'"></app-view-users>
+        <app-user-orders *ngIf="loadedFeature === 'orders'"></app-user-orders>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- <nav class="navbar" style="background-color: #070707;">

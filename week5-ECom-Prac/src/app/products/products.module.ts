@@ -26,6 +26,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { MyCartComponent } from './my-cart/my-cart.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 
@@ -55,6 +56,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     MyCartComponent,
     SpinnerComponent,
     WishlistComponent,
+    LandingPageComponent,
 
   ],
   imports: [

@@ -17,27 +17,37 @@ import { HomeComponent } from './user-shop/home/home.component';
 import { LoginComponent } from './user-shop/login/login.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path:'bestseller',component:BestSellersComponent},
-  {path:'books',component:BooksComponent},
-  {path:'fashion',component:FashionComponent},
-  {path:'cart',component:MyCartComponent},
-  {path:'login',component:LoginComponent},
-  {path:'about',component:AboutUsComponent},
-  {path:'mobile',component:MobilesComponent},
-  {path:'viewproduct/:id',component:ViewProductsComponent},
-  {path:'admin',loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AuthAdminGuard]},  
-  { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
-  {path:'checkout',component:CheckoutComponent,canActivate:[AuthGuard]},
-  {path:'wishList',component:WishlistComponent,canActivate:[AuthGuard]},
+  { path: '', component: HomeComponent },
+  { path: 'bestseller', component: BestSellersComponent },
+  { path: 'books', component: BooksComponent },
+  { path: 'fashion', component: FashionComponent },
+  { path: 'cart', component: MyCartComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'about', component: AboutUsComponent },
+  { path: 'mobile', component: MobilesComponent },
+  { path: 'viewproduct/:id', component: ViewProductsComponent },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [AuthAdminGuard],
+  },
+  {
+    path: 'products',
+    loadChildren: () =>
+      import('./products/products.module').then((m) => m.ProductsModule),
+  },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
+  { path: 'wishList', component: WishlistComponent, canActivate: [AuthGuard] },
+  {
+    path: 'landingPage',
+    component: WishlistComponent,
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),
-  FormsModule],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes), FormsModule],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-export const routingComponents=[
-
-]
+export class AppRoutingModule {}
+export const routingComponents = [];

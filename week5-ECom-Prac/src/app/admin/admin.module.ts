@@ -7,6 +7,7 @@ import { UpdateWindowComponent } from './update-products/update-window/update-wi
 import { AdminRoutingModule } from './admin-routing.module';
 import { ViewUsersComponent } from './view-users/view-users.component';
 import { AddNewProductComponent } from './Products/add-new-product/add-new-product.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
 
 
 
@@ -17,7 +18,8 @@ import { AddNewProductComponent } from './Products/add-new-product/add-new-produ
     UpdateProductsComponent,
     UpdateWindowComponent,
     ViewUsersComponent,
-    AddNewProductComponent
+    AddNewProductComponent,
+    UserOrdersComponent
   ],
   imports: [
     CommonModule,

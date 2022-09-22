@@ -3,31 +3,26 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-admin-home',
   templateUrl: './admin-home.component.html',
-  styleUrls: ['./admin-home.component.css']
+  styleUrls: ['./admin-home.component.css'],
 })
 export class AdminHomeComponent implements OnInit {
-  addproducts=false;
+  addproducts = false;
   updateProducts = false;
-  loadedFeature='addNewProduct'
+  loadedFeature = 'addNewProduct';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onAddProducts() {
+    this.addproducts = true;
   }
 
-  onAddProducts(){
-    this.addproducts=true;
+  onUpdateProducts() {
+    this.updateProducts = true;
   }
 
-  onUpdateProducts(){
-    this.updateProducts=true;
-  }
-
-  onSelect(feature:string){
+  onSelect(feature: string) {
     this.loadedFeature = feature;
-    // this.featureSelected.emit(feature);
   }
-
-
-
 }

@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { AdminService } from 'src/app/services/admin.service';
 import { MyCartService } from 'src/app/services/my-cart.service';
 import { Products } from '../booksGet-module';
 

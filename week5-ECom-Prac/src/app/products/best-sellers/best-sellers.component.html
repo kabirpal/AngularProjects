@@ -1,87 +1,86 @@
-<br />
-<div class="container" *ngIf="">
-  <app-spinner></app-spinner>
-</div>
-<div class="container">
-  <h2>Best selling products</h2>
+<div class="gradient-custom">
   <br />
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col">
-      <div class="shadow p-3 mb-5 bg-white rounded">
-        <div class="card">
-          <img
-            src="{{ productList1.imageUrl1 }}"
-            style="height: 300px"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ productList1.ProductName }}</h5>
-            <p class="card-text">{{ productList1.description }}</p>
-            <a href="/viewproduct/{{ productList1.ProductId }}"
-              >View Products</a
-            >
+  <div class="container" *ngIf="">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="container">
+    <h2>Best selling products</h2>
+    <br />
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+          <div class="card">
+            <img
+              src="{{ productList1.imageUrl1 }}"
+              style="height: 300px"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ productList1.ProductName }}</h5>
+              <p class="card-text">{{ productList1.description }}</p>
+              <a href="/viewproduct/{{ productList1.ProductId }}"
+                >View Products</a
+              >
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="shadow p-3 mb-5 bg-white rounded">
-        <div class="card">
-          <img
-            src="{{ productList2.imageUrl1 }}"
-            style="height: 300px"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ productList2.ProductName }}</h5>
-            <p class="card-text">{{ productList2.description }}</p>
-            <a href="/viewproduct/{{ productList2.ProductId }}"
-              >View Products</a
-            >
+      <div class="col">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+          <div class="card">
+            <img
+              src="{{ productList2.imageUrl1 }}"
+              style="height: 300px"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ productList2.ProductName }}</h5>
+              <p class="card-text">{{ productList2.description }}</p>
+              <a href="/viewproduct/{{ productList2.ProductId }}"
+                >View Products</a
+              >
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="shadow p-3 mb-5 bg-white rounded">
-        <div class="card">
-          <img
-            src="{{ productList3.imageUrl1 }}"
-            style="height: 300px"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ productList3.ProductName }}</h5>
-            <p class="card-text">{{ productList3.description }}</p>
-            <a href="/viewproduct/{{ productList3.ProductId }}"
-              >View Products</a
-            >
+      <div class="col">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+          <div class="card">
+            <img
+              src="{{ productList3.imageUrl1 }}"
+              style="height: 300px"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ productList3.ProductName }}</h5>
+              <p class="card-text">{{ productList3.description }}</p>
+              <a href="/viewproduct/{{ productList3.ProductId }}"
+                >View Products</a
+              >
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="shadow p-3 mb-5 bg-white rounded">
-        <div class="card">
-          <img
-            src="{{ productList4.imageUrl1 }}"
-            style="height: 300px"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ productList4.ProductName }}</h5>
-            <p class="card-text">{{ productList4.description }}</p>
-            <a href="/viewproduct/{{ productList4.ProductId }}"
-              >View Products</a
-            >
+      <div class="col">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+          <div class="card">
+            <img
+              src="{{ productList4.imageUrl1 }}"
+              style="height: 300px"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ productList4.ProductName }}</h5>
+              <p class="card-text">{{ productList4.description }}</p>
+              <a href="/viewproduct/{{ productList4.ProductId }}"
+                >View Products</a
+              >
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <app-best-mobiles></app-best-mobiles>
+  <app-best-books></app-best-books>
 </div>
-<app-best-mobiles></app-best-mobiles>
-<app-best-books></app-best-books>
-<!-- <app-best-men-fashion></app-best-men-fashion>
-<app-best-women-fashion></app-best-women-fashion>
-<app-bestkids-fashion></app-bestkids-fashion> -->

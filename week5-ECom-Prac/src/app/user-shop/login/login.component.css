@@ -1,44 +1,32 @@
-h1{
+.spinner {
+
     text-align: center;
-    color: black;
+}
+
+.formstyle {
+    justify-content: center;
+    align-items: center;
+    margin-left: 25%;
+
 }
 
 .card{
-    border-radius: 15px;
-    background-color: black;
-}
-
-.bgContainer{
-    padding-top: 50px;
-    background-image: linear-gradient(rgb(75, 70, 70), rgb(255, 251, 251));
-}
-
-label{
-    color: azure;
+    border: 5px solid #a07e7e ;
 }
 
 
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #9b87b1;
+    max-height: 100%;
+    padding-bottom: 10%;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgb(0, 0, 0), rgb(63, 122, 224));
 
-/* @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-    /* .gfg-div {
-        width: 400px;
-        height: 400px;
-        background-color: orange;
-        color: black;
-    } */
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgb(13, 12, 13), rgb(32, 50, 81))
+}
 
-    /* .row{
-        justify-content: unset;
-    } */
-
-        /* .container-center {
-            margin-left: 10%;
-            margin-right: 40%;
-        }
-        .card {
-            border-radius: 15px;
-            background-color: black;
-            width: 340px;
-        }
-} */
-
+.btnstyle {
+    margin-left: 10%;
+}

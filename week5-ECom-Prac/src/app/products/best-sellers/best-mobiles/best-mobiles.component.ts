@@ -13,11 +13,9 @@ export class BestMobilesComponent implements OnInit {
   isFetching: boolean = false;
   loadedPosts: Products[] = [];
   CarouselImage: any;
-  productList: any;
   BestSellerCarouselImg: any;
   SmartphoneList: Products[] = [];
   firebaseProduct: Products[];
-  BooksList: Products[] = [];
 
   constructor(
     private http: HttpClient,

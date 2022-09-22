@@ -26,12 +26,13 @@
 }
 a {
   text-decoration: none;
-  color: red;
+  color: rgb(241, 230, 230);
 }
 a:hover{
-  color: black;
+  color: rgb(142, 174, 227);
 }
 
 h1{
     text-align: center;
+    color:white
 }

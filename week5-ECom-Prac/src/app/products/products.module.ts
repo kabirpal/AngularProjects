@@ -4,7 +4,6 @@ import { BestSellersComponent } from './best-sellers/best-sellers.component';
 import { MobilesComponent } from './mobiles/mobiles.component';
 import { BooksComponent } from './books/books.component';
 import { FashionComponent } from './fashion/fashion.component';
-import { ProductsHomeComponent } from './products-home/products-home.component';
 import { BestMobilesComponent } from './best-sellers/best-mobiles/best-mobiles.component';
 import { BestBooksComponent } from './best-sellers/best-books/best-books.component';
 import { BestMenFashionComponent } from './best-sellers/best-men-fashion/best-men-fashion.component';
@@ -26,9 +25,6 @@ import { ProductRoutingModule } from './product-routing.module';
 import { MyCartComponent } from './my-cart/my-cart.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-
-
 
 @NgModule({
   declarations: [
@@ -36,7 +32,6 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MobilesComponent,
     BooksComponent,
     FashionComponent,
-    ProductsHomeComponent,
     BestMobilesComponent,
     BestBooksComponent,
     BestMenFashionComponent,
@@ -56,16 +51,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MyCartComponent,
     SpinnerComponent,
     WishlistComponent,
-    LandingPageComponent,
-
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    ProductRoutingModule
-  ],
-  exports:[
-    SpinnerComponent
-  ]
+  imports: [CommonModule, RouterModule, ProductRoutingModule],
+  exports: [SpinnerComponent],
 })
-export class ProductsModule { }
+export class ProductsModule {}

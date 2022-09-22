@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { AdminService } from 'src/app/services/admin.service';
-import { MyCartService } from 'src/app/services/my-cart.service';
 import { storeUser } from 'src/app/user-shop/login/storeUser';
 
 @Component({
@@ -12,11 +11,7 @@ import { storeUser } from 'src/app/user-shop/login/storeUser';
 })
 export class ViewUsersComponent implements OnInit {
   userDetails!: storeUser[];
-  constructor(
-    private _adminService: AdminService,
-    private http: HttpClient,
-    private _myCartService: MyCartService
-  ) {}
+  constructor(private _adminService: AdminService, private http: HttpClient) {}
 
   isFetching: boolean;
   loadedProducts: storeUser[] = [];
@@ -46,7 +41,7 @@ export class ViewUsersComponent implements OnInit {
       )
       .subscribe((post) => this.FetchData());
 
-    console.log(this.radioValue);
+    //console.log(this.radioValue);
   }
 
   onDeleteUser(UserId: any) {

@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Products } from 'src/app/products/booksGet-module';
+import { MyCartService } from 'src/app/services/my-cart.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,7 +13,10 @@ import Swal from 'sweetalert2';
 export class CheckoutComponent implements OnInit {
   loadedPosts: Products[] = [];
   userCartData: Products[] = [];
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private _myCartService: MyCartService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -30,6 +34,7 @@ export class CheckoutComponent implements OnInit {
     const formData = checkoutFrom.value;
     this.storeOrder(formData);
     console.log(formData);
+    this._myCartService.removeDataFromCart();
   }
 
   storeOrder(formData) {

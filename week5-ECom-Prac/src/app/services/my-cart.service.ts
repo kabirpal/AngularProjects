@@ -88,6 +88,12 @@ export class MyCartService {
       .subscribe((res) => console.log('product deleted', res));
   }
 
+  removeDataFromCart() {
+    setTimeout(() => {
+      this.removeAllcart();
+    }, 1000);
+  }
+
   getUserState() {
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];

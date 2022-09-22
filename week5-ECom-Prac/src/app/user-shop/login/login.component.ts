@@ -42,7 +42,7 @@ export class LoginComponent {
     const mobile = form.value.mobile;
     const password = form.value.password;
 
-    let authObs: Observable<AuthResponseData>; //not required.
+    //let authObs: Observable<AuthResponseData>; //not required.
 
     if (email === 'lavish-admin@lavish.com') {
       this.isAdmin = true;

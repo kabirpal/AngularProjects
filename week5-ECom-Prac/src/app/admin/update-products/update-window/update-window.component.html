@@ -1,121 +1,301 @@
 <div class="container" *ngIf="productDetails">
   <h2 class="bg-light mb-2 text-center">Edit Product</h2>
-  <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)" style=" border: 5px solid #88becc; padding: 10px;
-    border-radius:25px ;">
-    <div class="form-row">
+  <form
+    #postForm="ngForm"
+    (ngSubmit)="onCreatePost(postForm.value)"
+    style="border: 5px solid #88becc; padding: 10px; border-radius: 25px"
+  >
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="title">Product Id: </label>
-        <input type="text" class="form-control" placeholder="Enter Product Id" #inputTitle required ngModel
-          name="ProductId" minlength="6" [disabled]=true [(ngModel)]="productDetails.ProductId">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Product Id"
+          #inputTitle
+          required
+          ngModel
+          name="ProductId"
+          minlength="6"
+          [disabled]="true"
+          [(ngModel)]="productDetails.ProductId"
+        />
       </div>
       <div class="col-md-6 mb-3">
         <label for="content">Brand name:</label>
-        <input type="text" class="form-control" id="brandName" required placeholder="Enter Brand Name" #inputBrand ngModel name="brandName" [(ngModel)]="productDetails.brandName">
+        <input
+          type="text"
+          class="form-control"
+          id="brandName"
+          required
+          placeholder="Enter Brand Name"
+          #inputBrand
+          ngModel
+          name="brandName"
+          [(ngModel)]="productDetails.brandName"
+        />
       </div>
     </div>
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="content">Product Name:</label>
-        <input type="text" class="form-control" placeholder="Enter Product Name" id="ProductName" required #inputContent ngModel name="ProductName" [(ngModel)]="productDetails.ProductName">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Product Name"
+          id="ProductName"
+          required
+          #inputContent
+          ngModel
+          name="ProductName"
+          [(ngModel)]="productDetails.ProductName"
+        />
       </div>
       <div class="col-md-6 mb-3">
         <label for="content">Category:</label>
-        <input type="text" class="form-control" required placeholder="Enter Brand Name" id="ProductCategory"
-          #inputCategory required ngModel name="ProductCategory" [(ngModel)]="productDetails.ProductCategory">
+        <input
+          type="text"
+          class="form-control"
+          required
+          placeholder="Enter Brand Name"
+          id="ProductCategory"
+          #inputCategory
+          required
+          ngModel
+          name="ProductCategory"
+          [(ngModel)]="productDetails.ProductCategory"
+        />
       </div>
     </div>
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="content">Price:</label>
-        <input type="text" class="form-control" placeholder="Enter Product Price" id="ProductPrice" #inputPrice required ngModel name="ProductPrice" [(ngModel)]="productDetails.ProductPrice"/>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Product Price"
+          id="ProductPrice"
+          #inputPrice
+          required
+          ngModel
+          name="ProductPrice"
+          [(ngModel)]="productDetails.ProductPrice"
+        />
       </div>
       <div class="col-md-6 mb-3">
         <label for="title">Ratings:</label>
-        <input type="number" class="form-control" id="Rating" placeholder="Enter Product Ratings" #inputRatings required ngModel name="Rating" [(ngModel)]="productDetails.Rating"/>
+        <input
+          type="number"
+          class="form-control"
+          id="Rating"
+          placeholder="Enter Product Ratings"
+          #inputRatings
+          required
+          ngModel
+          name="Rating"
+          [(ngModel)]="productDetails.Rating"
+        />
       </div>
     </div>
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-12 mb-6">
         <label for="title">Description:</label>
-        <textarea type="text" class="form-control" id="description" placeholder="Enter Product description"
-          #inputDescription required ngModel name="description" [(ngModel)]="productDetails.description"></textarea>
+        <textarea
+          type="text"
+          class="form-control"
+          id="description"
+          placeholder="Enter Product description"
+          #inputDescription
+          required
+          ngModel
+          name="description"
+          [(ngModel)]="productDetails.description"
+        ></textarea>
       </div>
     </div>
 
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="title">Colour:</label>
-        <input type="text" class="form-control" id="colour" placeholder="Enter Product Colour" #inputColour ngModel name="colour" [(ngModel)]="productDetails.colour"/>
+        <input
+          type="text"
+          class="form-control"
+          id="colour"
+          placeholder="Enter Product Colour"
+          #inputColour
+          ngModel
+          name="colour"
+          [(ngModel)]="productDetails.colour"
+        />
       </div>
       <div class="col-md-6 mb-3">
         <label for="title">Size:</label>
-        <input type="text" class="form-control" id="size" placeholder="Enter Product Size" #inputSize required ngModel name="size" [(ngModel)]="productDetails.size"/>
+        <input
+          type="text"
+          class="form-control"
+          id="size"
+          placeholder="Enter Product Size"
+          #inputSize
+          required
+          ngModel
+          name="size"
+          [(ngModel)]="productDetails.size"
+        />
       </div>
     </div>
 
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-12 mb-6">
         <label for="text">Image Url:</label>
-        <input type="text" class="form-control" id="imagerUrl" placeholder="Enter Image url" #inputImage required ngModel name="imageUrl" [(ngModel)]="productDetails.imageUrl">
+        <input
+          type="text"
+          class="form-control"
+          id="imagerUrl"
+          placeholder="Enter Image url"
+          #inputImage
+          required
+          ngModel
+          name="imageUrl"
+          [(ngModel)]="productDetails.imageUrl"
+        />
       </div>
     </div>
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-12 mb-6">
         <label for="text">Image Url 1:</label>
-        <input type="text" class="form-control" id="imagerUrl1" placeholder="Enter Image1 url" #inputImage1 required ngModel name="imageUrl1" [(ngModel)]="productDetails.imageUrl1">
+        <input
+          type="text"
+          class="form-control"
+          id="imagerUrl1"
+          placeholder="Enter Image1 url"
+          #inputImage1
+          required
+          ngModel
+          name="imageUrl1"
+          [(ngModel)]="productDetails.imageUrl1"
+        />
       </div>
     </div>
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-12 mb-6">
         <label for="text">Image Url 2:</label>
-        <input type="text" class="form-control" id="imagerUrl2" placeholder="Enter Image2 url" #inputImage2 required ngModel name="imageUrl2" [(ngModel)]="productDetails.imageUrl2">
+        <input
+          type="text"
+          class="form-control"
+          id="imagerUrl2"
+          placeholder="Enter Image2 url"
+          #inputImage2
+          required
+          ngModel
+          name="imageUrl2"
+          [(ngModel)]="productDetails.imageUrl2"
+        />
       </div>
     </div>
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="title">MRP:</label>
-        <input type="number" class="form-control" id="MRP" placeholder="Enter Product MRP" #inputMrp required ngModel name="MRP" [(ngModel)]="productDetails.MRP"/>
+        <input
+          type="number"
+          class="form-control"
+          id="MRP"
+          placeholder="Enter Product MRP"
+          #inputMrp
+          required
+          ngModel
+          name="MRP"
+          [(ngModel)]="productDetails.MRP"
+        />
       </div>
     </div>
 
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="title">Sub-Category:</label>
-        <input type="text" class="form-control" id="SubCategory" placeholder="Enter Product Sub Category"
-          #inputSubCategory ngModel name="SubCategory" [(ngModel)]="productDetails.SubCategory"/>
+        <input
+          type="text"
+          class="form-control"
+          id="SubCategory"
+          placeholder="Enter Product Sub Category"
+          #inputSubCategory
+          ngModel
+          name="SubCategory"
+          [(ngModel)]="productDetails.SubCategory"
+        />
       </div>
       <div class="col-md-6 mb-3">
         <label for="title">Quantity available:</label>
-        <input type="number" class="form-control" id="available" placeholder="Enter Product Availability"
-          #inputavailability required ngModel name="available" [(ngModel)]="productDetails.available" />
+        <input
+          type="number"
+          class="form-control"
+          id="available"
+          placeholder="Enter Product Availability"
+          #inputavailability
+          required
+          ngModel
+          name="available"
+          [(ngModel)]="productDetails.available"
+        />
       </div>
     </div>
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="title">Pages: </label>
-        <input type="text" class="form-control" id="pages" placeholder="Enter Product Pages" #inputSubCategory ngModel name="pages" [(ngModel)]="productDetails.pages"/>
+        <input
+          type="text"
+          class="form-control"
+          id="pages"
+          placeholder="Enter Product Pages"
+          #inputSubCategory
+          ngModel
+          name="pages"
+          [(ngModel)]="productDetails.pages"
+        />
       </div>
       <div class="col-md-6 mb-3">
         <label for="title">Status: </label>
-        <input type="text" class="form-control" id="status" placeholder="Enter Product Status" #inputstatus required ngModel name="status" [(ngModel)]="productDetails.status"/>
+        <input
+          type="text"
+          class="form-control"
+          id="status"
+          placeholder="Enter Product Status"
+          #inputstatus
+          required
+          ngModel
+          name="status"
+          [(ngModel)]="productDetails.status"
+        />
       </div>
     </div>
 
-
-    <button class="btn btn-primary" type="submit" (click)="inputTitle.value=''" (click)="inputBrand.value=''"
-      (click)="inputContent.value=''" (click)="inputCategory.value=''" (click)="inputPrice.value=''"
-      (click)="inputDescription.value=''" (click)="inputImage.value=''" (click)="inputColour.value=''"
-      (click)="inputSize.value=''" (click)="inputMrp.value=''" (click)="inputRatings.value=''"
-      (click)="inputstatus.value=''" (click)="inputavailability.value=''" (click)="inputSubCategory.value=''">Send Post</button>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      (click)="inputTitle.value = ''"
+      (click)="inputBrand.value = ''"
+      (click)="inputContent.value = ''"
+      (click)="inputCategory.value = ''"
+      (click)="inputPrice.value = ''"
+      (click)="inputDescription.value = ''"
+      (click)="inputImage.value = ''"
+      (click)="inputColour.value = ''"
+      (click)="inputSize.value = ''"
+      (click)="inputMrp.value = ''"
+      (click)="inputRatings.value = ''"
+      (click)="inputstatus.value = ''"
+      (click)="inputavailability.value = ''"
+      (click)="inputSubCategory.value = ''"
+    >
+      Send Post
+    </button>
   </form>
-
 
   <!-- <br>
 <div class="container" *ngIf="productDetails" >
   <h2 class="bg-light mb-2 text-center">Edit Product</h2>
   <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)" style=" border: 5px solid #88becc; padding: 10px;
     border-radius:25px ;">
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="title">Product Id: </label>
         <input type="text" class="form-control" placeholder="Enter Product Id" #inputTitle required ngModel
@@ -127,7 +307,7 @@
           ngModel name="brandName" [(ngModel)]="productDetails.brandName">
       </div>
     </div>
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="content">Product Name:</label>
         <input type="text" class="form-control" placeholder="Enter Product Name" id="ProductName" required #inputContent
@@ -139,7 +319,7 @@
           #inputCategory required ngModel name="ProductCategory" [(ngModel)]="productDetails.ProductCategory">
       </div>
     </div>
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="content">Price:</label>
         <input type="text" class="form-control" placeholder="Enter Product Price" id="ProductPrice" #inputPrice required
@@ -151,7 +331,7 @@
           required ngModel name="Rating" [(ngModel)]="productDetails.Rating" />
       </div>
     </div>
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-12 mb-6">
         <label for="title">Description:</label>
         <textarea type="text" class="form-control" id="description" placeholder="Enter Product description"
@@ -159,7 +339,7 @@
       </div>
     </div>
 
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="title">Colour:</label>
         <input type="text" class="form-control" id="colour" placeholder="Enter Product Colour" #inputColour ngModel
@@ -172,14 +352,14 @@
       </div>
     </div>
 
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-12 mb-6">
         <label for="text">Image Url:</label>
         <input type="text" class="form-control" id="imagerUrl" placeholder="Enter Image url" #inputImage required
           ngModel name="imageUrl" [(ngModel)]="productDetails.imageUrl">
       </div>
     </div>
-    <div class="form-row">
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="title">MRP:</label>
         <input type="number" class="form-control" id="MRP" placeholder="Enter Product MRP" #inputMrp required ngModel
@@ -198,3 +378,4 @@
  -->
 
   <!-- (ngSubmit)="onCreatePost(postForm.value)" -->
+</div>

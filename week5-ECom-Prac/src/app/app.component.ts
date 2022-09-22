@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   //totalItemNumber: number = 0;
   isloggedIn = false;
   title = 'week5-ECom-Prac';
-  isAdmin = false;
+  isAdmin: boolean;
   private userSub: Subscription;
   user = new BehaviorSubject<User | null>(null);
 
@@ -25,7 +25,8 @@ export class AppComponent implements OnInit {
     private toastService: ToastService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.checkAdmin();
     this._AuthGuard.autoLogIn();
     this.userSub = this._AuthGuard.user.subscribe((user) => {
       this.isloggedIn = !!user;
@@ -33,6 +34,12 @@ export class AppComponent implements OnInit {
     // this._myCartService.getProductData().subscribe(post=>{
     //   this.totalItemNumber = post.length;
     // })
+  }
+
+  checkAdmin() {
+    const admin = JSON.parse(localStorage.getItem('userData'));
+    const adminValue = admin['isAdmin'];
+    console.log(adminValue);
   }
 
   Onlogout() {

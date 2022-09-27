@@ -20,7 +20,7 @@ export class ViewProductsComponent implements OnInit {
   firebaseProduct: Products[];
   constructor(
     private activatedRoute: ActivatedRoute,
-    private http: HttpClient,
+    //private http: HttpClient,
     private _productService: ProductService,
     private _myCartService: MyCartService
   ) {}
@@ -35,6 +35,7 @@ export class ViewProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     this.isFetching = true;
     this.activatedRoute.params.subscribe((data) => {
       this.productID = data['id'];
@@ -44,16 +45,21 @@ export class ViewProductsComponent implements OnInit {
         .subscribe((viewData) => {
           this.productData = viewData;
           this.productCategory = viewData.ProductCategory;
-          console.log(this.productCategory);
+          //console.log(this.productCategory);
           this._productService
             .viewRelatedProducts(this.productCategory)
             .subscribe((res) => {
-              console.log(res);
+              //console.log(res);
               this.loadedProducts = res;
-              console.log(this.loadedProducts);
+              //onsole.log(this.loadedProducts);
             });
         });
     });
     this.isFetching = false;
+    window.scroll(0, 0);
+  }
+
+  scrollback() {
+    window.scroll(0, 0);
   }
 }

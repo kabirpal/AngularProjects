@@ -3,9 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthResponseData, AuthService } from '../../services/Auth-service';
+import { AuthService } from '../../services/Auth-service';
 import { storeUser } from './storeUser';
-import { User } from './user';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +12,6 @@ import { User } from './user';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  title = 'week4-FirebaseAuth';
   isLoginMode = true;
   isLoading = false;
   errorMsg: string = '';
@@ -42,15 +40,14 @@ export class LoginComponent {
     const mobile = form.value.mobile;
     const password = form.value.password;
 
-    //let authObs: Observable<AuthResponseData>; //not required.
-
     if (email === 'lavish-admin@lavish.com') {
       this.isAdmin = true;
       this.forAdmin();
     }
+
     const observer = {
       next: (resData: any) => {
-        console.log(resData);
+        //console.log(resData);
         this.router.navigate(['']);
       },
       error: (errorMessage: { message: any }) => {
@@ -60,11 +57,9 @@ export class LoginComponent {
 
     const observerSignUp = {
       next: (resData: any) => {
-        console.log(resData);
+        // console.log(resData);
         this.router.navigate(['']);
-        this.storeUserData(name, email, mobile, resData.localId).subscribe(() =>
-          console.log('Data Added')
-        );
+        this.storeUserData(name, email, mobile, resData.localId).subscribe();
       },
       error: (errorMessage: { message: any }) => {
         this.errorMsg = errorMessage.message;
@@ -120,10 +115,6 @@ export class LoginComponent {
       isActive: true,
       id: localId,
     };
-    let url =
-      'https://lavish-67a42-default-rtdb.firebaseio.com/customers/' +
-      localId +
-      '.json';
     //console.log(newUser);
     //console.log(localId);
     //console.log(newUser);

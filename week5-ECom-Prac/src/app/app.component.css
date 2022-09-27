@@ -1,11 +1,11 @@
-body{
+/* body{
     margin: 0;
     padding: 0;
 
 }
 
 .container-kl{
-    margin-right: 60%;
+    margin-left: 50%;
 }
 
  .navbar{
@@ -17,6 +17,7 @@ body{
   }
 
 .searchitem {
-    right: 30px;
+    right: 0;
     font-size: 13px;
-}
+} */
+

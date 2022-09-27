@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   checkAdmin() {
     const admin = JSON.parse(localStorage.getItem('userData'));
     const adminValue = admin['isAdmin'];
-    console.log(adminValue);
+    //console.log(adminValue);
   }
 
   Onlogout() {

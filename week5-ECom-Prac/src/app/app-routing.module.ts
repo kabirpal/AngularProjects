@@ -37,6 +37,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./products/products.module').then((m) => m.ProductsModule),
   },
+  {
+    path: 'userShop',
+    loadChildren: () =>
+      import('./user-shop/user-shop.module').then((m) => m.UserShopModule),
+  },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'wishList', component: WishlistComponent, canActivate: [AuthGuard] },
   {

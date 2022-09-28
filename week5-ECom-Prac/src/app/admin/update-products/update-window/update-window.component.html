@@ -17,7 +17,6 @@
           ngModel
           name="ProductId"
           minlength="6"
-          [disabled]="true"
           [(ngModel)]="productDetails.ProductId"
         />
       </div>
@@ -87,13 +86,13 @@
         <input
           type="number"
           class="form-control"
-          id="Rating"
+          id="rating"
           placeholder="Enter Product Ratings"
           #inputRatings
           required
           ngModel
-          name="Rating"
-          [(ngModel)]="productDetails.Rating"
+          name="rating"
+          [(ngModel)]="productDetails.rating"
         />
       </div>
     </div>
@@ -285,6 +284,8 @@
       (click)="inputstatus.value = ''"
       (click)="inputavailability.value = ''"
       (click)="inputSubCategory.value = ''"
+      (click)="inputImage1.value = ''"
+      (click)="inputImage2.value = ''"
     >
       Send Post
     </button>

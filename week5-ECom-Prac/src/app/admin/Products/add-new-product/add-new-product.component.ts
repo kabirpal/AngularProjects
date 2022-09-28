@@ -27,13 +27,14 @@ export class AddNewProductComponent implements OnInit {
         postData.ProductName = '';
         postData.ProductCategory = '';
         postData.ProductPrice = 0;
-        (postData.description = ''), (postData.VendorName = '');
+        postData.description = '';
+        postData.VendorName = '';
         postData.imageUrl = '';
-        (postData.colour = ''),
-          (postData.Size = ''),
-          (postData.MRP = 0),
-          (postData.Rating = 0),
-          (postData.SubCategory = '');
+        postData.colour = '';
+        postData.size = '';
+        postData.MRP = 0;
+        postData.rating = 0;
+        postData.SubCategory = '';
         postData.available = 0;
         postData.imageUrl1 = '';
         postData.imageUrl2 = '';

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, findIndex, map } from 'rxjs';
 import { Products } from '../products/booksGet-module';
 import { storeUser } from '../user-shop/login/storeUser';
 import { ToastService } from './toast-service.service';
@@ -19,6 +19,7 @@ export class MyCartService {
   checkProduct: string;
   loadedPosts: any;
   loadedCart: Products[];
+  numb: any[];
 
   constructor(private http: HttpClient, private _toastService: ToastService) {}
 
@@ -117,9 +118,11 @@ export class MyCartService {
   }
 
   addToFirebase(postData) {
+    //console.log(postData);
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];
-    // const productId = 0;
+    const proId = postData.ProductId;
+    //console.log(proId);
     setTimeout(() => {
       this.http
         .get(
@@ -129,49 +132,104 @@ export class MyCartService {
         )
         .subscribe((res: Products[]) => {
           if (res) {
+            let res1 = res;
+            //console.log(res1.keys);
+            //console.log('Pehla if');
             let firebaseData = Object.values(res);
-            console.log(res);
-            firebaseData.forEach((ele) => {
-              console.table(ele);
-              this.checkProduct = ele.ProductId;
-              if (this.checkProduct === postData.ProductId) {
-                this.http
-                  .patch<Products>(
-                    'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
-                      this.localId +
-                      '/addToCart/' +
-                      postData.ProductId +
-                      '.json',
-                    { ...postData, quantity: (ele.quantity += 1) }
-                  )
-                  .subscribe();
-              } else {
-                postData.quantity = 1;
-                this.http
-                  .patch(
-                    'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
-                      this.localId +
-                      '/addToCart/' +
-                      postData.ProductId +
-                      '.json',
-                    postData
-                  )
-                  .subscribe();
-              }
-            });
+
+            let firebaseData1 = Object.keys(res);
+            //console.log(firebaseData1);
+            const numValue = firebaseData1.indexOf(proId);
+            if (numValue === -1) {
+              console.log(true);
+              this.sameQuantity(postData);
+            } else {
+              console.log(false);
+              this.increasingQuantity(postData);
+            }
+            // console.log(res);
+            //firebaseData.map((ele) => {
+            //console.table(ele);
+            //this.checkProduct = ele.ProductId;
+
+            // switch (this.checkProduct === postData.ProductId) {
+            //   case false:
+            //     this.sameQuantity(postData, ele);
+            //     break;
+            //   case true:
+            //     this.increasingQuantity(postData, ele);
+            //     break;
+            // }
+            // if (this.checkProduct === postData.ProductId) {
+            //   console.log('Dusra if');
+            //   //console.log((ele.quantity += 1));
+            //   this.increasingQuantity(postData, ele);
+            // }
+            // if (this.checkProduct !== postData.ProductId) {
+            //   console.log('3rd else');
+            //   //postData.quantity = 1;
+            //   this.http
+            //     .patch(
+            //       'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
+            //         this.localId +
+            //         '/addToCart/' +
+            //         postData.ProductId +
+            //         '.json',
+            //       postData
+            //     )
+            //     .subscribe();
+            // }
+            // });
           } else {
+            console.log('main else');
             this.http
-              .put<Products>(
+              .patch<Products>(
                 'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
                   this.localId +
                   '/addToCart/' +
                   postData.ProductId +
                   '.json',
-                { ...postData, quantity: 1 }
+                postData
               )
               .subscribe();
           }
         });
-    }, 600);
+    }, 300);
+  }
+
+  increasingQuantity(postData) {
+    //console.log('case 1');
+    console.log(postData);
+    setTimeout(() => {
+      this.http
+        .patch<Products>(
+          'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
+            this.localId +
+            '/addToCart/' +
+            postData.ProductId +
+            '.json',
+          { ...postData, quantity: (postData.quantity += 1) }
+        )
+        .subscribe((res) => {
+          console.log(res.quantity);
+        });
+    }, 300);
+  }
+
+  sameQuantity(postData) {
+    // console.log(ele.quantity);
+    const increment = postData.quantity + 1;
+    //console.log('case 2');
+    this.http
+      .patch(
+        'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
+          this.localId +
+          '/addToCart/' +
+          postData.ProductId +
+          '.json',
+        postData
+        //{ ...postData, quantity: (ele.quantity = increment) }
+      )
+      .subscribe();
   }
 }

@@ -80,12 +80,12 @@
       <input
         type="number"
         class="form-control"
-        id="Ratings"
+        id="ratings"
         placeholder="Enter Product Ratings"
         #inputRatings
         required
         ngModel
-        name="Ratings"
+        name="ratings"
       />
     </div>
   </div>
@@ -210,14 +210,14 @@
     <div class="col-md-6 mb-3">
       <label for="title">Quantity available:</label>
       <input
-        type="text"
+        type="number"
         class="form-control"
-        id="availability"
+        id="available"
         placeholder="Enter Product Availability"
         #inputavailability
         required
         ngModel
-        name="size"
+        name="available"
       />
     </div>
   </div>
@@ -266,6 +266,8 @@
     (click)="inputstatus.value = ''"
     (click)="inputavailability.value = ''"
     (click)="inputSubCategory.value = ''"
+    (click)="inputImage1.value = ''"
+    (click)="inputImage2.value = ''"
   >
     Send Post
   </button>

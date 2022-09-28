@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { MyCartService } from 'src/app/services/my-cart.service';
@@ -20,6 +20,7 @@ export class FashionKidsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     this.FetchData();
   }
 
@@ -38,8 +39,7 @@ export class FashionKidsComponent implements OnInit {
     this.isFetching = true;
     this.http
       .get<{ [key: string]: Products }>(
-        'https://lavish-67a42-default-rtdb.firebaseio.com/kidsFashion.json',
-        { headers: new HttpHeaders({ 'Custom-Headers': 'hello' }) }
+        'https://lavish-67a42-default-rtdb.firebaseio.com/kidsFashion.json'
       )
       .pipe(
         map((responseData) => {
@@ -57,9 +57,6 @@ export class FashionKidsComponent implements OnInit {
         this.isFetching = false;
         this.loadedPosts = post;
         this.productList = post;
-        this.productList.forEach((a: any) => {
-          Object.assign(a, { quantity: 1, total: a.price });
-        });
       });
   }
 }

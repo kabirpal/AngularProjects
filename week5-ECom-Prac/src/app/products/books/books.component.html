@@ -17,7 +17,10 @@
   <!-- Scrollspy for different categories -->
 
   <!-- Different components -->
-  <nav class="navbar sticky-top" style="background-color: #e3f2fd">
+  <nav
+    class="navbar sticky-top"
+    style="background-color: #dfebf3; border-radius: 15px; margin: 15px"
+  >
     <div class="container-md">
       <div class="container" style="font-size: 30px">
         <button
@@ -55,7 +58,7 @@
       </div>
     </div>
   </nav>
-
+  <!-- 
   <div
     data-bs-spy="scroll"
     data-bs-target="#navbar-example2"
@@ -63,10 +66,10 @@
     data-bs-smooth-scroll="true"
     class="scrollspy-example bg-light p-3 rounded-2"
     tabindex="0"
-  >
-    <app-drama *ngIf="laodedFeature === 'drama'"></app-drama>
-    <app-fiction *ngIf="laodedFeature === 'fiction'"></app-fiction>
-    <app-self-help *ngIf="laodedFeature === 'Selfhelp'"></app-self-help>
-    <app-romance *ngIf="laodedFeature === 'romance'"></app-romance>
-  </div>
+  > -->
+  <app-drama *ngIf="laodedFeature === 'drama'"></app-drama>
+  <app-fiction *ngIf="laodedFeature === 'fiction'"></app-fiction>
+  <app-self-help *ngIf="laodedFeature === 'Selfhelp'"></app-self-help>
+  <app-romance *ngIf="laodedFeature === 'romance'"></app-romance>
+  <!-- </div> -->
 </div>

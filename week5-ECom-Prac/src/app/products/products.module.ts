@@ -25,6 +25,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { MyCartComponent } from './my-cart/my-cart.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     SpinnerComponent,
     WishlistComponent,
   ],
-  imports: [CommonModule, RouterModule, ProductRoutingModule],
+  imports: [CommonModule, RouterModule, ProductRoutingModule, NgbModule],
   exports: [SpinnerComponent],
 })
 export class ProductsModule {}

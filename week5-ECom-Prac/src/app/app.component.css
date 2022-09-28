@@ -1,10 +1,12 @@
-/* body{
+body{
     margin: 0;
     padding: 0;
 
 }
 
-.container-kl{
+
+
+/* .container-kl{
     margin-left: 50%;
 }
 
@@ -20,4 +22,8 @@
     right: 0;
     font-size: 13px;
 } */
+
+a{
+    font-size: 19px;
+}
 

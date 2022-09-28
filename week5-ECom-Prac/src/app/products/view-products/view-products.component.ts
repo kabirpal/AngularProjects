@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MyCartService } from 'src/app/services/my-cart.service';
+import { WishListService } from 'src/app/services/wishList.service';
 import { Products } from '../booksGet-module';
 import { ProductService } from '../product.service';
 
@@ -22,7 +23,8 @@ export class ViewProductsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     //private http: HttpClient,
     private _productService: ProductService,
-    private _myCartService: MyCartService
+    private _myCartService: MyCartService,
+    private _myWishListService: WishListService
   ) {}
 
   addToCart(items: any) {
@@ -32,6 +34,10 @@ export class ViewProductsComponent implements OnInit {
     this.firebaseProduct = JSON.parse(JSON.stringify(items));
     this._myCartService.addToFirebase(this.firebaseProduct);
     this.isFetching = false;
+  }
+
+  addToWishList(item: any) {
+    this._myWishListService.addToWishList(item);
   }
 
   ngOnInit(): void {

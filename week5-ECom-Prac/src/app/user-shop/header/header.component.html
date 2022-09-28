@@ -1,15 +1,4 @@
-<app-header></app-header>
-<app-toaster></app-toaster>
-<router-outlet></router-outlet>
-<div class="footer">
-  <app-footer></app-footer>
-</div>
-
-<!-- <nav
-  class="navbar navbar-expand-lg navbar"
-  style="background-color: #dce8f3"
-  *ngIf="!isAdmin"
->
+<nav class="navbar navbar-expand-lg navbar" style="background-color: #dce8f3">
   <div class="container-fluid">
     <a
       class="navbar-brand"
@@ -75,6 +64,42 @@
           >
             Fashion
           </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a
+              class="dropdown-item"
+              data-bs-target="#navbarSupportedContent"
+              routerLink="/fashion"
+              routerLinkActive="active"
+              >All Products</a
+            >
+            <a
+              class="dropdown-item"
+              data-bs-target="#navbarSupportedContent"
+              routerLink="/menfashion"
+              routerLinkActive="active"
+              >Men</a
+            >
+            <div class="dropdown-divider"></div>
+            <a
+              class="dropdown-item"
+              data-bs-target="#navbarSupportedContent"
+              routerLink="/womenfashion"
+              routerLinkActive="active"
+              >Women</a
+            >
+          </div>
+        </li>
+        <!-- <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Fashion
+          </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
               <a
@@ -117,7 +142,7 @@
               >
             </li>
           </ul>
-        </li>
+        </li> -->
       </ul>
       <form class="d-flex">
         <ul class="navbar-nav">
@@ -190,13 +215,8 @@
     </div>
   </div>
 </nav>
-<app-toaster></app-toaster>
-<router-outlet></router-outlet>
-<div class="footer">
-  <app-footer></app-footer>
-</div> -->
 
-<!-- <div class="container-fluid" *ngIf="!isAdmin">
+<!-- <div class="container-fluid">
   <div class="row">
     <div class="border-design">
       <nav class="navbar navbar-expand-lg bg-light">
@@ -261,7 +281,7 @@
                 >
               </li>
             </ul>
-            <!-- <div class="col">
+            <div class="col">
               <div class="container-kl">
                 <form class="d-flex searchitem">
                   <input
@@ -274,7 +294,7 @@
                   <i class="fa fa-search" style="font-size: 30px"></i>
                 </form>
               </div>
-            </div> 
+            </div>
             <div class="col">
               <div class="container-kl">
                 <ul class="navbar-nav">

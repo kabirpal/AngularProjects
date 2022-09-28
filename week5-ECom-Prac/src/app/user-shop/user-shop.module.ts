@@ -10,6 +10,9 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { CardsComponent } from './cards/cards.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductsModule } from '../products/products.module';
+import { HeaderComponent } from './header/header.component';
+import { ToasterComponent } from '../TosterComponent/toaster/toaster.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,8 +24,9 @@ import { ProductsModule } from '../products/products.module';
     CarouselComponent,
     CardsComponent,
     CheckoutComponent,
+    HeaderComponent,
   ],
-  imports: [CommonModule, FormsModule, ProductsModule],
-  exports: [FooterComponent],
+  imports: [CommonModule, FormsModule, ProductsModule, RouterModule],
+  exports: [FooterComponent, HeaderComponent],
 })
 export class UserShopModule {}

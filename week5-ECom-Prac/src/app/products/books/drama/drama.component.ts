@@ -5,6 +5,7 @@ import { MyCartService } from 'src/app/services/my-cart.service';
 import { Products } from '../../booksGet-module';
 import { Toast } from 'bootstrap';
 import { WishListService } from 'src/app/services/wishList.service';
+import { ToastService } from 'src/app/services/toast-service.service';
 
 @Component({
   selector: 'app-drama',
@@ -20,7 +21,8 @@ export class DramaComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private _myCartService: MyCartService,
-    private _myWishListService: WishListService
+    private _myWishListService: WishListService,
+    private _toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -33,10 +35,16 @@ export class DramaComponent implements OnInit {
   }
 
   addToCart(item: Products) {
-    this._myCartService.addToCart(item);
+    //this._myCartService.addToCart(item);
+    console.log(item);
+    this._toastService.showSuccessToast(
+      'Successfully',
+      'Product is added to cart'
+    );
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    this._myCartService.addToFirebase(this.firebaseProduct);
+    console.log(this.firebaseProduct);
+    this._myCartService.addToFirebase(item);
   }
 
   addToWishList(item: any) {
@@ -61,7 +69,7 @@ export class DramaComponent implements OnInit {
         })
       )
       .subscribe((post) => {
-        console.log(post);
+        // console.log(post);
         this.isFetching = false;
         this.loadedPosts = post;
         this.productList = post;

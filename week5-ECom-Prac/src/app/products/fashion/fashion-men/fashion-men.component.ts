@@ -23,6 +23,7 @@ export class FashionMenComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     this.FetchData();
   }
 
@@ -42,8 +43,7 @@ export class FashionMenComponent implements OnInit {
     this.isFetching = true;
     this.http
       .get<{ [key: string]: Products }>(
-        'https://lavish-67a42-default-rtdb.firebaseio.com/Products.json',
-        { headers: new HttpHeaders({ 'Custom-Headers': 'hello' }) }
+        'https://lavish-67a42-default-rtdb.firebaseio.com/Products.json'
       )
       .pipe(
         map((responseData) => {

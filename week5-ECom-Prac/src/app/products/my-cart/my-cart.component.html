@@ -48,7 +48,14 @@
               <td><img src="{{ item.imageUrl }}" style="width: 120px" /></td>
               <td>{{ item.description }}</td>
               <td>{{ item.ProductPrice }}</td>
-              <td>{{ item.quantity }}</td>
+              <td>
+                <div class="container">
+                  <input type="button" onclick="decrementValue()" value="-" />{{
+                    item.quantity
+                  }}
+                  <input type="button" onclick="incrementValue()" value="+" />
+                </div>
+              </td>
               <!-- <{{item.Total}}</td> -->
               <td>
                 <button class="btn btn-danger" (click)="removeProduct(item)">

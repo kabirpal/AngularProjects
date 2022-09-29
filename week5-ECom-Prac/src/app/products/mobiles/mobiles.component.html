@@ -10,7 +10,7 @@
   >
     <app-spinner></app-spinner>
   </div>
-  <div class="container" *ngIf="!isFetching">
+  <div class="container-fluid" *ngIf="!isFetching">
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" *ngFor="let item of SmartphoneList">
         <div class="card" height="350px">
@@ -34,6 +34,14 @@
             <p class="card-text">Color: {{ item.colour }}</p>
             <p class="card-text">Product Category: {{ item.SubCategory }}</p>
             <a routerLink="/viewproduct/{{ item.ProductId }}">View Products</a>
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="margin: 5px; font-size: 15px"
+              (click)="addToWishList(item)"
+            >
+              <i style="font-size: 15px" class="fas fa-heart"></i>
+            </button>
             <button
               type="button"
               class="btn btn-primary"

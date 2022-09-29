@@ -43,14 +43,16 @@
                 <p class="card-text">
                   <small class="text-muted">{{ item.description }}</small>
                 </p>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  style="margin-right: 16px"
-                  (click)="addToCart(item)"
-                >
-                  Add to cart
-                </button>
+                <div>
+                  Ratings:
+                  <ngb-rating
+                    [max]="5"
+                    [(rate)]="item.rating"
+                    [readonly]="true"
+                    style="font-size: x-large; color: rgba(250, 227, 50, 0.919)"
+                  >
+                  </ngb-rating>
+                </div>
                 <a type="link" routerLink="/viewproduct/{{ item.ProductId }}"
                   >View Products</a
                 >

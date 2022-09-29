@@ -24,28 +24,53 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const admin = JSON.parse(localStorage.getItem('userData'));
-
     this.checkAdmin();
-    this._AuthGuard.autoLogIn();
-    this.userSub = this._AuthGuard.user.subscribe((user) => {
-      this.isloggedIn = !!user;
-    });
-    this.isAdmin = admin['isAdmin'];
-    console.log(this.isAdmin);
+    this.renderFunction();
+    // const admin = JSON.parse(localStorage.getItem('userData'));
+
+    // this.checkAdmin();
+    // this._AuthGuard.autoLogIn();
+    // this.userSub = this._AuthGuard.user.subscribe((user) => {
+    //   this.isloggedIn = !!user;
+    // });
+    // this.isAdmin = admin['isAdmin'];
+    // console.log(this.isAdmin);
     // this._myCartService.getProductData().subscribe(post=>{
     //   this.totalItemNumber = post.length;
     // })
   }
 
+  renderFunction() {
+    const admin = JSON.parse(localStorage.getItem('userData'));
+
+    // this.checkAdmin();
+    this._AuthGuard.autoLogIn();
+    this.userSub = this._AuthGuard.user.subscribe((user) => {
+      this.isloggedIn = !!user;
+      const admin = JSON.parse(localStorage.getItem('userData'));
+      console.log(admin);
+      if (admin && admin['isAdmin']) {
+        this.isAdmin = true;
+      }
+    });
+    // this.isAdmin = admin['isAdmin'];
+    // console.log(this.isAdmin);
+  }
+
   checkAdmin() {
     const admin = JSON.parse(localStorage.getItem('userData'));
-    const adminValue = admin['isAdmin'];
+    console.log(admin);
+    if (admin && admin['isAdmin']) {
+      this.isAdmin = true;
+    }
     //console.log(adminValue);
+    this.renderFunction();
   }
 
   Onlogout() {
     this._AuthGuard.logout();
     this.isloggedIn = false;
+    this.isAdmin = false;
+    this.renderFunction();
   }
 }

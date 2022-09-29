@@ -11,7 +11,7 @@ import { storeUser } from './storeUser';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   isLoginMode = true;
   isLoading = false;
   errorMsg: string = '';
@@ -23,6 +23,8 @@ export class LoginComponent {
     private router: Router,
     private http: HttpClient
   ) {}
+
+  ngOnInit(): void {}
 
   switchNow() {
     this.isLoginMode = !this.isLoginMode;
@@ -68,8 +70,9 @@ export class LoginComponent {
 
     const observerAdmin = {
       next: (resData: any) => {
-        //console.log(resData);
-        this.router.navigate(['/adminPortal']);
+        this.router.navigate(['/adminPortal']).then(() => {
+          window.location.reload();
+        });
       },
       error: (errorMessage: { message: any }) => {
         this.errorMsg = errorMessage.message;

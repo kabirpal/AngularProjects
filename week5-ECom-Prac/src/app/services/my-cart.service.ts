@@ -47,10 +47,6 @@ export class MyCartService {
   }
 
   addToCart(product: any) {
-    this._toastService.showSuccessToast(
-      'Successfully',
-      'Product is added to cart'
-    );
     this.cartDataList.push(product);
     this.productList.next(this.cartDataList);
     // this.getTotalAmount();
@@ -118,11 +114,11 @@ export class MyCartService {
   }
 
   addToFirebase(postData) {
-    //console.log(postData);
+    console.log(postData.quantity);
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];
     const proId = postData.ProductId;
-    //console.log(proId);
+    //  console.log(proId);
     setTimeout(() => {
       this.http
         .get(
@@ -147,39 +143,6 @@ export class MyCartService {
               console.log(false);
               this.increasingQuantity(postData);
             }
-            // console.log(res);
-            //firebaseData.map((ele) => {
-            //console.table(ele);
-            //this.checkProduct = ele.ProductId;
-
-            // switch (this.checkProduct === postData.ProductId) {
-            //   case false:
-            //     this.sameQuantity(postData, ele);
-            //     break;
-            //   case true:
-            //     this.increasingQuantity(postData, ele);
-            //     break;
-            // }
-            // if (this.checkProduct === postData.ProductId) {
-            //   console.log('Dusra if');
-            //   //console.log((ele.quantity += 1));
-            //   this.increasingQuantity(postData, ele);
-            // }
-            // if (this.checkProduct !== postData.ProductId) {
-            //   console.log('3rd else');
-            //   //postData.quantity = 1;
-            //   this.http
-            //     .patch(
-            //       'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
-            //         this.localId +
-            //         '/addToCart/' +
-            //         postData.ProductId +
-            //         '.json',
-            //       postData
-            //     )
-            //     .subscribe();
-            // }
-            // });
           } else {
             console.log('main else');
             this.http
@@ -200,6 +163,13 @@ export class MyCartService {
   increasingQuantity(postData) {
     //console.log('case 1');
     console.log(postData);
+    if (postData.quantity === 5 || postData.quantity > 5) {
+      this._toastService.showErrorToast(
+        'Maximum limit reached',
+        'Product is not added to cart'
+      );
+      return;
+    }
     setTimeout(() => {
       this.http
         .patch<Products>(
@@ -231,5 +201,29 @@ export class MyCartService {
         //{ ...postData, quantity: (ele.quantity = increment) }
       )
       .subscribe();
+  }
+
+  decreaseQuantity(postData) {
+    if (postData.quantity === 0 && postData.quantity <= 5) {
+      this._toastService.showErrorToast(
+        'Maximum limit reached',
+        'Product is not added to cart'
+      );
+      return;
+    }
+    setTimeout(() => {
+      this.http
+        .patch<Products>(
+          'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
+            this.localId +
+            '/addToCart/' +
+            postData.ProductId +
+            '.json',
+          { ...postData, quantity: (postData.quantity -= 1) }
+        )
+        .subscribe((res) => {
+          console.log(res.quantity);
+        });
+    }, 300);
   }
 }

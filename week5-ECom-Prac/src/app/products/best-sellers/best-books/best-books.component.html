@@ -9,10 +9,10 @@
       alt="..."
     />
     <div class="card-body" style="height: 100px">
-      <h5 class="card-title">Best Selling SmartPhones are here.</h5>
+      <h5 class="card-title">Best Selling Books are here.</h5>
       <p class="card-text">
-        Grab the latest gen 8 Smartphone and rock the world. We have a wide
-        range of smartPhones from Premium to Budget friendly.
+        We have the latest books released from world wide famous authors. We do
+        free shipping of books for students.
       </p>
     </div>
   </div>
@@ -43,14 +43,25 @@
                 <p class="card-text">
                   <small class="text-muted">{{ item.description }}</small>
                 </p>
-                <button
+                <div>
+                  Ratings:
+                  <ngb-rating
+                    [max]="5"
+                    [(rate)]="item.rating"
+                    [readonly]="true"
+                    style="font-size: x-large; color: rgba(250, 227, 50, 0.919)"
+                  >
+                  </ngb-rating>
+                </div>
+                <!-- <button
                   type="button"
                   class="btn btn-primary"
                   style="margin-right: 16px"
                   (click)="addToCart(item)"
+                  [disabled]="buttonPressed"
                 >
                   Add to cart
-                </button>
+                </button> -->
                 <a type="link" routerLink="/viewproduct/{{ item.ProductId }}"
                   >View Products</a
                 >

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MyCartService } from 'src/app/services/my-cart.service';
+import { ToastService } from 'src/app/services/toast-service.service';
 import { Products } from '../../booksGet-module';
 
 @Component({
@@ -17,9 +18,11 @@ export class BestBooksComponent implements OnInit {
   BestSellerCarouselImg: any;
   firebaseProduct: Products[];
   BooksList: Products[] = [];
+  buttonPressed: boolean = false;
   constructor(
     private http: HttpClient,
-    private _myCartService: MyCartService
+    private _myCartService: MyCartService,
+    private _toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -33,10 +36,18 @@ export class BestBooksComponent implements OnInit {
   }
 
   addToCart(item: any) {
-    this._myCartService.addToCart(item);
+    this.buttonPressed = true;
+    this._toastService.showSuccessToast(
+      'Successfully',
+      'Product is added to cart'
+    );
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    this._myCartService.addToFirebase(this.firebaseProduct);
+    console.log(this.firebaseProduct);
+    this._myCartService.addToFirebase(item);
+    setTimeout(() => {
+      this.buttonPressed = false;
+    }, 1500);
   }
 
   private FetchDataCarousel() {

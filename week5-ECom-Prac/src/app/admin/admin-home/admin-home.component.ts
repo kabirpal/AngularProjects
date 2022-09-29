@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/Auth-service';
 
 @Component({
   selector: 'app-admin-home',
@@ -10,7 +11,7 @@ export class AdminHomeComponent implements OnInit {
   updateProducts = false;
   loadedFeature = 'addNewProduct';
 
-  constructor() {}
+  constructor(private _AuthGuard: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -20,6 +21,10 @@ export class AdminHomeComponent implements OnInit {
 
   onUpdateProducts() {
     this.updateProducts = true;
+  }
+
+  Onlogout() {
+    this._AuthGuard.logout();
   }
 
   onSelect(feature: string) {

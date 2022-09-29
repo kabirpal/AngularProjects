@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MyCartService } from 'src/app/services/my-cart.service';
+import { ToastService } from 'src/app/services/toast-service.service';
 import { WishListService } from 'src/app/services/wishList.service';
 import { Products } from '../booksGet-module';
 
@@ -15,7 +16,8 @@ export class WishlistComponent implements OnInit {
   firebaseProduct: Products[];
   constructor(
     private _myWishListService: WishListService,
-    private _myCartService: MyCartService
+    private _myCartService: MyCartService,
+    private _toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -31,9 +33,17 @@ export class WishlistComponent implements OnInit {
   // }
   addToCart(item: any) {
     this._myWishListService.removeWishListData(item);
-    this._myCartService.addToCart(item);
+    this._toastService.showSuccessToast(
+      'Successfully',
+      'Product is added to cart'
+    );
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    this._myCartService.addToFirebase(this.firebaseProduct);
+    console.log(this.firebaseProduct);
+    this._myCartService.addToFirebase(item);
+  }
+
+  deleteData(item) {
+    this._myWishListService.removeWishListData(item);
   }
 }

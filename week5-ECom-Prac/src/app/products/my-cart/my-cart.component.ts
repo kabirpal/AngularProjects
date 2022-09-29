@@ -15,7 +15,7 @@ export class MyCartComponent implements OnInit {
   localObject: [];
   localId: string;
   loadedPosts: Products[] = [];
-  loadedProducts: boolean;
+  userStatus: boolean;
 
   constructor(
     private _myCartService: MyCartService,
@@ -36,11 +36,20 @@ export class MyCartComponent implements OnInit {
     this.getProductData();
   }
 
+  decreaseQuantity(item) {
+    this._myCartService.decreaseQuantity(item);
+  }
+
+  increaseQuantity(item) {
+    this._myCartService.increasingQuantity(item);
+  }
+
   removeAllProduct() {
     this._myCartService.removeAllcart();
   }
   getProductData() {
-    this.loadedProducts = this._myCartService.getUserState();
+    this.userStatus = this._myCartService.getUserState();
+    console.log(this.userStatus);
     this.isFetching = true;
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];

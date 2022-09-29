@@ -2,9 +2,19 @@
   <br />
   <div class="row">
     <br /><br />
-    <h1 class="bg-light mb-2 text-center" style="border-radius: 15px">
-      Admin Portal
-    </h1>
+    <nav class="navbar navbar-light bg-light">
+      <h1 style="margin-left: 45%">Admin Portal</h1>
+      <form class="form-inline">
+        <button
+          class="btn btn-outline-danger my-2 my-sm-0"
+          type="submit"
+          (click)="Onlogout()"
+        >
+          LogOut
+        </button>
+      </form>
+    </nav>
+
     <br /><br />
     <div class="col-md-3 mb-3">
       <div class="list-group">

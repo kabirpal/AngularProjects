@@ -49,11 +49,30 @@
               <td>{{ item.description }}</td>
               <td>{{ item.ProductPrice }}</td>
               <td>
-                <div class="container">
-                  <input type="button" onclick="decrementValue()" value="-" />{{
-                    item.quantity
-                  }}
-                  <input type="button" onclick="incrementValue()" value="+" />
+                <div
+                  class="btn-group"
+                  role="group"
+                  aria-label="Basic outlined example"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    (click)="decreaseQuantity(item)"
+                    [disabled]="item.quantity === 1"
+                  >
+                    -
+                  </button>
+                  <button class="btn btn-outline-primary" [disabled]="true">
+                    {{ item.quantity }}
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    (click)="increaseQuantity(item)"
+                    [disabled]="item.quantity === 5"
+                  >
+                    +
+                  </button>
                 </div>
               </td>
               <!-- <{{item.Total}}</td> -->
@@ -81,7 +100,7 @@
           Shop More
         </button>
         <button
-          *ngIf="loadedProducts"
+          *ngIf="userStatus"
           class="btn btn-success"
           routerLink="/checkout"
           routerLinkActive="active"
@@ -91,7 +110,7 @@
         </button>
         <div
           class="conatiner"
-          *ngIf="!loadedProducts && !isFetching"
+          *ngIf="!userStatus && !isFetching"
           style="text-align: center; margin-top: 100"
         >
           <br />
@@ -103,7 +122,7 @@
           </p>
           <hr />
         </div>
-        <p style="text-align: right" *ngIf="loadedProducts">
+        <p style="text-align: right" *ngIf="userStatus">
           Total: <strong>{{ amount | currency: "INR" }}</strong>
         </p>
       </div>

@@ -35,7 +35,6 @@ export class DramaComponent implements OnInit {
   }
 
   addToCart(item: Products) {
-    //this._myCartService.addToCart(item);
     console.log(item);
     this._toastService.showSuccessToast(
       'Successfully',
@@ -69,13 +68,15 @@ export class DramaComponent implements OnInit {
         })
       )
       .subscribe((post) => {
-        // console.log(post);
+        console.log(post);
         this.isFetching = false;
         this.loadedPosts = post;
         this.productList = post;
+        console.log(this.productList);
         this.BooksList = this.loadedPosts.filter(
           (post) => post.ProductCategory === 'Books'
         );
+        console.log(this.BooksList);
         this.productList.forEach((a: any) => {
           Object.assign(a, { quantity: 1, total: a.price });
         });

@@ -118,7 +118,7 @@ export class MyCartService {
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];
     const proId = postData.ProductId;
-    //  console.log(proId);
+    //console.log(proId);
     setTimeout(() => {
       this.http
         .get(

@@ -77,8 +77,8 @@ export class DramaComponent implements OnInit {
           (post) => post.ProductCategory === 'Books'
         );
         console.log(this.BooksList);
-        this.productList.forEach((a: any) => {
-          Object.assign(a, { quantity: 1, total: a.price });
+        this.productList.forEach((a: Products) => {
+          Object.assign(a, { quantity: 1, total: a.ProductPrice });
         });
       });
   }

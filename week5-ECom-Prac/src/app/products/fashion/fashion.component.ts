@@ -29,11 +29,13 @@ export class FashionComponent implements OnInit {
     this.FetchData();
   }
 
-  addToCart(item: any) {
+  addToCart(item: Products) {
     this._myCartService.addToCart(item);
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    this._myCartService.addToFirebase(this.firebaseProduct);
+    this.firebaseProduct.forEach((item) => {
+      this._myCartService.addToFirebase(item);
+    });
   }
 
   private FetchData() {

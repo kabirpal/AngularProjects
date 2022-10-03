@@ -68,7 +68,12 @@
               style="height: 300px"
             />
             <div class="card-body">
-              <h5 class="card-title">{{ item.ProductName }}</h5>
+              <h5
+                class="card-title"
+                style="width: 200px; text-overflow: ellipsis"
+              >
+                {{ item.ProductName }}
+              </h5>
               <h5 class="card-text">
                 Price: {{ item.ProductPrice | currency: "INR" }}
               </h5>

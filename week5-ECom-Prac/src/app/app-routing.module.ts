@@ -6,6 +6,9 @@ import { AuthAdminGuard } from './auth.admin.guard';
 import { AuthGuard } from './auth.guard';
 import { BestSellersComponent } from './products/best-sellers/best-sellers.component';
 import { BooksComponent } from './products/books/books.component';
+import { FashionKidsComponent } from './products/fashion/fashion-kids/fashion-kids.component';
+import { FashionMenComponent } from './products/fashion/fashion-men/fashion-men.component';
+import { FashionWomenComponent } from './products/fashion/fashion-women/fashion-women.component';
 import { FashionComponent } from './products/fashion/fashion.component';
 import { MobilesComponent } from './products/mobiles/mobiles.component';
 import { MyCartComponent } from './products/my-cart/my-cart.component';
@@ -13,6 +16,7 @@ import { ViewProductsComponent } from './products/view-products/view-products.co
 import { WishlistComponent } from './products/wishlist/wishlist.component';
 import { AboutUsComponent } from './user-shop/about-us/about-us.component';
 import { CheckoutComponent } from './user-shop/checkout/checkout.component';
+import { Error404Component } from './user-shop/error404/error404.component';
 import { HomeComponent } from './user-shop/home/home.component';
 import { LoginComponent } from './user-shop/login/login.component';
 
@@ -32,6 +36,9 @@ const routes: Routes = [
       import('./admin/admin.module').then((m) => m.AdminModule),
     canActivate: [AuthAdminGuard],
   },
+  { path: 'menfashion', component: FashionMenComponent },
+  { path: 'kidsfashion', component: FashionKidsComponent },
+  { path: 'womenfashion', component: FashionWomenComponent },
   {
     path: 'products',
     loadChildren: () =>
@@ -48,6 +55,7 @@ const routes: Routes = [
     path: 'landingPage',
     component: WishlistComponent,
   },
+  { path: '**', component: Error404Component },
 ];
 
 @NgModule({

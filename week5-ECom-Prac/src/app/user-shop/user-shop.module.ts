@@ -13,6 +13,7 @@ import { ProductsModule } from '../products/products.module';
 import { HeaderComponent } from './header/header.component';
 import { ToasterComponent } from '../TosterComponent/toaster/toaster.component';
 import { RouterModule } from '@angular/router';
+import { Error404Component } from './error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RouterModule } from '@angular/router';
     CardsComponent,
     CheckoutComponent,
     HeaderComponent,
+    Error404Component,
   ],
   imports: [CommonModule, FormsModule, ProductsModule, RouterModule],
   exports: [FooterComponent, HeaderComponent],

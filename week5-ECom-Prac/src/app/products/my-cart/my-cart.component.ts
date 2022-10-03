@@ -46,10 +46,11 @@ export class MyCartComponent implements OnInit {
 
   removeAllProduct() {
     this._myCartService.removeAllcart();
+    this.getProductData();
   }
   getProductData() {
     this.userStatus = this._myCartService.getUserState();
-    console.log(this.userStatus);
+    //console.log(this.userStatus);
     this.isFetching = true;
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];

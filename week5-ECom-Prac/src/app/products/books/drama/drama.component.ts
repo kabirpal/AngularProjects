@@ -36,10 +36,6 @@ export class DramaComponent implements OnInit {
 
   addToCart(item: Products) {
     console.log(item);
-    this._toastService.showSuccessToast(
-      'Successfully',
-      'Product is added to cart'
-    );
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
     console.log(this.firebaseProduct);
@@ -72,6 +68,7 @@ export class DramaComponent implements OnInit {
         this.isFetching = false;
         this.loadedPosts = post;
         this.productList = post;
+
         console.log(this.productList);
         this.BooksList = this.loadedPosts.filter(
           (post) => post.ProductCategory === 'Books'

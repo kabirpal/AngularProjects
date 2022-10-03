@@ -20,9 +20,9 @@ export class ViewProductsComponent implements OnInit {
   productCategory: string;
   loadedProducts: Products[] = [];
   firebaseProduct: Products[];
-
+  ProductDetails: any;
   loadedPosts: Products[] = [];
-  productList: any;
+  productList: Products[];
   BooksList: Products[] = [];
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,15 +34,33 @@ export class ViewProductsComponent implements OnInit {
   ) {}
 
   addToCart(item: Products) {
-    console.log(item);
-    this._toastService.showSuccessToast(
-      'Successfully',
-      'Product is added to cart'
-    );
+    console.log(this.FetchData(item.ProductId));
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
     console.log(this.firebaseProduct);
-    this._myCartService.addToFirebase({ ...item, quantity: item.quantity + 1 });
+    const singleProduct = this.FetchData(item.ProductId).subscribe((post) => {
+      //console.log(post);
+      this.isFetching = false;
+      this.loadedPosts = post;
+      this.productList = post;
+
+      //console.log(this.productList);
+      this.BooksList = this.loadedPosts.filter(
+        (post) => post.id === item.ProductId
+      );
+      //console.log(this.BooksList);
+      this.ProductDetails = this.BooksList[0];
+      //console.log(this.ProductDetails);
+      this.productList.forEach((a: Products) => {
+        Object.assign(a, { quantity: 1, total: a.ProductPrice });
+      });
+      //console.log(this.ProductDetails);
+      // return this.ProductDetails;
+      console.log(singleProduct);
+      console.log(this.ProductDetails);
+
+      this._myCartService.addToFirebase(this.ProductDetails);
+    });
   }
 
   addToWishList(item: any) {
@@ -54,8 +72,7 @@ export class ViewProductsComponent implements OnInit {
     this.isFetching = true;
     this.activatedRoute.params.subscribe((data) => {
       this.productID = data['id'];
-      //console.log(this.productID)
-
+      console.log(this.productID);
       this._productService
         .viewProduct(this.productID.toString())
         .subscribe((viewData) => {
@@ -76,5 +93,25 @@ export class ViewProductsComponent implements OnInit {
 
   scrollback() {
     window.scroll(0, 0);
+  }
+
+  private FetchData(proId) {
+    console.log(proId);
+    this.isFetching = true;
+    return this.http
+      .get<{ [key: string]: Products }>(
+        'https://lavish-67a42-default-rtdb.firebaseio.com/Products/.json'
+      )
+      .pipe(
+        map((responseData) => {
+          const postsArray: Products[] = [];
+          for (const key in responseData) {
+            if (responseData.hasOwnProperty(key)) {
+              postsArray.push({ ...responseData[key], id: key });
+            }
+          }
+          return postsArray;
+        })
+      );
   }
 }

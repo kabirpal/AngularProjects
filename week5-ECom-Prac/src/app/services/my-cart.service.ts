@@ -41,11 +41,6 @@ export class MyCartService {
     this.FetchData(this.localId);
   }
 
-  setProduct(product: any) {
-    this.cartDataList.push(...product);
-    this.productList.next(product);
-  }
-
   addToCart(product: any) {
     this.cartDataList.push(product);
     this.productList.next(this.cartDataList);
@@ -61,15 +56,6 @@ export class MyCartService {
   //   });
   //   return grandTotal;
   // }
-
-  removeCartData(product: any) {
-    this.cartDataList.map((a: any, index: any) => {
-      if (product.id == a.id) {
-        this.cartDataList.splice(index, 1);
-      }
-    });
-    this.productList.next(this.cartDataList);
-  }
 
   removeAllcart() {
     this.localObject = JSON.parse(localStorage.getItem('userData'));
@@ -171,6 +157,10 @@ export class MyCartService {
       return;
     }
     setTimeout(() => {
+      this._toastService.showSuccessToast(
+        'Successfully',
+        'Product is added to cart'
+      );
       this.http
         .patch<Products>(
           'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
@@ -189,6 +179,10 @@ export class MyCartService {
   sameQuantity(postData) {
     // console.log(ele.quantity);
     const increment = postData.quantity + 1;
+    this._toastService.showSuccessToast(
+      'Successfully',
+      'Product is added to cart'
+    );
     //console.log('case 2');
     this.http
       .patch(

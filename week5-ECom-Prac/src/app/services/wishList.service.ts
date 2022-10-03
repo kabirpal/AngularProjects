@@ -33,10 +33,6 @@ export class WishListService {
   }
 
   removeWishListData(product: any) {
-    this._toastService.showWarningToast(
-      'Deleted',
-      'Product has been deleted from Wishlist'
-    );
     this.cartDataList.map((a: any, index: any) => {
       if (product.id == a.id) {
         this.cartDataList.splice(index, 1);

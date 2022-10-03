@@ -35,10 +35,6 @@ export class FictionComponent implements OnInit {
   }
 
   addToCart(item: any) {
-    this._toastService.showSuccessToast(
-      'Successfully',
-      'Product is added to cart'
-    );
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
     console.log(this.firebaseProduct);
@@ -53,8 +49,7 @@ export class FictionComponent implements OnInit {
     this.isFetching = true;
     this.http
       .get<{ [key: string]: Products }>(
-        'https://lavish-67a42-default-rtdb.firebaseio.com/Products.json',
-        { headers: new HttpHeaders({ 'Custom-Headers': 'hello' }) }
+        'https://lavish-67a42-default-rtdb.firebaseio.com/Products.json'
       )
       .pipe(
         map((responseData) => {
@@ -80,9 +75,9 @@ export class FictionComponent implements OnInit {
           (post) => post.SubCategory === 'Fiction'
         );
         //console.log(this.FictionList);
-        this.productList.forEach((a: any) => {
-          Object.assign(a, { quantity: 1, total: a.price });
-        });
+        // this.productList.forEach((a: any) => {
+        //   Object.assign(a, { quantity: 1, total: a.price });
+        // });
       });
   }
 }

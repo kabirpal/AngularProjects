@@ -33,10 +33,6 @@ export class WishlistComponent implements OnInit {
   // }
   addToCart(item: any) {
     this._myWishListService.removeWishListData(item);
-    this._toastService.showSuccessToast(
-      'Successfully',
-      'Product is added to cart'
-    );
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
     console.log(this.firebaseProduct);
@@ -44,6 +40,10 @@ export class WishlistComponent implements OnInit {
   }
 
   deleteData(item) {
+    this._toastService.showWarningToast(
+      'Deleted',
+      'Product has been deleted from Wishlist'
+    );
     this._myWishListService.removeWishListData(item);
   }
 }

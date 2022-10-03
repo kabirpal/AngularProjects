@@ -40,10 +40,6 @@ export class MobilesComponent implements OnInit {
   }
 
   addToCart(item: any) {
-    this._toastService.showSuccessToast(
-      'Successfully',
-      'Product is added to cart'
-    );
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
     console.log(this.firebaseProduct);

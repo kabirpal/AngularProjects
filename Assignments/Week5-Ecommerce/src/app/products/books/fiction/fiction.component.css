@@ -1,0 +1,15 @@
+h1{
+    text-align: center;
+    color: white;
+}
+
+.bgColour {
+    background: #9b87b1;
+    max-height: 100%;
+    padding-bottom: 10%;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgb(0, 0, 0), rgb(63, 122, 224));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgb(13, 12, 13), rgb(32, 50, 81))
+}

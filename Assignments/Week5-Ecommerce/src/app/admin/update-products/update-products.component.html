@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <h3>All Products</h3>
+  <div class="col-md-9 mb-3">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+    >
+      <ng-container *ngIf="loadedProducts.length != 0">
+        <div class="container">
+          <div class="row">
+            <div class="card-table">
+              <div class="card-product">
+                <table class="table table-wrapper">
+                  <thead>
+                    <tr class="text-center">
+                      <th>Sr.No</th>
+                      <th>Brand Name</th>
+                      <th>Name</th>
+                      <th>Image</th>
+                      <th>Price</th>
+                      <th>Availability</th>
+                      <th>Status</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      class="text-center"
+                      *ngFor="let item of loadedProducts; let i = index"
+                    >
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ item.brandName }}</td>
+                      <td>{{ item.ProductName }}</td>
+                      <td>
+                        <img
+                          src="{{ item.imageUrl }}"
+                          style="height: 100px; width: 80px"
+                        />
+                      </td>
+                      <td>{{ item.ProductPrice }}</td>
+                      <td>{{ item.available }}</td>
+                      <td>{{ item.status }}</td>
+                      <td>
+                        <button
+                          class="btn btn-primary m-2"
+                          routerLink="/updatewindow/{{ item.ProductId }}"
+                          routerLinkActive=""
+                        >
+                          <i class="fa fa-edit"></i>
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          class="btn btn-danger m-2"
+                          (click)="onDeleteProducts(item.ProductId)"
+                        >
+                          <i class="fa fa-trash-o"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

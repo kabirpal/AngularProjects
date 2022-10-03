@@ -1,0 +1,48 @@
+<div class="container">
+  <br />
+  <h1>Best selling products</h1>
+  <br />
+  <div
+    class="conatiner"
+    *ngIf="isFetching"
+    style="text-align: center; margin-top: 100"
+  >
+    <app-spinner></app-spinner>
+  </div>
+  <div class="container-fluid" *ngIf="!isFetching">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col" *ngFor="let item of PremiumSmartphone">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+          <div class="card">
+            <img src="{{ item.imageUrl }}" style="height: 450px" alt="..." />
+            <div class="card-body">
+              <h4 class="card-title">{{ item.ProductName }}</h4>
+              <h6 class="card-title">
+                Price:
+                <strong>{{ item.ProductPrice | currency: "INR" }}</strong>
+              </h6>
+              <p class="card-text">
+                MRP:
+                <span class="text-muted text-decoration-line-through">{{
+                  item.MRP | currency: "INR"
+                }}</span>
+              </p>
+              <p class="card-text">{{ item.description }}</p>
+              <a routerLink="/viewproduct/{{ item.ProductId }}"
+                >View Products</a
+              >
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="margin: 10px"
+                (click)="addToCart(item)"
+              >
+                Add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

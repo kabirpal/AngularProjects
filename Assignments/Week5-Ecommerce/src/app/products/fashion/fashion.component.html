@@ -1,0 +1,79 @@
+<div class="bgColour">
+  <app-fashion-home></app-fashion-home>
+  <!-- Different components -->
+  <br />
+  <div class="container-fluid">
+    <nav
+      class="navbar sticky-top"
+      style="background-color: #51616c; border-radius: 15px"
+    >
+      <div class="container-md">
+        <div class="buttons" style="font-size: 30px">
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            style="font-size: 25px; margin-right: 30px"
+            routerLink="/menfashion"
+            routerLinkActive="active"
+          >
+            Men
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            style="font-size: 25px"
+            routerLink="/womenfashion"
+            routerLinkActive="active"
+          >
+            Women
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            style="font-size: 25px"
+            routerLink="/kidsfashion"
+            routerLinkActive="active"
+          >
+            Kids
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <br />
+      <h1 style="text-align: center">Choose your style</h1>
+      <br />
+      <div
+        class="conatiner"
+        *ngIf="isFetching"
+        style="text-align: center; margin-top: 100"
+      >
+        <app-spinner></app-spinner>
+      </div>
+      <div class="container-fluid" *ngIf="!isFetching">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+            <div class="shadow p-3 mb-5 bg-white rounded">
+              <div class="card">
+                <a routerLink="/menfashion"
+                  ><img src="{{ imagemen }}" style="height: 450px" alt="..."
+                /></a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="shadow p-3 mb-5 bg-white rounded">
+              <div class="card">
+                <a routerLink="/womenfashion"
+                  ><img src="{{ imagewomen }}" style="height: 450px" alt="..."
+                /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

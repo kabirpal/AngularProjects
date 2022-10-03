@@ -1,0 +1,119 @@
+<div class="gradient-custom">
+  <div class="container p-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <form
+          #authForm="ngForm"
+          (ngSubmit)="onSubmitForm(authForm)"
+          *ngIf="!isLoading"
+        >
+          <div class="card" style="border-radius: 1rem">
+            <div class="card-body p-3">
+              <div
+                class="alert alert-danger"
+                *ngIf="errorMsg"
+                style="width: 328px; text-align: center"
+              >
+                <h3>{{ errorMsg }}</h3>
+              </div>
+              <h1
+                class="fw-bold mb-2 text-uppercase text-center"
+                *ngIf="isLoginMode"
+              >
+                Sign-In
+              </h1>
+              <h1
+                class="fw-bold mb-2 text-uppercase text-center"
+                *ngIf="!isLoginMode"
+              >
+                Sign-up
+              </h1>
+              <p class="text-white-50 mb-2 text-center">
+                Please enter your Email and password!
+              </p>
+
+              <ng-container *ngIf="!isLoginMode">
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeEmailX">Name :</label>
+                  <input
+                    type="name"
+                    id="typeNameX"
+                    class="form-control"
+                    name="name"
+                    id="name"
+                    placeholder="Enter Name"
+                    ngModel
+                    required
+                  />
+                </div>
+
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typePhoneX">Phone No. :</label>
+                  <input
+                    type="name"
+                    id="typePhoneX"
+                    class="form-control"
+                    name="phone"
+                    id="phone"
+                    placeholder="Enter phone"
+                    ngModel
+                    required
+                    number
+                    minlength="10"
+                  />
+                </div>
+              </ng-container>
+
+              <div class="form-outline form-white mb-4">
+                <label class="form-label" for="typeEmailX">Email :</label>
+                <input
+                  type="email"
+                  id="typeEmailX"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  placeholder="Enter Email"
+                  ngModel
+                  required
+                  email
+                />
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <label class="form-label" for="typePasswordX">Password :</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  id="password"
+                  placeholder="Enter Password"
+                  ngModel
+                  required
+                  minlength="6"
+                />
+              </div>
+              <div class="container">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  [disabled]="!authForm.valid"
+                >
+                  {{ isLoginMode ? "LogIn" : "Sign-Up" }}
+                </button>
+                |
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  (click)="switchNow()"
+                >
+                  Switch to {{ isLoginMode ? "Sign-up" : "LogIn" }}
+                </button>
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

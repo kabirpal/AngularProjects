@@ -1,0 +1,75 @@
+<h2>Best selling Books</h2>
+<!-- Card 1 -->
+<div class="container" *ngFor="let item of BestSellerCarouselImg">
+  <div class="card text-bg-secondary mb-3">
+    <img
+      src="{{ item.imageUrl }}"
+      style="height: 300px; object-fit: cover"
+      class="card-img-top"
+      alt="..."
+    />
+    <div class="card-body" style="height: 100px">
+      <h5 class="card-title">Best Selling Books are here.</h5>
+      <p class="card-text">
+        We have the latest books released from world wide famous authors. We do
+        free shipping of books for students.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Card 2 -->
+
+<div class="container">
+  <div class="shadow p-3 mb-5 col-md-12 bg-white rounded">
+    <div class="row">
+      <div class="col-sm-6" *ngFor="let item of BooksList">
+        <div class="card mb-3" style="max-width: 540px">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img
+                src="{{ item.imageUrl }}"
+                style="height: 250px; width: 230px; margin: 5px"
+                class="img-fluid rounded-start"
+                alt="..."
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.ProductName }}</h5>
+                <p class="card-text">
+                  Price: <strong>{{ item.ProductPrice }}</strong>
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">{{ item.description }}</small>
+                </p>
+                <div>
+                  Ratings:
+                  <ngb-rating
+                    [max]="5"
+                    [(rate)]="item.rating"
+                    [readonly]="true"
+                    style="font-size: x-large; color: rgba(250, 227, 50, 0.919)"
+                  >
+                  </ngb-rating>
+                </div>
+                <!-- <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-right: 16px"
+                  (click)="addToCart(item)"
+                  [disabled]="buttonPressed"
+                >
+                  Add to cart
+                </button> -->
+                <a type="link" routerLink="/viewproduct/{{ item.ProductId }}"
+                  >View Products</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

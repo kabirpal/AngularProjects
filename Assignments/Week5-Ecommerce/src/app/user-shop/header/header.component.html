@@ -1,0 +1,173 @@
+<nav class="navbar navbar-expand-lg navbar" style="background-color: #dce8f3">
+  <div class="container-fluid">
+    <a routerLink="/adminPortal" *ngIf="isAdmin">Admin Portal</a>
+    <a
+      class="navbar-brand"
+      routerLink="/"
+      routerLinkActive="active"
+      style="font-size: 25px"
+      *ngIf="!isAdmin"
+      >Lavish</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/bestseller"
+            data-bs-target="#navbarSupportedContent"
+            data-bs-toggle="collapse"
+            routerLinkActive="active"
+            *ngIf="!isAdmin"
+            >BestSeller</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/books"
+            data-bs-target="#navbarSupportedContent"
+            data-bs-toggle="collapse"
+            routerLinkActive="active"
+            *ngIf="!isAdmin"
+            >Books</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/mobile"
+            data-bs-target="#navbarSupportedContent"
+            data-bs-toggle="collapse"
+            routerLinkActive="active"
+            *ngIf="!isAdmin"
+            >SmartPhones</a
+          >
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            *ngIf="!isAdmin"
+          >
+            Fashion
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a
+              class="dropdown-item"
+              data-bs-target="#navbarSupportedContent"
+              routerLink="/fashion"
+              routerLinkActive="active"
+              *ngIf="!isAdmin"
+              >All Products</a
+            >
+            <a
+              class="dropdown-item"
+              data-bs-target="#navbarSupportedContent"
+              routerLink="/menfashion"
+              routerLinkActive="active"
+              *ngIf="!isAdmin"
+              >Men</a
+            >
+            <div class="dropdown-divider"></div>
+            <a
+              class="dropdown-item"
+              data-bs-target="#navbarSupportedContent"
+              routerLink="/womenfashion"
+              routerLinkActive="active"
+              *ngIf="!isAdmin"
+              >Women</a
+            >
+          </div>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a
+              class="nav-link disabled"
+              data-bs-target="#navbarSupportedContent"
+              data-bs-toggle="collapse"
+              *ngIf="!isAdmin"
+              >Primium members</a
+            >
+          </li>
+          <li class="nav-item" *ngIf="!isloggedIn">
+            <a
+              class="nav-link"
+              data-bs-target="#navbarSupportedContent"
+              data-bs-toggle="collapse"
+              routerLink="/login"
+              routerLinkActive="active"
+              >LogIn</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-bs-target="#navbarSupportedContent"
+              data-bs-toggle="collapse"
+              routerLink="/about"
+              routerLinkActive="active"
+              >About Us</a
+            >
+          </li>
+          <li class="nav-item" *ngIf="!isAdmin">
+            <button
+              class="btn btn-outline-dark"
+              data-bs-target="#navbarSupportedContent"
+              data-bs-toggle="collapse"
+              routerLink="/wishList"
+              routerLinkActive="active"
+              style="margin: 2px"
+            >
+              <i style="font-size: 25px" class="fas fa-heart"></i>
+            </button>
+          </li>
+          <li class="nav-item" *ngIf="!isAdmin">
+            <button
+              class="btn btn-outline-dark"
+              data-bs-target="#navbarSupportedContent"
+              data-bs-toggle="collapse"
+              routerLink="/cart"
+              routerLinkActive="active"
+              *ngIf="isloggedIn"
+              style="margin: 2px"
+            >
+              <i style="font-size: 25px" class="fas fa-cart-plus"></i>
+            </button>
+          </li>
+          <li class="nav-item" *ngIf="isloggedIn">
+            <a
+              class="nav-link"
+              routerLink="/login"
+              routerLinkActive="active"
+              (click)="Onlogout()"
+              data-bs-target="#navbarSupportedContent"
+              data-bs-toggle="collapse"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</nav>

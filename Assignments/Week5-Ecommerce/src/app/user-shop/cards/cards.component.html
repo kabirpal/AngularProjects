@@ -1,0 +1,91 @@
+<div class="container">
+  <a routerLink="/mobile" routerLinkActive=""><h1>SmartPhones</h1></a>
+  <hr />
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col" *ngFor="let item of productSmartPhone">
+      <div class="cardbody-2">
+        <div class="card-body">
+          <!-- Here I create a New Div with class name card -->
+          <div class="card_img_2">
+            <!-- Here I create a New Div for image with class name card_img -->
+            <img src="{{ item.imageUrl }}" alt="user-image" />
+          </div>
+          <div class="card_info_2">
+            <!-- Here I create a New Div for user info with class name card_info -->
+            <h4 style="color: white">{{ item.ProductName }}</h4>
+            <a href="/viewproduct/{{ item.ProductId }}">View Product</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="container">
+  <h1>Books</h1>
+  <hr />
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col" *ngFor="let item of productBooks">
+      <div class="cardbody-2">
+        <div class="card-body">
+          <!-- Here I create a New Div with class name card -->
+          <div class="card_img_2">
+            <!-- Here I create a New Div for image with class name card_img -->
+            <img src="{{ item.imageUrl }}" alt="user-image" />
+          </div>
+          <div class="card_info_2">
+            <!-- Here I create a New Div for user info with class name card_info -->
+            <h4 style="color: white">{{ item.ProductName }}</h4>
+            <a href="/viewproduct/{{ item.ProductId }}">View Product</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="container">
+  <h1>Men Clothing</h1>
+  <hr />
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col" *ngFor="let item of productMen">
+      <div class="cardbody-2">
+        <div class="card-body">
+          <!-- Here I create a New Div with class name card -->
+          <div class="card_img_2">
+            <!-- Here I create a New Div for image with class name card_img -->
+            <img src="{{ item.imageUrl }}" alt="user-image" />
+          </div>
+          <div class="card_info_2">
+            <!-- Here I create a New Div for user info with class name card_info -->
+            <h4 style="color: white">{{ item.ProductName }}</h4>
+            <a href="/viewproduct/{{ item.ProductId }}">View Product</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="container">
+  <h1>Women</h1>
+  <hr />
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col" *ngFor="let item of productWomen">
+      <div class="cardbody-2">
+        <div class="card-body">
+          <!-- Here I create a New Div with class name card -->
+          <div class="card_img_2">
+            <!-- Here I create a New Div for image with class name card_img -->
+            <img src="{{ item.imageUrl }}" alt="user-image" />
+          </div>
+          <div class="card_info_2">
+            <!-- Here I create a New Div for user info with class name card_info -->
+            <h4 style="color: white">{{ item.ProductName }}</h4>
+            <a href="/viewproduct/{{ item.ProductId }}">View Product</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

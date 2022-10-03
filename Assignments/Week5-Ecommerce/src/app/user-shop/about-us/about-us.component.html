@@ -1,0 +1,38 @@
+<header>
+  <h1 style="text-align: center">Contact Us at:</h1>
+  <h3 style="text-align: center">1800-322-232 | lavishsupport@lavish.com</h3>
+</header>
+
+<div id="form">
+  <div class="fish" id="fish"></div>
+  <div class="fish" id="fish2"></div>
+
+  <form
+    id="waterform"
+    method="post"
+    #feedbackForm="ngForm"
+    (ngSubmit)="onSubmitForm(feedbackForm)"
+  >
+    <div class="formgroup" id="name-form">
+      <label for="name">Your name*</label>
+      <input type="text" id="name" name="name" ngModel />
+    </div>
+
+    <div class="formgroup" id="email-form">
+      <label for="email">Your e-mail*</label>
+      <input type="email" id="email" name="email" ngModel />
+    </div>
+
+    <div class="formgroup" id="message-form">
+      <label for="message">Your message</label>
+      <textarea id="message" name="message" ngModel></textarea>
+    </div>
+
+    <button type="submit">Send your message!</button>
+    <br />
+    <hr />
+    <h5 style="text-align: center">
+      Share your valuable feedback at www.lavishsupport.com
+    </h5>
+  </form>
+</div>

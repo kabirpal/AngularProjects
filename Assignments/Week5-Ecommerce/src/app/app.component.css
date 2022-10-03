@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    padding: 0;
+
+}
+
+
+
+/* .container-kl{
+    margin-left: 50%;
+}
+
+ .navbar{
+    --bs-navbar-nav-link-padding-x: 0.8rem;
+ }
+.search{
+  border-radius:20px;
+  width: 200px;
+  }
+
+.searchitem {
+    right: 0;
+    font-size: 13px;
+} */
+
+a{
+    font-size: 19px;
+}
+

@@ -1,0 +1,49 @@
+<div class="bgColour">
+  <h1>Self Help</h1>
+  <br />
+  <div
+    class="conatiner"
+    *ngIf="isFetching"
+    style="text-align: center; margin-top: 100"
+  >
+    <app-spinner></app-spinner>
+  </div>
+  <div class="container-fluid" *ngIf="!isFetching">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="col" *ngFor="let item of SelfHelpList">
+        <!-- <div class="card" *ngIf="{{item.ProductCategory==='Self-Help'}}"> -->
+        <div class="card">
+          <img
+            src="{{ item.imageUrl }}"
+            height="350px"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.ProductName }}</h5>
+            <h5 class="card-text">Price: {{ item.ProductPrice }}</h5>
+            <p class="card-text">By: {{ item.brandName }}</p>
+            <a routerLink="/viewproduct/{{ item.ProductId }}">View Products</a>
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="margin: 5px; font-size: 15px"
+              (click)="addToWishList(item)"
+            >
+              <i style="font-size: 15px" class="fas fa-heart"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="margin: 5px"
+              (click)="addToCart(item)"
+            >
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+  </div>
+</div>

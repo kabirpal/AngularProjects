@@ -26,7 +26,7 @@
               Price: {{ item.ProductPrice | currency: "INR" }}
             </h5>
             <p class="card-text">Colour: {{ item.colour }}</p>
-            <a href="/viewproduct/{{ item.ProductId }}">View Products</a>
+            <a routerLink="/viewproduct/{{ item.ProductId }}">View Products</a>
             <button
               type="button"
               class="btn btn-primary"
@@ -78,7 +78,9 @@
                 Price: {{ item.ProductPrice | currency: "INR" }}
               </h5>
               <p class="card-text">By: {{ item.colour }}</p>
-              <a href="/viewproduct/{{ item.ProductId }}">View Products</a>
+              <a routerLink="/viewproduct/{{ item.ProductId }}"
+                >View Products</a
+              >
               <button
                 type="button"
                 class="btn btn-primary"

@@ -28,7 +28,7 @@ export class ViewUsersComponent implements OnInit {
 
   userStatus(radioValue: boolean) {
     this.radioValue = !radioValue;
-    console.log(radioValue);
+    //console.log(radioValue);
   }
 
   disableUser(item: boolean, id: string) {
@@ -57,7 +57,7 @@ export class ViewUsersComponent implements OnInit {
       .pipe(
         map((responseData) => {
           const postsArray: storeUser[] = [];
-          console.log(responseData);
+          //console.log(responseData);
           for (const key in responseData) {
             if (responseData.hasOwnProperty(key)) {
               postsArray.push({ ...responseData[key] });
@@ -67,9 +67,13 @@ export class ViewUsersComponent implements OnInit {
         })
       )
       .subscribe((post) => {
-        console.log(post);
+        if (post) {
+          this.loadedProducts = post;
+        } else {
+          this.loadedProducts = [];
+        }
+        //console.log(post);
         this.isFetching = false;
-        this.loadedProducts = post;
       });
   }
 }

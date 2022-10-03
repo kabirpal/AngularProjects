@@ -3,21 +3,15 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css']
+  styleUrls: ['./books.component.css'],
 })
 export class BooksComponent implements OnInit {
   laodedFeature = 'drama';
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  onSelect(feature:string){
+  onSelect(feature: string) {
     this.laodedFeature = feature;
-    // this.featureSelected.emit(feature);
   }
-  
-  // onNavigate(features:string){
-  //   this.laodedFeature = features;
-  // }
 }

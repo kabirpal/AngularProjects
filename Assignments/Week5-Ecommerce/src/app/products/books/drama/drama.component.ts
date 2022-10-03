@@ -35,10 +35,10 @@ export class DramaComponent implements OnInit {
   }
 
   addToCart(item: Products) {
-    console.log(item);
+    //console.log(item);
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    console.log(this.firebaseProduct);
+    //console.log(this.firebaseProduct);
     this._myCartService.addToFirebase(item);
   }
 
@@ -64,19 +64,21 @@ export class DramaComponent implements OnInit {
         })
       )
       .subscribe((post) => {
-        console.log(post);
-        this.isFetching = false;
-        this.loadedPosts = post;
-        this.productList = post;
-
-        console.log(this.productList);
-        this.BooksList = this.loadedPosts.filter(
-          (post) => post.ProductCategory === 'Books'
-        );
-        console.log(this.BooksList);
-        this.productList.forEach((a: Products) => {
-          Object.assign(a, { quantity: 1, total: a.ProductPrice });
-        });
+        if (post) {
+          this.isFetching = false;
+          this.loadedPosts = post;
+          this.productList = post;
+          this.BooksList = this.loadedPosts.filter(
+            (post) => post.ProductCategory === 'Books'
+          );
+          this.productList.forEach((a: Products) => {
+            Object.assign(a, { quantity: 1, total: a.ProductPrice });
+          });
+        } else {
+          this.loadedPosts = [];
+          this.productList = [];
+          this.BooksList = [];
+        }
       });
   }
 }

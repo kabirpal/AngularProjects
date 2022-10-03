@@ -43,7 +43,7 @@ export class RomanceComponent implements OnInit {
     );
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    console.log(this.firebaseProduct);
+    //console.log(this.firebaseProduct);
     this._myCartService.addToFirebase(item);
   }
 
@@ -66,11 +66,11 @@ export class RomanceComponent implements OnInit {
         })
       )
       .subscribe((post) => {
-        console.log(post);
+        //console.log(post);
         this.isFetching = false;
         this.loadedPosts = post;
         this.productList = post;
-        console.log(this.RomanceList);
+        //console.log(this.RomanceList);
         this.BooksList = this.loadedPosts.filter(
           (post) => post.ProductCategory === 'Books'
         );

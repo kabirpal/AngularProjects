@@ -68,7 +68,7 @@ export class MyCartComponent implements OnInit {
         .subscribe({
           next: (post) => {
             if (post) {
-              console.log(post);
+              //console.log(post);
               this.loadedPosts = Object.values(post);
               console.log(this.loadedPosts);
               this.amount = this.getTotalAmount();
@@ -92,8 +92,8 @@ export class MyCartComponent implements OnInit {
   deleteProduct(productId) {
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];
-    console.log(this.localId);
-    console.log(productId);
+    //console.log(this.localId);
+    //console.log(productId);
     //productId = this.loadedPosts = Object.values();
     const url =
       'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
@@ -101,10 +101,10 @@ export class MyCartComponent implements OnInit {
       '/addToCart/' +
       productId +
       '.json';
-    console.log(productId);
+    //console.log(productId);
     this.http.delete(url).subscribe((res) => {
       this.getProductData();
-      console.log('product deleted', res);
+      //console.log('product deleted', res);
     });
   }
 

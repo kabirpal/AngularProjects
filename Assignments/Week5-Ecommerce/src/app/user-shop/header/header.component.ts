@@ -41,14 +41,12 @@ export class HeaderComponent implements OnInit {
   }
 
   renderFunction() {
-    const admin = JSON.parse(localStorage.getItem('userData'));
-
     // this.checkAdmin();
     this._AuthGuard.autoLogIn();
     this.userSub = this._AuthGuard.user.subscribe((user) => {
       this.isloggedIn = !!user;
       const admin = JSON.parse(localStorage.getItem('userData'));
-      console.log(admin);
+      //console.log(admin);
       if (admin && admin['isAdmin']) {
         this.isAdmin = true;
       }
@@ -59,7 +57,7 @@ export class HeaderComponent implements OnInit {
 
   checkAdmin() {
     const admin = JSON.parse(localStorage.getItem('userData'));
-    console.log(admin);
+    //console.log(admin);
     if (admin && admin['isAdmin']) {
       this.isAdmin = true;
     }

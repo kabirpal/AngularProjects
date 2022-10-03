@@ -19,6 +19,9 @@
 </div>
 
 <!-- Card 2 -->
+<div class="container" *ngIf="loadedPosts.length == 0">
+  <h1>Sorry data cannot be fetched</h1>
+</div>
 
 <div class="container">
   <div class="shadow p-3 mb-5 col-md-12 bg-white rounded">

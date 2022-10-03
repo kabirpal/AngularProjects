@@ -43,7 +43,7 @@ export class BestBooksComponent implements OnInit {
     );
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    console.log(this.firebaseProduct);
+    //console.log(this.firebaseProduct);
     this._myCartService.addToFirebase(item);
     setTimeout(() => {
       this.buttonPressed = false;
@@ -100,12 +100,17 @@ export class BestBooksComponent implements OnInit {
         })
       )
       .subscribe((post) => {
+        if (post) {
+          this.loadedPosts = post;
+          this.BooksList = this.loadedPosts
+            .filter((post) => post.ProductCategory === 'Books')
+            .splice(0, 4);
+        } else {
+          this.loadedPosts = [];
+          this.BooksList = [];
+        }
         //console.log(post);
         this.isFetching = false;
-        this.loadedPosts = post;
-        this.BooksList = this.loadedPosts
-          .filter((post) => post.ProductCategory === 'Books')
-          .splice(0, 4);
       });
   }
 }

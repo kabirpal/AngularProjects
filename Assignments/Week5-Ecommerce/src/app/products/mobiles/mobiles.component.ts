@@ -23,7 +23,6 @@ export class MobilesComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private _myCartService: MyCartService,
-    private _toastService: ToastService,
     private _myWishListService: WishListService
   ) {}
 
@@ -42,7 +41,7 @@ export class MobilesComponent implements OnInit {
   addToCart(item: any) {
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    console.log(this.firebaseProduct);
+    //console.log(this.firebaseProduct);
     this._myCartService.addToFirebase(item);
   }
 
@@ -65,25 +64,33 @@ export class MobilesComponent implements OnInit {
         })
       )
       .subscribe((post) => {
-        console.log(post);
+        if (post) {
+          this.loadedPosts = post;
+          this.SmartphoneList = this.loadedPosts.filter(
+            (post) => post.ProductCategory === 'SmartPhone'
+          );
+          this.PremiumList = this.loadedPosts.filter(
+            (post) => post.ProductCategory === 'Premium'
+          );
+          this.MidRangeList = this.loadedPosts.filter(
+            (post) => post.ProductCategory === 'MidRange'
+          );
+          this.BudgetList = this.loadedPosts.filter(
+            (post) => post.ProductCategory === 'Budget'
+          );
+          this.productList = post;
+          this.productList.forEach((a: any) => {
+            Object.assign(a, { quantity: 1, total: a.price });
+          });
+        } else {
+          this.loadedPosts = [];
+          this.SmartphoneList = [];
+          this.PremiumList = [];
+          this.MidRangeList = [];
+          this.BudgetList = [];
+        }
+        //console.log(post);
         this.isFetching = false;
-        this.loadedPosts = post;
-        this.SmartphoneList = this.loadedPosts.filter(
-          (post) => post.ProductCategory === 'SmartPhone'
-        );
-        this.PremiumList = this.loadedPosts.filter(
-          (post) => post.ProductCategory === 'Premium'
-        );
-        this.MidRangeList = this.loadedPosts.filter(
-          (post) => post.ProductCategory === 'MidRange'
-        );
-        this.BudgetList = this.loadedPosts.filter(
-          (post) => post.ProductCategory === 'Budget'
-        );
-        this.productList = post;
-        this.productList.forEach((a: any) => {
-          Object.assign(a, { quantity: 1, total: a.price });
-        });
       });
   }
 }

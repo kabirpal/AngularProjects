@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { AddNewProductComponent } from './admin/Products/add-new-product/add-new-product.component';
+import { UpdateWindowComponent } from './admin/update-products/update-window/update-window.component';
+import { UserOrdersComponent } from './admin/user-orders/user-orders.component';
+import { ViewUsersComponent } from './admin/view-users/view-users.component';
 import { AuthAdminGuard } from './auth.admin.guard';
 import { AuthGuard } from './auth.guard';
 import { BestSellersComponent } from './products/best-sellers/best-sellers.component';
@@ -55,6 +59,15 @@ const routes: Routes = [
     path: 'landingPage',
     component: WishlistComponent,
   },
+  {
+    path: 'adminPortal',
+    component: AdminHomeComponent,
+    canActivate: [AuthAdminGuard],
+  },
+  { path: 'updatewindow/:id', component: UpdateWindowComponent },
+  { path: 'addNewProduct', component: AddNewProductComponent },
+  { path: 'userWindow/:id', component: ViewUsersComponent },
+  { path: 'userOrders', component: UserOrdersComponent },
   { path: '**', component: Error404Component },
 ];
 

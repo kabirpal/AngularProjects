@@ -23,19 +23,18 @@ export class WishlistComponent implements OnInit {
   ngOnInit(): void {
     this.isFetching = true;
     this._myWishListService.getProductData().subscribe((res) => {
-      this.products = res;
+      if (res) {
+        this.products = res;
+      } else {
+        this.products = [];
+      }
       this.isFetching = false;
     });
   }
 
-  // removeAllProduct(){
-  //   this._myWishListService.removeAllcart();
-  // }
   addToCart(item: any) {
     this._myWishListService.removeWishListData(item);
     this._myCartService.getUserState();
-    this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    console.log(this.firebaseProduct);
     this._myCartService.addToFirebase(item);
   }
 

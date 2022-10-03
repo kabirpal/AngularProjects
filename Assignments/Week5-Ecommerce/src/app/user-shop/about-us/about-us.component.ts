@@ -30,8 +30,6 @@ export class AboutUsComponent implements OnInit {
         'https://lavish-67a42-default-rtdb.firebaseio.com/feedback.json',
         newUser
       )
-      .subscribe((res) => {
-        //console.log('data added', res);
-      });
+      .subscribe();
   }
 }

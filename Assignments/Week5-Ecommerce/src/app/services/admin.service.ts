@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductFields } from '../admin/ProductField-module';
 import { storeUser } from '../user-shop/login/storeUser';
-//import { checkoutDetails } from '../orders/checkoutDetails';Z
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +21,7 @@ export class AdminService {
       'https://lavish-67a42-default-rtdb.firebaseio.com/Products/' +
       productId +
       '.json';
-    console.log(productId);
+    //console.log(productId);
     this.http
       .delete(url)
       .subscribe((res) => console.log('product deleted', res));
@@ -37,7 +36,7 @@ export class AdminService {
         postData
       )
       .subscribe((res) => {
-        console.log(res);
+        //console.log(res);
         postData.ProductId = '';
         postData.brandName = '';
         postData.ProductName = '';

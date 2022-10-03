@@ -26,7 +26,7 @@ export class UserOrdersComponent implements OnInit {
 
   fetchUserOrders(id) {
     this.showOrderData = true;
-    console.log(id);
+    //console.log(id);
     this.http
       .get(
         'https://lavish-67a42-default-rtdb.firebaseio.com/orders/' +
@@ -34,8 +34,12 @@ export class UserOrdersComponent implements OnInit {
           '/userOrders.json'
       )
       .subscribe((post) => {
-        this.userOrderList = Object.values(post);
-        console.log(post);
+        if (post) {
+          this.userOrderList = Object.values(post);
+        } else {
+          this.userOrderList = [];
+        }
+        //console.log(post);
       });
   }
 
@@ -46,8 +50,11 @@ export class UserOrdersComponent implements OnInit {
         'https://lavish-67a42-default-rtdb.firebaseio.com/orders.json'
       )
       .subscribe((post) => {
-        this.loadedUsers = Object.values(post);
-        console.log(this.loadedUsers);
+        if (post) {
+          this.loadedUsers = Object.values(post);
+        } else {
+          this.loadedUsers = [];
+        }
       });
   }
 }

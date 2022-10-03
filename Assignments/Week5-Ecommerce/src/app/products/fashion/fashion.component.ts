@@ -44,8 +44,12 @@ export class FashionComponent implements OnInit {
         'https://lavish-67a42-default-rtdb.firebaseio.com/MenFashion.json'
       )
       .subscribe((post) => {
+        if (post) {
+          this.loadedPosts = post;
+        } else {
+          this.loadedPosts = [];
+        }
         this.isFetching = false;
-        this.loadedPosts = post;
       });
   }
 }

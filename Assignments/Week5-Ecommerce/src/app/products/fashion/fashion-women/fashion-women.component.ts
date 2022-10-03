@@ -39,13 +39,9 @@ export class FashionWomenComponent implements OnInit {
     this.FetchData();
   }
   addToCart(item: any) {
-    this._toastService.showSuccessToast(
-      'Successfully',
-      'Product is added to cart'
-    );
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    console.log(this.firebaseProduct);
+    //console.log(this.firebaseProduct);
     this._myCartService.addToFirebase(item);
   }
 
@@ -67,7 +63,7 @@ export class FashionWomenComponent implements OnInit {
         })
       )
       .subscribe((post) => {
-        console.log(post);
+        //console.log(post);
         this.isFetching = false;
         this.loadedPosts = post;
         this.productList = post;

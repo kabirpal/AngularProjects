@@ -41,8 +41,6 @@ export class BestMobilesComponent implements OnInit {
     );
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    console.log(this.firebaseProduct);
-    console.log(item.quantity);
     this._myCartService.addToFirebase(item);
   }
 
@@ -64,12 +62,16 @@ export class BestMobilesComponent implements OnInit {
         })
       )
       .subscribe((post) => {
-        //console.log(post);
+        if (post) {
+          this.loadedPosts = post;
+          this.SmartphoneList = this.loadedPosts.filter(
+            (post) => post.ProductCategory === 'SmartPhone'
+          );
+        } else {
+          this.loadedPosts = [];
+          this.SmartphoneList = [];
+        }
         this.isFetching = false;
-        this.loadedPosts = post;
-        this.SmartphoneList = this.loadedPosts.filter(
-          (post) => post.ProductCategory === 'SmartPhone'
-        );
       });
   }
 
@@ -92,17 +94,20 @@ export class BestMobilesComponent implements OnInit {
         })
       )
       .subscribe((post) => {
-        // console.log(post);
+        if (post) {
+          this.loadedPosts = post;
+          this.CarouselImage = this.loadedPosts.filter(
+            (post) => post.ProductCategory === 'Carousel-Image'
+          );
+          this.BestSellerCarouselImg = this.CarouselImage.filter(
+            (post) => post.SubCategory === 'BestSellerCarousel'
+          ).splice(0, 1);
+        } else {
+          this.loadedPosts = [];
+          this.CarouselImage = [];
+          this.BestSellerCarouselImg = [];
+        }
         this.isFetching = false;
-        this.loadedPosts = post;
-        this.CarouselImage = this.loadedPosts.filter(
-          (post) => post.ProductCategory === 'Carousel-Image'
-        );
-        //console.log(this.CarouselImage);
-        this.BestSellerCarouselImg = this.CarouselImage.filter(
-          (post) => post.SubCategory === 'BestSellerCarousel'
-        ).splice(0, 1);
-        console.log(this.BestSellerCarouselImg);
       });
   }
 }

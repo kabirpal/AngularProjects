@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Products } from '../products/booksGet-module';
@@ -11,7 +10,7 @@ export class WishListService {
   cartDataList: Products[] = [];
   productList = new BehaviorSubject<any>([]);
 
-  constructor(private http: HttpClient, private _toastService: ToastService) {}
+  constructor(private _toastService: ToastService) {}
 
   getProductData() {
     return this.productList.asObservable();
@@ -40,9 +39,4 @@ export class WishListService {
     });
     this.productList.next(this.cartDataList);
   }
-
-  // removeAllcart(){
-  //   this.cartDataList = [];
-  //   this.productList.next(this.cartDataList)
-  // }
 }

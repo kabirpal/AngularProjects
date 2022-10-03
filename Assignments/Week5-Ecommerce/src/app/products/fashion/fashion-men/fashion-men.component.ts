@@ -22,7 +22,6 @@ export class FashionMenComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private _myCartService: MyCartService,
-    private _toastService: ToastService,
     private _myWishListService: WishListService
   ) {}
 
@@ -43,7 +42,7 @@ export class FashionMenComponent implements OnInit {
   addToCart(item: any) {
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    console.log(this.firebaseProduct);
+    //console.log(this.firebaseProduct);
     this._myCartService.addToFirebase(item);
   }
 
@@ -65,7 +64,7 @@ export class FashionMenComponent implements OnInit {
         })
       )
       .subscribe((post) => {
-        console.log(post);
+        //console.log(post);
         this.isFetching = false;
         this.loadedPosts = post;
         this.loadedProducts = this.loadedPosts.filter(

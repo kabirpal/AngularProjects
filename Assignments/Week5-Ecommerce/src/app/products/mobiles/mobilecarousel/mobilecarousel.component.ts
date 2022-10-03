@@ -50,20 +50,27 @@ export class MobilecarouselComponent implements OnInit {
         })
       )
       .subscribe((post) => {
+        if (post) {
+          this.loadedPosts = post;
+          this.productList = post;
+          this.Smartphone = this.loadedPosts.filter(
+            (post) => post.ProductCategory === 'SmartPhone'
+          );
+          this.PremiumSmartphone = this.Smartphone.filter(
+            (post) => post.SubCategory === 'Premium'
+          );
+          //console.log(this.Smartphone);
+          //console.log(this.PremiumSmartphone);
+          this.productList.forEach((a: any) => {
+            Object.assign(a, { quantity: 1, total: a.price });
+          });
+        } else {
+          this.loadedPosts = [];
+          this.productList = [];
+          this.Smartphone = [];
+          this.PremiumSmartphone = [];
+        }
         this.isFetching = false;
-        this.loadedPosts = post;
-        this.productList = post;
-        this.Smartphone = this.loadedPosts.filter(
-          (post) => post.ProductCategory === 'SmartPhone'
-        );
-        this.PremiumSmartphone = this.Smartphone.filter(
-          (post) => post.SubCategory === 'Premium'
-        );
-        console.log(this.Smartphone);
-        console.log(this.PremiumSmartphone);
-        this.productList.forEach((a: any) => {
-          Object.assign(a, { quantity: 1, total: a.price });
-        });
       });
   }
 }

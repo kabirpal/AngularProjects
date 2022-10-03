@@ -26,26 +26,19 @@ export class MyCartService {
   deleteProduct(productId: string) {
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];
-    console.log(this.localId);
-    console.log(productId);
     const url =
       'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
       this.localId +
       'addToCart/' +
       productId +
       '.json';
-    console.log(productId);
-    this.http
-      .delete(url)
-      .subscribe((res) => console.log('product deleted', res));
+    this.http.delete(url).subscribe();
     this.FetchData(this.localId);
   }
 
   addToCart(product: any) {
     this.cartDataList.push(product);
     this.productList.next(this.cartDataList);
-    // this.getTotalAmount();
-    // console.log(this.getTotalAmount());
   }
 
   // getTotalAmount(): number {
@@ -66,9 +59,7 @@ export class MyCartService {
       this.localId +
       '/addToCart/.json';
     //console.log(url);
-    this.http
-      .delete(url)
-      .subscribe((res) => console.log('product deleted', res));
+    this.http.delete(url).subscribe();
   }
 
   removeDataFromCart() {
@@ -93,14 +84,19 @@ export class MyCartService {
           '.json'
       )
       .subscribe((post) => {
+        if (post) {
+          this.loadedProducts = post['isActive'];
+          return this.loadedProducts;
+        } else {
+          this.loadedProducts = undefined;
+          return this.loadedProducts;
+        }
         this.isFetching = false;
-        this.loadedProducts = post['isActive'];
-        return this.loadedProducts;
       });
   }
 
   addToFirebase(postData) {
-    console.log(postData.quantity);
+    //console.log(postData.quantity);
     this.localObject = JSON.parse(localStorage.getItem('userData'));
     this.localId = this.localObject['id'];
     const proId = postData.ProductId;
@@ -117,8 +113,6 @@ export class MyCartService {
             let res1 = res;
             //console.log(res1.keys);
             //console.log('Pehla if');
-            let firebaseData = Object.values(res);
-
             let firebaseData1 = Object.keys(res);
             //console.log(firebaseData1);
             const numValue = firebaseData1.indexOf(proId);
@@ -148,7 +142,7 @@ export class MyCartService {
 
   increasingQuantity(postData) {
     //console.log('case 1');
-    console.log(postData);
+    //console.log(postData);
     if (postData.quantity === 5 || postData.quantity > 5) {
       this._toastService.showErrorToast(
         'Maximum limit reached',
@@ -178,7 +172,7 @@ export class MyCartService {
 
   sameQuantity(postData) {
     // console.log(ele.quantity);
-    const increment = postData.quantity + 1;
+    //const increment = postData.quantity + 1;
     this._toastService.showSuccessToast(
       'Successfully',
       'Product is added to cart'
@@ -215,9 +209,7 @@ export class MyCartService {
             '.json',
           { ...postData, quantity: (postData.quantity -= 1) }
         )
-        .subscribe((res) => {
-          console.log(res.quantity);
-        });
+        .subscribe();
     }, 300);
   }
 }

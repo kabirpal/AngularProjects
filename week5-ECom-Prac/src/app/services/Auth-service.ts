@@ -104,7 +104,7 @@ export class AuthService {
       .pipe(
         catchError(this.handleError),
         tap((resData) => {
-          console.log(resData.expiresIn);
+          //console.log(resData.expiresIn);
           this.handleAuthentication(
             resData.email,
             resData.localId,

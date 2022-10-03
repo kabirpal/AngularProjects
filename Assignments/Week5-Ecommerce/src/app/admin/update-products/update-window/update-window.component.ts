@@ -22,14 +22,19 @@ export class UpdateWindowComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((data) => {
       this.productId = data['id'];
-      console.log(data);
+      //console.log(data);
 
       this._productServices
         .viewProductdata(this.productId)
         .subscribe((productData: Products) => {
-          this.productDetails = productData;
-          console.log(this.productDetails);
-          console.log(productData);
+          if (productData) {
+            this.productDetails = productData;
+          } else {
+            this.productDetails = undefined;
+          }
+
+          //console.log(this.productDetails);
+          //console.log(productData);
         });
     });
   }
@@ -56,12 +61,10 @@ export class UpdateWindowComponent implements OnInit {
       imageurl2: form.value.imageUrl2,
       subCategory: form.value.SubCategory,
     };
-    console.log(form);
+    //console.log(form);
     this._productServices
       .updateProduct(this.productId, updateProduct)
-      .subscribe((data) => {
-        console.log(data);
-      });
+      .subscribe();
   }
 
   onCreatePost(postData: ProductFields) {

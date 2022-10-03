@@ -46,9 +46,13 @@ export class UpdateProductsComponent implements OnInit {
         })
       )
       .subscribe((post) => {
-        console.log(post);
-        this.isFetching = false;
-        this.loadedProducts = post;
+        if (post) {
+          this.isFetching = false;
+          this.loadedProducts = post;
+        } else {
+          this.loadedProducts = [];
+        }
+        //console.log(post);
       });
   }
 }

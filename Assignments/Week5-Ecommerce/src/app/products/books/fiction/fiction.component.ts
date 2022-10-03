@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MyCartService } from 'src/app/services/my-cart.service';
-import { ToastService } from 'src/app/services/toast-service.service';
 import { WishListService } from 'src/app/services/wishList.service';
 import { Products } from '../../booksGet-module';
 
@@ -21,8 +20,7 @@ export class FictionComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private _myCartService: MyCartService,
-    private _myWishListService: WishListService,
-    private _toastService: ToastService
+    private _myWishListService: WishListService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +35,6 @@ export class FictionComponent implements OnInit {
   addToCart(item: any) {
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    console.log(this.firebaseProduct);
     this._myCartService.addToFirebase(item);
   }
 
@@ -63,21 +60,26 @@ export class FictionComponent implements OnInit {
         })
       )
       .subscribe((post) => {
+        if (post) {
+          this.loadedPosts = post;
+          this.productList = post;
+          this.BooksList = this.loadedPosts.filter(
+            (post) => post.ProductCategory === 'Books'
+          );
+          this.FictionList = this.BooksList.filter(
+            (post) => post.SubCategory === 'Fiction'
+          );
+          this.productList.forEach((a: any) => {
+            Object.assign(a, { quantity: 1, total: a.price });
+          });
+        } else {
+          this.loadedPosts = [];
+          this.productList = [];
+          this.BooksList = [];
+          this.FictionList = [];
+        }
         //console.log(post);
         this.isFetching = false;
-        this.loadedPosts = post;
-        this.productList = post;
-        this.BooksList = this.loadedPosts.filter(
-          (post) => post.ProductCategory === 'Books'
-        );
-        //console.log(this.BooksList);
-        this.FictionList = this.BooksList.filter(
-          (post) => post.SubCategory === 'Fiction'
-        );
-        //console.log(this.FictionList);
-        // this.productList.forEach((a: any) => {
-        //   Object.assign(a, { quantity: 1, total: a.price });
-        // });
       });
   }
 }

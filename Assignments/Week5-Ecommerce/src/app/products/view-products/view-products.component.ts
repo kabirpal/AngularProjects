@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { map } from 'rxjs';
 import { MyCartService } from 'src/app/services/my-cart.service';
-import { ToastService } from 'src/app/services/toast-service.service';
 import { WishListService } from 'src/app/services/wishList.service';
 import { Products } from '../booksGet-module';
 import { ProductService } from '../product.service';
@@ -29,15 +28,14 @@ export class ViewProductsComponent implements OnInit {
     private http: HttpClient,
     private _productService: ProductService,
     private _myCartService: MyCartService,
-    private _myWishListService: WishListService,
-    private _toastService: ToastService
+    private _myWishListService: WishListService
   ) {}
 
   addToCart(item: Products) {
-    console.log(this.FetchData(item.ProductId));
+    //console.log(this.FetchData(item.ProductId));
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    console.log(this.firebaseProduct);
+    //console.log(this.firebaseProduct);
     const singleProduct = this.FetchData(item.ProductId).subscribe((post) => {
       //console.log(post);
       this.isFetching = false;
@@ -72,19 +70,26 @@ export class ViewProductsComponent implements OnInit {
     this.isFetching = true;
     this.activatedRoute.params.subscribe((data) => {
       this.productID = data['id'];
-      console.log(this.productID);
+      //console.log(this.productID);
       this._productService
         .viewProduct(this.productID.toString())
         .subscribe((viewData) => {
-          this.productData = viewData;
-          this.productCategory = viewData.ProductCategory;
-          this._productService
-            .viewRelatedProducts(this.productCategory)
-            .subscribe((res) => {
-              //console.log(res);
-              this.loadedProducts = res;
-              //onsole.log(this.loadedProducts);
-            });
+          if (viewData) {
+            this.productData = viewData;
+            this.productCategory = viewData.ProductCategory;
+            this._productService
+              .viewRelatedProducts(this.productCategory)
+              .subscribe((res) => {
+                if (res) {
+                  this.loadedProducts = res;
+                } else {
+                  this.loadedProducts = [];
+                }
+                //console.log(res);
+              });
+          } else {
+            this.productData = undefined;
+          }
         });
     });
     this.isFetching = false;
@@ -96,7 +101,7 @@ export class ViewProductsComponent implements OnInit {
   }
 
   private FetchData(proId) {
-    console.log(proId);
+    //console.log(proId);
     this.isFetching = true;
     return this.http
       .get<{ [key: string]: Products }>(

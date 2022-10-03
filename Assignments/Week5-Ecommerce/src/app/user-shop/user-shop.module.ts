@@ -11,7 +11,6 @@ import { CardsComponent } from './cards/cards.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductsModule } from '../products/products.module';
 import { HeaderComponent } from './header/header.component';
-import { ToasterComponent } from '../TosterComponent/toaster/toaster.component';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './error404/error404.component';
 

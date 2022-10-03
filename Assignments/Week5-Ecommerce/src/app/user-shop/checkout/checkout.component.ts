@@ -33,7 +33,7 @@ export class CheckoutComponent implements OnInit {
     this.alertWithSuccess();
     const formData = checkoutFrom.value;
     this.storeOrder(formData);
-    console.log(formData);
+    //console.log(formData);
     this._myCartService.removeDataFromCart();
   }
 
@@ -56,7 +56,7 @@ export class CheckoutComponent implements OnInit {
         .subscribe({
           next: (post) => {
             this.userCartData = post;
-            console.log(formData);
+            //console.log(formData);
             this.http
               .patch(
                 'https://lavish-67a42-default-rtdb.firebaseio.com/orders/' +

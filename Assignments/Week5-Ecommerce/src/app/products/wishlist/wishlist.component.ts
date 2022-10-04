@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MyCartService } from 'src/app/services/my-cart.service';
 import { ToastService } from 'src/app/services/toast-service.service';
@@ -14,28 +15,61 @@ export class WishlistComponent implements OnInit {
   isFetching: boolean = false;
   allProducts: number = 0;
   firebaseProduct: Products[];
+  localObject: [];
+  localId: string;
   constructor(
     private _myWishListService: WishListService,
     private _myCartService: MyCartService,
-    private _toastService: ToastService
+    private _toastService: ToastService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
     this.isFetching = true;
-    this._myWishListService.getProductData().subscribe((res) => {
-      if (res) {
-        this.products = res;
-      } else {
-        this.products = [];
-      }
-      this.isFetching = false;
-    });
+    this.localObject = JSON.parse(localStorage.getItem('userData'));
+    this.localId = this.localObject['id'];
+    this.FetchData();
   }
 
   addToCart(item: any) {
-    this._myWishListService.removeWishListData(item);
+    console.log(item.ProductId);
+    this.removeWishListData(item);
     this._myCartService.getUserState();
     this._myCartService.addToFirebase(item);
+    this.FetchData();
+  }
+
+  removeWishListData(item) {
+    this.localObject = JSON.parse(localStorage.getItem('userData'));
+    this.localId = this.localObject['id'];
+    console.log(this.localId);
+    this.http
+      .delete(
+        'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
+          this.localId +
+          '/addToWishList/' +
+          item.ProductId +
+          '.json'
+      )
+      .subscribe();
+    this.FetchData();
+  }
+
+  FetchData() {
+    this.http
+      .get(
+        'https://lavish-67a42-default-rtdb.firebaseio.com/user/' +
+          this.localId +
+          '/addToWishList/.json'
+      )
+      .subscribe((res) => {
+        if (res) {
+          this.products = Object.values(res);
+        } else {
+          this.products = [];
+        }
+        this.isFetching = false;
+      });
   }
 
   deleteData(item) {

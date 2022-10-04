@@ -38,16 +38,23 @@ export class MyCartComponent implements OnInit {
 
   decreaseQuantity(item) {
     this._myCartService.decreaseQuantity(item);
+    setTimeout(() => {
+      this.getProductData();
+    }, 1500);
   }
 
   increaseQuantity(item) {
     this._myCartService.increasingQuantity(item);
+    setTimeout(() => {
+      this.getProductData();
+    }, 1500);
   }
 
   removeAllProduct() {
     this._myCartService.removeAllcart();
     this.getProductData();
   }
+
   getProductData() {
     this.userStatus = this._myCartService.getUserState();
     //console.log(this.userStatus);

@@ -23,6 +23,7 @@ export class ViewProductsComponent implements OnInit {
   loadedPosts: Products[] = [];
   productList: Products[];
   BooksList: Products[] = [];
+  buttonPressed: boolean;
   constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpClient,
@@ -33,36 +34,33 @@ export class ViewProductsComponent implements OnInit {
 
   addToCart(item: Products) {
     //console.log(this.FetchData(item.ProductId));
+    this.buttonPressed = true;
     this._myCartService.getUserState();
     this.firebaseProduct = JSON.parse(JSON.stringify(item));
-    //console.log(this.firebaseProduct);
-    const singleProduct = this.FetchData(item.ProductId).subscribe((post) => {
-      //console.log(post);
+    this.FetchData(item.ProductId).subscribe((post) => {
       this.isFetching = false;
       this.loadedPosts = post;
       this.productList = post;
-
-      //console.log(this.productList);
       this.BooksList = this.loadedPosts.filter(
         (post) => post.id === item.ProductId
       );
-      //console.log(this.BooksList);
       this.ProductDetails = this.BooksList[0];
-      //console.log(this.ProductDetails);
       this.productList.forEach((a: Products) => {
         Object.assign(a, { quantity: 1, total: a.ProductPrice });
       });
-      //console.log(this.ProductDetails);
-      // return this.ProductDetails;
-      console.log(singleProduct);
-      console.log(this.ProductDetails);
-
       this._myCartService.addToFirebase(this.ProductDetails);
     });
+    setTimeout(() => {
+      this.buttonPressed = false;
+    }, 4000);
   }
 
-  addToWishList(item: any) {
-    this._myWishListService.addToWishList(item);
+  // addToWishList(item: any) {
+  //   this._myWishListService.addToWishList(item);
+  // }
+
+  addToWishList(item: Products) {
+    this._myWishListService.addToFirebaseWishList(item);
   }
 
   ngOnInit(): void {

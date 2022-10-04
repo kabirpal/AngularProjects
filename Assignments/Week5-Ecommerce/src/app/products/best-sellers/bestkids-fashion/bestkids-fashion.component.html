@@ -1,10 +1,11 @@
 <h2>Best selling Kid's clothings</h2>
 <!-- Card 1 -->
-<div class="container" *ngIf="loadedPosts.length == 0">
-  <h1>Sorry data cannot be fetched</h1>
+<hr />
+<div class="container" *ngIf="BooksList.length == 0">
+  <h2>Sorry data cannot be fetched</h2>
 </div>
 
-<div class="container" *ngIf="loadedPosts.length != 0">
+<div class="container" *ngIf="BooksList.length != 0">
   <div class="shadow p-3 mb-5 col-md-12 bg-white rounded">
     <div class="row">
       <div class="col-sm-6" *ngFor="let item of BooksList">

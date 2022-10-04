@@ -33,7 +33,7 @@ export class RomanceComponent implements OnInit {
     this.FetchData();
   }
   addToWishList(item: any) {
-    this._myWishListService.addToWishList(item);
+    this._myWishListService.addToFirebaseWishList(item);
   }
 
   addToCart(item: any) {

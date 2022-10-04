@@ -33,7 +33,7 @@ export class FashionKidsComponent implements OnInit {
   }
 
   addToWishList(item: any) {
-    this._myWishListService.addToWishList(item);
+    this._myWishListService.addToFirebaseWishList(item);
   }
 
   addToCart(item: any) {

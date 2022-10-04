@@ -21,38 +21,39 @@ export class BestkidsFashionComponent implements OnInit {
   buttonPressed: boolean = false;
 
   ngOnInit(): void {
-    //this.FetchData();
+    this.FetchData();
   }
 
-  // private FetchData() {
-  //   this.isFetching = true;
-  //   this.http
-  //     .get<{ [key: string]: Products }>(
-  //       'https://lavish-67a42-default-rtdb.firebaseio.com/Products.json'
-  //     )
-  //     .pipe(
-  //       map((responseData) => {
-  //         const postsArray: Products[] = [];
-  //         for (const key in responseData) {
-  //           if (responseData.hasOwnProperty(key)) {
-  //             postsArray.push({ ...responseData[key], id: key });
-  //           }
-  //         }
-  //         return postsArray;
-  //       })
-  //     )
-  //     .subscribe((post) => {
-  //       if (post) {
-  //         this.loadedPosts = post;
-  //         this.BooksList = this.loadedPosts
-  //           .filter((post) => post.ProductCategory === 'Books')
-  //           .splice(0, 4);
-  //       } else {
-  //         this.loadedPosts = [];
-  //         this.BooksList = [];
-  //       }
-  //       //console.log(post);
-  //       this.isFetching = false;
-  //     });
-  // }
+  private FetchData() {
+    this.isFetching = true;
+    this.http
+      .get<{ [key: string]: Products }>(
+        'https://lavish-67a42-default-rtdb.firebaseio.com/Products.json'
+      )
+      .pipe(
+        map((responseData) => {
+          const postsArray: Products[] = [];
+          for (const key in responseData) {
+            if (responseData.hasOwnProperty(key)) {
+              postsArray.push({ ...responseData[key], id: key });
+            }
+          }
+          return postsArray;
+        })
+      )
+      .subscribe((post) => {
+        console.log(post);
+        if (post) {
+          this.loadedPosts = post;
+          this.BooksList = this.loadedPosts
+            .filter((post) => post.ProductCategory === 'KidsFashion')
+            .splice(0, 4);
+        } else {
+          this.loadedPosts = [];
+          this.BooksList = [];
+        }
+        //console.log(post);
+        this.isFetching = false;
+      });
+  }
 }

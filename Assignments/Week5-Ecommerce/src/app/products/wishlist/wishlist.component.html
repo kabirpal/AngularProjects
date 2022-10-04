@@ -8,9 +8,12 @@
   >
     <app-spinner></app-spinner>
   </div>
+  <div class="container" *ngIf="products == 0">
+    <h1>Your WishList is empty</h1>
+  </div>
   <div
     class="container"
-    *ngIf="!isFetching"
+    *ngIf="!isFetching && products"
     style="
       margin-top: 5px;
       border: 2px solid rgb(180, 179, 179);
@@ -28,7 +31,9 @@
           />
           <div class="card-body">
             <h5 class="card-title">{{ item.ProductName }}</h5>
-            <h5 class="card-text">Price: {{ item.ProductPrice }}</h5>
+            <h5 class="card-text">
+              Price: {{ item.ProductPrice | currency: "INR" }}
+            </h5>
             <p class="card-text">By: {{ item.brandName }}</p>
             <a href="/viewproduct/{{ item.ProductId }}">View Products</a>
             <button

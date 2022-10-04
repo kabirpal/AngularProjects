@@ -32,7 +32,7 @@ export class FashionWomenComponent implements OnInit {
   }
 
   addToWishList(item: any) {
-    this._myWishListService.addToWishList(item);
+    this._myWishListService.addToFirebaseWishList(item);
   }
 
   onFetchPosts() {

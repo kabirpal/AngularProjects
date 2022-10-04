@@ -165,7 +165,7 @@ export class MyCartService {
           { ...postData, quantity: (postData.quantity += 1) }
         )
         .subscribe((res) => {
-          console.log(res.quantity);
+          //console.log(res.quantity);
         });
     }, 300);
   }
